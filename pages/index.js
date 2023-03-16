@@ -1,11 +1,110 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import { Auth, DataStore } from "aws-amplify";
+import { Post } from "@/src/models";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { useEffect,useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
-const inter = Inter({ subsets: ['latin'] })
-
+import 'react-toastify/dist/ReactToastify.css';
 export default function Home() {
+  const [name, setName] = useState("")
+  const [designation, setDesignation] = useState("")
+  const [content, setContent] = useState("")
+  const [mode, setMode] = useState("ADD")
+  const [userName,setUserName] = useState("")
+
+  const signOutHandler = async () => {
+    try {
+      await Auth.signOut();
+      toast.success("Signed out successfully", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    } catch (err) {
+      toast.error(err, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+      console.log(err);
+    }
+  };
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const currentUser = await Auth.currentAuthenticatedUser();
+    console.log(currentUser.username);
+    if(mode==="ADD"){
+
+      try {
+      console.log("addd",name,designation,content,mode)
+        
+        await DataStore.save(
+        new Post({
+          userid: currentUser.username,
+          name:name,
+          designation:designation,
+          content:content
+        })
+      );
+      console.log("Post saved successfully!");
+      toast.success("Document Added Successfully", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    } catch (error) {
+      toast.error(err, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+      console.log("Error saving post", error);
+    }
+  }else{
+    const original = await DataStore.query(Post,  (c) =>
+    c.userid.eq(currentUser.username));
+    try{
+      console.log("editttt",name,designation,content,mode,original)
+      const update = await DataStore.save(
+        Post.copyOf(original[0], updated => {
+          
+          updated.name = name
+          updated.designation = designation
+          updated.content = content
+        })
+        );
+        toast.success("Updated successfully", {
+          position: toast.POSITION.BOTTOM_CENTER
+        });
+      }
+      catch(err){
+        toast.error(err, {
+          position: toast.POSITION.BOTTOM_CENTER
+        });
+        console.log("Error",err)
+      }
+  }
+  };
+  const getDocs = async () => {
+    const currentUser = await Auth.currentAuthenticatedUser();
+    console.log(currentUser);
+    setUserName(currentUser.username)
+    try {
+      const posts = await DataStore.query(Post, (c) =>
+        c.userid.eq(currentUser.username)
+      );
+      if(posts.length!==0){
+        setName(posts[0].name)
+        setDesignation(posts[0].designation)
+        setContent(posts[0].content)
+        setMode("EDIT")
+      }
+      console.log(
+        "Posts retrieved successfully!",
+        JSON.stringify(posts, null, 2)
+      );
+    } catch (error) {
+      console.log("Error retrieving posts", error);
+    }
+  };
+  useEffect(() => {
+    getDocs();
+  }, [])
+  
   return (
     <>
       <Head>
@@ -14,110 +113,43 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
+      <div className="parent">
+        Welcome &nbsp; {userName} &nbsp; <Button className="logout" onClick={() => signOutHandler()}>Log Out</Button>
+        <Form className="formHeader">
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter Name" value={name} 
+              onChange={(e)=>setName(e.target.value)}
+            
             />
-          </div>
-        </div>
+          </Form.Group>
 
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Designation</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Designation"
+              value={designation}
+              onChange={(e)=>setDesignation(e.target.value)}
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Content</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Content"
+              value={content}
+              onChange={(e)=>setContent(e.target.value)}
+            />
+          </Form.Group>
 
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+          <Button variant="primary" type="submit" onClick={(e)=>submitHandler(e)}>
+            Submit
+          </Button>
+        </Form>
+        <ToastContainer />
+      </div>
     </>
-  )
+  );
 }
