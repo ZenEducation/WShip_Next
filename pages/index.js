@@ -11,8 +11,10 @@ import { Spinner } from "react-bootstrap";
 import 'react-quill/dist/quill.snow.css'
 import dynamic from "next/dynamic";
 import parse from 'html-react-parser';
-
-
+const ReactQuill = dynamic(import('react-quill'), {	
+	ssr: false,
+	loading: () => <p>Loading ...</p>,
+	})
 const modules = {
   toolbar: [
     [{ header: '1' }, { header: '2' }, { font: [] }],
@@ -44,10 +46,7 @@ const formats = [
   'bullet',
   'indent',
 ]
-const ReactQuill = dynamic(import('react-quill'), {	
-	ssr: false,
-	loading: () => <p>Loading ...</p>,
-	})
+
 export default function Home() {
   const [name, setName] = useState("");
   const [designation, setDesignation] = useState("");
@@ -64,13 +63,9 @@ export default function Home() {
   const signOutHandler = async () => {
     try {
       await Auth.signOut();
-      toast.success("Signed out successfully", {
-        position: toast.POSITION.BOTTOM_CENTER,
-      });
+     
     } catch (err) {
-      toast.error(err, {
-        position: toast.POSITION.BOTTOM_CENTER,
-      });
+      
       console.log(err);
     }
   };
