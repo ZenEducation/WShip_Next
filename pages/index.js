@@ -5,9 +5,49 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-
+import Modal from "react-bootstrap/Modal";
 import "react-toastify/dist/ReactToastify.css";
 import { Spinner } from "react-bootstrap";
+import 'react-quill/dist/quill.snow.css'
+import dynamic from "next/dynamic";
+import parse from 'html-react-parser';
+
+
+const modules = {
+  toolbar: [
+    [{ header: '1' }, { header: '2' }, { font: [] }],
+    [{ size: [] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [
+      { list: 'ordered' },
+      { list: 'bullet' },
+      { indent: '-1' },
+      { indent: '+1' },
+    ],
+    ['clean'],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  },
+}
+const formats = [
+  'header',
+  'font',
+  'size',
+  'bold',
+  'italic',
+  'underline',
+  'strike',
+  'blockquote',
+  'list',
+  'bullet',
+  'indent',
+]
+const ReactQuill = dynamic(import('react-quill'), {	
+	ssr: false,
+	loading: () => <p>Loading ...</p>,
+	})
 export default function Home() {
   const [name, setName] = useState("");
   const [designation, setDesignation] = useState("");
@@ -15,6 +55,11 @@ export default function Home() {
   const [mode, setMode] = useState("ADD");
   const [userName, setUserName] = useState("");
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const [data, setData] = useState();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const signOutHandler = async () => {
     try {
@@ -31,12 +76,12 @@ export default function Home() {
   };
   const submitHandler = async (e) => {
     e.preventDefault();
+    handleClose();
     setLoading(true);
     const currentUser = await Auth.currentAuthenticatedUser();
-    console.log(currentUser.username);
+    // console.log(currentUser.username);
     if (mode === "ADD") {
       try {
-        console.log("addd", name, designation, content, mode);
 
         await DataStore.save(
           new Post({
@@ -50,6 +95,7 @@ export default function Home() {
         toast.success("Document Added Successfully", {
           position: toast.POSITION.BOTTOM_CENTER,
         });
+        getDocs();
       } catch (error) {
         toast.error(err, {
           position: toast.POSITION.BOTTOM_CENTER,
@@ -61,7 +107,6 @@ export default function Home() {
         c.userid.eq(currentUser.username)
       );
       try {
-        console.log("editttt", name, designation, content, mode, original);
         const update = await DataStore.save(
           Post.copyOf(original[0], (updated) => {
             updated.name = name;
@@ -72,6 +117,7 @@ export default function Home() {
         toast.success("Updated successfully", {
           position: toast.POSITION.BOTTOM_CENTER,
         });
+        getDocs();
       } catch (err) {
         toast.error(err, {
           position: toast.POSITION.BOTTOM_CENTER,
@@ -79,10 +125,10 @@ export default function Home() {
         console.log("Error", err);
       }
     }
-    setLoading(false)
+    setLoading(false);
   };
   const getDocs = async () => {
-    setLoading(true)
+    setLoading(true);
     const currentUser = await Auth.currentAuthenticatedUser();
     console.log(currentUser);
     setUserName(currentUser.username);
@@ -91,6 +137,7 @@ export default function Home() {
         c.userid.eq(currentUser.username)
       );
       if (posts.length !== 0) {
+        setData(posts[0]);
         setName(posts[0].name);
         setDesignation(posts[0].designation);
         setContent(posts[0].content);
@@ -103,12 +150,12 @@ export default function Home() {
     } catch (error) {
       console.log("Error retrieving posts", error);
     }
-    setLoading(false)
+    setLoading(false);
   };
   useEffect(() => {
     getDocs();
   }, []);
-
+  // console.log(content)
   return (
     <>
       <Head>
@@ -122,18 +169,38 @@ export default function Home() {
         <Button className="logout" onClick={() => signOutHandler()}>
           Log Out
         </Button>
-        {
-          !loading?(
-
-         
-        <><Form className="formHeader">
+        {!loading ? (
+          data ? (
+            <>
+              <h3 className="topPara">Name : {data.name}</h3>
+              <h3 className="midPara">Designation : {data.designation}</h3>
+              <h3 className="bottomPara">Content : </h3>
+              <p className="contentPara">{parse(data.content)}</p>
+              <Button variant="primary" onClick={handleShow}>
+                Edit
+              </Button>
+            </>
+          ) : null
+        ) : (
+          <div className="loader">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        )}
+        <ToastContainer />
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit your profile</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form className="formHeader">
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)} />
+                  onChange={(e) => setName(e.target.value)}
+                />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -142,36 +209,34 @@ export default function Home() {
                   type="text"
                   placeholder="Enter Designation"
                   value={designation}
-                  onChange={(e) => setDesignation(e.target.value)} />
+                  onChange={(e) => setDesignation(e.target.value)}
+                />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Content</Form.Label>
-                <Form.Control
-                  style={{ fontWeight: "bold" }}
-                  type="text"
-                  placeholder="Enter Content"
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)} />
+                <ReactQuill modules={modules} onChange={setContent} formats={formats} value={content} theme="snow" />
               </Form.Group>
 
-              <Button
-                variant="primary"
-                type="submit"
-                onClick={(e) => submitHandler(e)}
-              >
-                Submit
-              </Button>
-            </Form><img
-                src="https://imageedit10716-dev.s3.ap-southeast-2.amazonaws.com/public/c242ca08-de37-4b73-83c9-a2dd67291f51img?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFEaCmFwLXNvdXRoLTEiRzBFAiEAlxpRe8KqtbinNo9s0EYct%2F4HMcPZCJ6HN660IfsrsUwCIG0By0Om31oc1YR%2FF6ev1cMnNcQNPeZpuvgzBmOzieROKv0CCBoQABoMNTk2MTA5OTY3MDY0IgxdzC%2F2t3heVwt0KCUq2gLVPi%2F16WLC33eoQ%2BrDkaaMhoLTdshzWkboFsThdwOhhG6Jyakmbsnweq4B3k0yaxiEa5PC9KOKAh5M5ZdCT0%2FkS9EOQn10WqQS6RcuSONXQmTRFD%2BvAa6NN%2Fx1O58DmAqWtRhmiND2JCT%2BSJZ7HE5JpANnqd55B0T6wOFMn%2BDv72gZCGMTE0XoePvXEKUwF1MuAtaSe5ParY4RNFE3tC00mzTt1FXj%2BnsLc2C23j8VYxq4N%2Fgzmznm9EGXkSnjpWWKiVjqT%2BsYlzXgshDazXJ%2BvHcPiwsIJUUelRyoRp5F4R9N%2BSDK525pVaAvlkYlhMFtszvMyHTvpbqdwspXcPkknCfxRAoHczq8DfLwk%2FhKqDYJHVWenwE4c3hVtCJSI85lD%2BHs%2BsTSthk90FAzeNDRyz69oaZRNSH8aIgiyD72IYIgo920UpoXwRI4%2FHJpKcPIr7BJ6fuOBUzJMLubzaAGOrMC4ShyA8SDEXoA%2B4%2FDWcpDY2ikvbR8sh4jPVnfxlBz8IVwHURt%2B%2BTbDJzZQSj0Ghsy3pb8fhTnC%2BGAsxGHTMda2UQsAyfoR8d6Zbw0PB%2F8WaR1gm9srj49FtXn6q0tLaRP2oo%2BD2ZOgSlqy6sDLbDZiq7py16AlfM16I4BRCw5RJeHZlMaSZgmqp2wcnpgzX6SPAPZz3hn6ey%2FYZirRXD7g6VXTcMj5e2BJ4dRjQJVhZcQP8e8Kq1vzvRuWM6aEHuru7V1DWvlC%2FHv6BDuCa6DONoMgIMFH9fkw5Ria2ShPdx6fh5XN%2Bmpbn3RjilacuZkBmsoCB7IcvtlkDUEVZBXayhn1GzpyivTG6IfEhdi4OyEwQ1A072aJqEDj13uRtD3TufuI8d6uoAYkpxfmZmHr6U8Zw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230316T171346Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAYVSXMH3MOBNCGK3Z%2F20230316%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Signature=61f570049a397933114d446eb034d8eaa0ceb6518adf5a73dc207c6e730915f0"
-                alt="" /></>
-        ):(<div className="loader">
-
-        <Spinner animation="border" variant="primary" />
-       </div>)
-      }
-              
-
-        <ToastContainer />
+              <div className="buttonWrapper">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  onClick={(e) => submitHandler(e)}
+                >
+                  Submit
+                </Button>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+              </div>
+            </Form>
+            <img
+              src="https://imageedit10716-dev.s3.ap-southeast-2.amazonaws.com/public/c242ca08-de37-4b73-83c9-a2dd67291f51img?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFEaCmFwLXNvdXRoLTEiRzBFAiEAlxpRe8KqtbinNo9s0EYct%2F4HMcPZCJ6HN660IfsrsUwCIG0By0Om31oc1YR%2FF6ev1cMnNcQNPeZpuvgzBmOzieROKv0CCBoQABoMNTk2MTA5OTY3MDY0IgxdzC%2F2t3heVwt0KCUq2gLVPi%2F16WLC33eoQ%2BrDkaaMhoLTdshzWkboFsThdwOhhG6Jyakmbsnweq4B3k0yaxiEa5PC9KOKAh5M5ZdCT0%2FkS9EOQn10WqQS6RcuSONXQmTRFD%2BvAa6NN%2Fx1O58DmAqWtRhmiND2JCT%2BSJZ7HE5JpANnqd55B0T6wOFMn%2BDv72gZCGMTE0XoePvXEKUwF1MuAtaSe5ParY4RNFE3tC00mzTt1FXj%2BnsLc2C23j8VYxq4N%2Fgzmznm9EGXkSnjpWWKiVjqT%2BsYlzXgshDazXJ%2BvHcPiwsIJUUelRyoRp5F4R9N%2BSDK525pVaAvlkYlhMFtszvMyHTvpbqdwspXcPkknCfxRAoHczq8DfLwk%2FhKqDYJHVWenwE4c3hVtCJSI85lD%2BHs%2BsTSthk90FAzeNDRyz69oaZRNSH8aIgiyD72IYIgo920UpoXwRI4%2FHJpKcPIr7BJ6fuOBUzJMLubzaAGOrMC4ShyA8SDEXoA%2B4%2FDWcpDY2ikvbR8sh4jPVnfxlBz8IVwHURt%2B%2BTbDJzZQSj0Ghsy3pb8fhTnC%2BGAsxGHTMda2UQsAyfoR8d6Zbw0PB%2F8WaR1gm9srj49FtXn6q0tLaRP2oo%2BD2ZOgSlqy6sDLbDZiq7py16AlfM16I4BRCw5RJeHZlMaSZgmqp2wcnpgzX6SPAPZz3hn6ey%2FYZirRXD7g6VXTcMj5e2BJ4dRjQJVhZcQP8e8Kq1vzvRuWM6aEHuru7V1DWvlC%2FHv6BDuCa6DONoMgIMFH9fkw5Ria2ShPdx6fh5XN%2Bmpbn3RjilacuZkBmsoCB7IcvtlkDUEVZBXayhn1GzpyivTG6IfEhdi4OyEwQ1A072aJqEDj13uRtD3TufuI8d6uoAYkpxfmZmHr6U8Zw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230316T171346Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAYVSXMH3MOBNCGK3Z%2F20230316%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Signature=61f570049a397933114d446eb034d8eaa0ceb6518adf5a73dc207c6e730915f0"
+              alt=""
+            />
+          </Modal.Body>
+          <Modal.Footer></Modal.Footer>
+        </Modal>
       </div>
     </>
   );
