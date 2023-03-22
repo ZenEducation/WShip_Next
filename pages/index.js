@@ -3,95 +3,98 @@ import { Auth, DataStore } from "aws-amplify";
 import { Post } from "@/src/models";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useEffect,useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import { Spinner } from "react-bootstrap";
 export default function Home() {
-  const [name, setName] = useState("")
-  const [designation, setDesignation] = useState("")
-  const [content, setContent] = useState("")
-  const [mode, setMode] = useState("ADD")
-  const [userName,setUserName] = useState("")
+  const [name, setName] = useState("");
+  const [designation, setDesignation] = useState("");
+  const [content, setContent] = useState("");
+  const [mode, setMode] = useState("ADD");
+  const [userName, setUserName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const signOutHandler = async () => {
     try {
       await Auth.signOut();
       toast.success("Signed out successfully", {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
     } catch (err) {
       toast.error(err, {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_CENTER,
       });
       console.log(err);
     }
   };
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const currentUser = await Auth.currentAuthenticatedUser();
     console.log(currentUser.username);
-    if(mode==="ADD"){
-
+    if (mode === "ADD") {
       try {
-      console.log("addd",name,designation,content,mode)
-        
+        console.log("addd", name, designation, content, mode);
+
         await DataStore.save(
-        new Post({
-          userid: currentUser.username,
-          name:name,
-          designation:designation,
-          content:content
-        })
+          new Post({
+            userid: currentUser.username,
+            name: name,
+            designation: designation,
+            content: content,
+          })
+        );
+        console.log("Post saved successfully!");
+        toast.success("Document Added Successfully", {
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+      } catch (error) {
+        toast.error(err, {
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
+        console.log("Error saving post", error);
+      }
+    } else {
+      const original = await DataStore.query(Post, (c) =>
+        c.userid.eq(currentUser.username)
       );
-      console.log("Post saved successfully!");
-      toast.success("Document Added Successfully", {
-        position: toast.POSITION.BOTTOM_CENTER
-      });
-    } catch (error) {
-      toast.error(err, {
-        position: toast.POSITION.BOTTOM_CENTER
-      });
-      console.log("Error saving post", error);
-    }
-  }else{
-    const original = await DataStore.query(Post,  (c) =>
-    c.userid.eq(currentUser.username));
-    try{
-      console.log("editttt",name,designation,content,mode,original)
-      const update = await DataStore.save(
-        Post.copyOf(original[0], updated => {
-          
-          updated.name = name
-          updated.designation = designation
-          updated.content = content
-        })
+      try {
+        console.log("editttt", name, designation, content, mode, original);
+        const update = await DataStore.save(
+          Post.copyOf(original[0], (updated) => {
+            updated.name = name;
+            updated.designation = designation;
+            updated.content = content;
+          })
         );
         toast.success("Updated successfully", {
-          position: toast.POSITION.BOTTOM_CENTER
+          position: toast.POSITION.BOTTOM_CENTER,
         });
-      }
-      catch(err){
+      } catch (err) {
         toast.error(err, {
-          position: toast.POSITION.BOTTOM_CENTER
+          position: toast.POSITION.BOTTOM_CENTER,
         });
-        console.log("Error",err)
+        console.log("Error", err);
       }
-  }
+    }
+    setLoading(false)
   };
   const getDocs = async () => {
+    setLoading(true)
     const currentUser = await Auth.currentAuthenticatedUser();
     console.log(currentUser);
-    setUserName(currentUser.username)
+    setUserName(currentUser.username);
     try {
       const posts = await DataStore.query(Post, (c) =>
         c.userid.eq(currentUser.username)
       );
-      if(posts.length!==0){
-        setName(posts[0].name)
-        setDesignation(posts[0].designation)
-        setContent(posts[0].content)
-        setMode("EDIT")
+      if (posts.length !== 0) {
+        setName(posts[0].name);
+        setDesignation(posts[0].designation);
+        setContent(posts[0].content);
+        setMode("EDIT");
       }
       console.log(
         "Posts retrieved successfully!",
@@ -100,11 +103,12 @@ export default function Home() {
     } catch (error) {
       console.log("Error retrieving posts", error);
     }
+    setLoading(false)
   };
   useEffect(() => {
     getDocs();
-  }, [])
-  
+  }, []);
+
   return (
     <>
       <Head>
@@ -114,40 +118,59 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="parent">
-        Welcome &nbsp; {userName} &nbsp; <Button className="logout" onClick={() => signOutHandler()}>Log Out</Button>
-        <Form className="formHeader">
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter Name" value={name} 
-              onChange={(e)=>setName(e.target.value)}
-            
-            />
-          </Form.Group>
+        Welcome &nbsp; {userName} &nbsp;{" "}
+        <Button className="logout" onClick={() => signOutHandler()}>
+          Log Out
+        </Button>
+        {
+          !loading?(
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Designation</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Designation"
-              value={designation}
-              onChange={(e)=>setDesignation(e.target.value)}
+         
+        <><Form className="formHeader">
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)} />
+              </Form.Group>
 
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Content</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Content"
-              value={content}
-              onChange={(e)=>setContent(e.target.value)}
-            />
-          </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Designation</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Designation"
+                  value={designation}
+                  onChange={(e) => setDesignation(e.target.value)} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Content</Form.Label>
+                <Form.Control
+                  style={{ fontWeight: "bold" }}
+                  type="text"
+                  placeholder="Enter Content"
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)} />
+              </Form.Group>
 
-          <Button variant="primary" type="submit" onClick={(e)=>submitHandler(e)}>
-            Submit
-          </Button>
-        </Form>
+              <Button
+                variant="primary"
+                type="submit"
+                onClick={(e) => submitHandler(e)}
+              >
+                Submit
+              </Button>
+            </Form><img
+                src="https://imageedit10716-dev.s3.ap-southeast-2.amazonaws.com/public/c242ca08-de37-4b73-83c9-a2dd67291f51img?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFEaCmFwLXNvdXRoLTEiRzBFAiEAlxpRe8KqtbinNo9s0EYct%2F4HMcPZCJ6HN660IfsrsUwCIG0By0Om31oc1YR%2FF6ev1cMnNcQNPeZpuvgzBmOzieROKv0CCBoQABoMNTk2MTA5OTY3MDY0IgxdzC%2F2t3heVwt0KCUq2gLVPi%2F16WLC33eoQ%2BrDkaaMhoLTdshzWkboFsThdwOhhG6Jyakmbsnweq4B3k0yaxiEa5PC9KOKAh5M5ZdCT0%2FkS9EOQn10WqQS6RcuSONXQmTRFD%2BvAa6NN%2Fx1O58DmAqWtRhmiND2JCT%2BSJZ7HE5JpANnqd55B0T6wOFMn%2BDv72gZCGMTE0XoePvXEKUwF1MuAtaSe5ParY4RNFE3tC00mzTt1FXj%2BnsLc2C23j8VYxq4N%2Fgzmznm9EGXkSnjpWWKiVjqT%2BsYlzXgshDazXJ%2BvHcPiwsIJUUelRyoRp5F4R9N%2BSDK525pVaAvlkYlhMFtszvMyHTvpbqdwspXcPkknCfxRAoHczq8DfLwk%2FhKqDYJHVWenwE4c3hVtCJSI85lD%2BHs%2BsTSthk90FAzeNDRyz69oaZRNSH8aIgiyD72IYIgo920UpoXwRI4%2FHJpKcPIr7BJ6fuOBUzJMLubzaAGOrMC4ShyA8SDEXoA%2B4%2FDWcpDY2ikvbR8sh4jPVnfxlBz8IVwHURt%2B%2BTbDJzZQSj0Ghsy3pb8fhTnC%2BGAsxGHTMda2UQsAyfoR8d6Zbw0PB%2F8WaR1gm9srj49FtXn6q0tLaRP2oo%2BD2ZOgSlqy6sDLbDZiq7py16AlfM16I4BRCw5RJeHZlMaSZgmqp2wcnpgzX6SPAPZz3hn6ey%2FYZirRXD7g6VXTcMj5e2BJ4dRjQJVhZcQP8e8Kq1vzvRuWM6aEHuru7V1DWvlC%2FHv6BDuCa6DONoMgIMFH9fkw5Ria2ShPdx6fh5XN%2Bmpbn3RjilacuZkBmsoCB7IcvtlkDUEVZBXayhn1GzpyivTG6IfEhdi4OyEwQ1A072aJqEDj13uRtD3TufuI8d6uoAYkpxfmZmHr6U8Zw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230316T171346Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAYVSXMH3MOBNCGK3Z%2F20230316%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Signature=61f570049a397933114d446eb034d8eaa0ceb6518adf5a73dc207c6e730915f0"
+                alt="" /></>
+        ):(<div className="loader">
+
+        <Spinner animation="border" variant="primary" />
+       </div>)
+      }
+              
+
         <ToastContainer />
       </div>
     </>
