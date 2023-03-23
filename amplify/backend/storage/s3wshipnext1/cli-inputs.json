@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3wshipnext1",
+  "bucketName": "wship-next1",
+  "policyUUID": "1003ceee",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

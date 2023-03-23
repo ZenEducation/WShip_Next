@@ -8,44 +8,46 @@ import { ToastContainer, toast } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import "react-toastify/dist/ReactToastify.css";
 import { Spinner } from "react-bootstrap";
-import 'react-quill/dist/quill.snow.css'
+import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import parse from 'html-react-parser';
-const ReactQuill = dynamic(import('react-quill'), {	
-	ssr: false,
-	loading: () => <p>Loading ...</p>,
-	})
+import parse from "html-react-parser";
+import { Storage } from "@aws-amplify/storage";
+import ImageUploader from "./components/ImageUploader";
+const ReactQuill = dynamic(import("react-quill"), {
+  ssr: false,
+  loading: () => <p>Loading ...</p>,
+});
 const modules = {
   toolbar: [
-    [{ header: '1' }, { header: '2' }, { font: [] }],
+    [{ header: "1" }, { header: "2" }, { font: [] }],
     [{ size: [] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    ["bold", "italic", "underline", "strike", "blockquote"],
     [
-      { list: 'ordered' },
-      { list: 'bullet' },
-      { indent: '-1' },
-      { indent: '+1' },
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
     ],
-    ['clean'],
+    ["clean"],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
     matchVisual: false,
   },
-}
+};
 const formats = [
-  'header',
-  'font',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'strike',
-  'blockquote',
-  'list',
-  'bullet',
-  'indent',
-]
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+];
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -55,17 +57,43 @@ export default function Home() {
   const [userName, setUserName] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
+  const [imgShow, setImgShow] = useState(false);
   const [data, setData] = useState();
 
+  const [profile, setProfile] = useState("");
+  const [userImage, setUserImage] = useState(null);
   const handleClose = () => setShow(false);
+  const handleImgClose = () => setImgShow(false);
   const handleShow = () => setShow(true);
+  const handleImgShow = () => setImgShow(true);
 
+  const imageUploadHandler = (event) => {
+    setUserImage(event.target.files[0]);
+  };
+  let imgPromise;
+  const submitImagehandler = async () => {
+    handleImgClose()
+    setUserImage("")
+    setLoading(true)
+    try {
+      imgPromise = await Storage.put(userName, userImage, {
+        contentType: userImage.type,
+      });
+
+      getImage();
+      toast.success("Image Uploaded Successfully", {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+
+    } catch (err) {
+      console.log(err);
+    }
+    console.log(imgPromise);
+  };
   const signOutHandler = async () => {
     try {
       await Auth.signOut();
-     
     } catch (err) {
-      
       console.log(err);
     }
   };
@@ -77,7 +105,6 @@ export default function Home() {
     // console.log(currentUser.username);
     if (mode === "ADD") {
       try {
-
         await DataStore.save(
           new Post({
             userid: currentUser.username,
@@ -122,6 +149,15 @@ export default function Home() {
     }
     setLoading(false);
   };
+  const getImage = async () => {
+    setLoading(true)
+    const currentUser = await Auth.currentAuthenticatedUser();
+
+    let getImgUrl = await Storage.get(currentUser.username);
+    setProfile(getImgUrl);
+    setLoading(false)
+  };
+
   const getDocs = async () => {
     setLoading(true);
     const currentUser = await Auth.currentAuthenticatedUser();
@@ -149,8 +185,8 @@ export default function Home() {
   };
   useEffect(() => {
     getDocs();
+    getImage();
   }, []);
-  // console.log(content)
   return (
     <>
       <Head>
@@ -165,15 +201,29 @@ export default function Home() {
           Log Out
         </Button>
         {!loading ? (
-          data ? (
+          data && profile ? (
             <>
-              <h3 className="topPara">Name : {data.name}</h3>
-              <h3 className="midPara">Designation : {data.designation}</h3>
-              <h3 className="bottomPara">Content : </h3>
-              <p className="contentPara">{parse(data.content)}</p>
-              <Button variant="primary" onClick={handleShow}>
-                Edit
-              </Button>
+              <div className="contentWrapper">
+                <div>
+                  <h3 className="topPara">Name : {data.name}</h3>
+                  <h3 className="midPara">Designation : {data.designation}</h3>
+                  <h3 className="bottomPara">Content : </h3>
+                  <p className="contentPara">{parse(data.content)}</p>
+                  <Button variant="primary" onClick={handleShow}>
+                    Edit
+                  </Button>
+                </div>
+                <div className="image-container">
+                  <img
+                    className="uploaded-image"
+                    alt="Image Not Uploaded"
+                    src={profile}
+                  />
+                </div>
+                <Button variant="primary" onClick={handleImgShow}>
+                  Upload
+                </Button>
+              </div>
             </>
           ) : null
         ) : (
@@ -182,6 +232,22 @@ export default function Home() {
           </div>
         )}
         <ToastContainer />
+        <Modal show={imgShow} onHide={handleImgClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Upload Image for Profile Picture</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ImageUploader
+              
+              imageUploadHandler={imageUploadHandler}
+              image={userImage}
+            />
+
+            <Button variant="primary" style={{marginTop:"20px"}} onClick={submitImagehandler}>
+              Submit
+            </Button>
+          </Modal.Body>
+        </Modal>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Edit your profile</Modal.Title>
@@ -209,7 +275,13 @@ export default function Home() {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Content</Form.Label>
-                <ReactQuill modules={modules} onChange={setContent} formats={formats} value={content} theme="snow" />
+                <ReactQuill
+                  modules={modules}
+                  onChange={setContent}
+                  formats={formats}
+                  value={content}
+                  theme="snow"
+                />
               </Form.Group>
 
               <div className="buttonWrapper">
@@ -230,7 +302,6 @@ export default function Home() {
               alt=""
             />
           </Modal.Body>
-          <Modal.Footer></Modal.Footer>
         </Modal>
       </div>
     </>

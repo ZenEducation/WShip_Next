@@ -17,6 +17,10 @@
       },
       "auth": {
         "userdatastoregraphqlc28b55e2": {}
+      },
+      "storage": {
+        "wshipnext": {},
+        "s3wshipnext1": {}
       }
     }
   }
