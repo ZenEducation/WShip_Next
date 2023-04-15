@@ -1,5 +1,12 @@
 {
   "AppSyncApiName": "userdatastoregraphql",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authuserdatastoregraphqlc28b55e2",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2023-04-06T10:45:52.761Z"
 }

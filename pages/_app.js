@@ -5,6 +5,8 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Head from "next/head";
+import 'tailwindcss/tailwind.css'
+
 
 Amplify.configure({ ...awsExports, ssr: true });
 export default function App({ Component, pageProps }) {
