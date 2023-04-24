@@ -213,6 +213,7 @@ export default function Home() {
                     className="uploaded-image"
                     alt="Image Not Uploaded"
                     src={profile}
+                    
                   />
                 </div>
                 <Button variant="primary" onClick={handleImgShow}>
