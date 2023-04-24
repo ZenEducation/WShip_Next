@@ -10,6 +10,7 @@ export const createMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
       createdAt
       updatedAt
     }
@@ -24,6 +25,7 @@ export const updateMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
       createdAt
       updatedAt
     }
@@ -38,6 +40,7 @@ export const deleteMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
       createdAt
       updatedAt
     }

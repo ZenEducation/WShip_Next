@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import parse from "html-react-parser";
 import { Storage } from "@aws-amplify/storage";
 import ImageUploader from "./components/ImageUploader";
+import { useRouter } from 'next/router'
 const ReactQuill = dynamic(import("react-quill"), {
   ssr: false,
   loading: () => <p>Loading ...</p>,
@@ -66,15 +67,16 @@ export default function Home() {
   const handleImgClose = () => setImgShow(false);
   const handleShow = () => setShow(true);
   const handleImgShow = () => setImgShow(true);
+  const router = useRouter()
 
   const imageUploadHandler = (event) => {
     setUserImage(event.target.files[0]);
   };
   let imgPromise;
   const submitImagehandler = async () => {
-    handleImgClose()
-    setUserImage("")
-    setLoading(true)
+    handleImgClose();
+    setUserImage("");
+    setLoading(true);
     try {
       imgPromise = await Storage.put(userName, userImage, {
         contentType: userImage.type,
@@ -84,7 +86,6 @@ export default function Home() {
       toast.success("Image Uploaded Successfully", {
         position: toast.POSITION.BOTTOM_CENTER,
       });
-
     } catch (err) {
       console.log(err);
     }
@@ -150,12 +151,12 @@ export default function Home() {
     setLoading(false);
   };
   const getImage = async () => {
-    setLoading(true)
+    setLoading(true);
     const currentUser = await Auth.currentAuthenticatedUser();
 
     let getImgUrl = await Storage.get(currentUser.username);
     setProfile(getImgUrl);
-    setLoading(false)
+    setLoading(false);
   };
 
   const getDocs = async () => {
@@ -189,11 +190,13 @@ export default function Home() {
   }, []);
   return (
     <>
-      
       <div className="parent">
         Welcome &nbsp; {userName} &nbsp;{" "}
         <Button className="logout" onClick={() => signOutHandler()}>
           Log Out
+        </Button>
+        <Button variant="primary" onClick={()=>{router.push("/messaging")}}>
+          Chat
         </Button>
         {!loading ? (
           data && profile ? (
@@ -233,12 +236,15 @@ export default function Home() {
           </Modal.Header>
           <Modal.Body>
             <ImageUploader
-              
               imageUploadHandler={imageUploadHandler}
               image={userImage}
             />
 
-            <Button variant="primary" style={{marginTop:"20px"}} onClick={submitImagehandler}>
+            <Button
+              variant="primary"
+              style={{ marginTop: "20px" }}
+              onClick={submitImagehandler}
+            >
               Submit
             </Button>
           </Modal.Body>

@@ -8,12 +8,12 @@
   }
   
   .sentMessage {
-    text-align: left;
-    padding: 8px;
-    font-family: "roboto";
+    text-align: center;
+    padding: 0 10px;
+    padding-top: 15px;
     color: #fff;
     background: linear-gradient(243deg, #2397f5, #498efc 100%);
-    border-radius: 8px;
+    border-radius: 5px;
   }
   
   .receivedMessageContainer {
@@ -26,20 +26,17 @@
   }
   
   .receivedMessage {
-    text-align: left;
-    padding: 8px;
-    font-family: "roboto";
+    text-align: center;
+    padding: 0 10px;
+    padding-top: 15px;
     color: #000;
-    background: linear-gradient(
-      193deg,
-      rgba(237, 247, 255, 1) 0%,
-      rgba(223, 223, 223, 1) 100%
-    );
+    border-radius: 5px;
+
+    background: white;
     border-radius: 8px;
   }
   
   .senderText {
-    font-family: "roboto";
     font-size: 14px;
     color: rgba(0, 0, 0, 0.7);
     margin-bottom: 4px;

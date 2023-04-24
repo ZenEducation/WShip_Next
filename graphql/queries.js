@@ -7,6 +7,7 @@ export const getMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
       createdAt
       updatedAt
     }
@@ -23,6 +24,7 @@ export const listMessages = /* GraphQL */ `
         id
         owner
         message
+        messageType
         createdAt
         updatedAt
       }

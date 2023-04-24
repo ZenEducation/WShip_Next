@@ -9,15 +9,9 @@ type Post @model {
   designation: String
   content: String
 }
-type Message
-  @model
-  @auth(
-    rules: [
-      # Allow signed in users to perform all actions
-      { allow: private }
-    ]
-  ) {
+type Message @model {
   id: ID!
   owner: String!
   message: String!
+  messageType:String!
 }
