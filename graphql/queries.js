@@ -8,8 +8,11 @@ export const getMessage = /* GraphQL */ `
       owner
       message
       messageType
+      session
       createdAt
       updatedAt
+      _lastChangedAt
+      _version
     }
   }
 `;
@@ -25,8 +28,11 @@ export const listMessages = /* GraphQL */ `
         owner
         message
         messageType
+        session
         createdAt
         updatedAt
+        _lastChangedAt
+        _version
       }
       nextToken
     }

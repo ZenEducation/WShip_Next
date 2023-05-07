@@ -5,6 +5,8 @@
  **************************************************************************/
 
 export { default as studioTheme } from "./studioTheme";
+export { default as GroupCreateForm } from "./GroupCreateForm";
+export { default as GroupUpdateForm } from "./GroupUpdateForm";
 export { default as PostCreateForm } from "./PostCreateForm";
 export { default as PostUpdateForm } from "./PostUpdateForm";
 export { default as MessageCreateForm } from "./MessageCreateForm";

@@ -26,9 +26,15 @@ export default function MessageUpdateForm(props) {
   const initialValues = {
     owner: "",
     message: "",
+    messageType: "",
+    session: "",
   };
   const [owner, setOwner] = React.useState(initialValues.owner);
   const [message, setMessage] = React.useState(initialValues.message);
+  const [messageType, setMessageType] = React.useState(
+    initialValues.messageType
+  );
+  const [session, setSession] = React.useState(initialValues.session);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = messageRecord
@@ -36,6 +42,8 @@ export default function MessageUpdateForm(props) {
       : initialValues;
     setOwner(cleanValues.owner);
     setMessage(cleanValues.message);
+    setMessageType(cleanValues.messageType);
+    setSession(cleanValues.session);
     setErrors({});
   };
   const [messageRecord, setMessageRecord] = React.useState(message);
@@ -50,6 +58,8 @@ export default function MessageUpdateForm(props) {
   const validations = {
     owner: [{ type: "Required" }],
     message: [{ type: "Required" }],
+    messageType: [],
+    session: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -79,6 +89,8 @@ export default function MessageUpdateForm(props) {
         let modelFields = {
           owner,
           message,
+          messageType,
+          session,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -136,6 +148,8 @@ export default function MessageUpdateForm(props) {
             const modelFields = {
               owner: value,
               message,
+              messageType,
+              session,
             };
             const result = onChange(modelFields);
             value = result?.owner ?? value;
@@ -161,6 +175,8 @@ export default function MessageUpdateForm(props) {
             const modelFields = {
               owner,
               message: value,
+              messageType,
+              session,
             };
             const result = onChange(modelFields);
             value = result?.message ?? value;
@@ -174,6 +190,60 @@ export default function MessageUpdateForm(props) {
         errorMessage={errors.message?.errorMessage}
         hasError={errors.message?.hasError}
         {...getOverrideProps(overrides, "message")}
+      ></TextField>
+      <TextField
+        label="Message type"
+        isRequired={false}
+        isReadOnly={false}
+        value={messageType}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              owner,
+              message,
+              messageType: value,
+              session,
+            };
+            const result = onChange(modelFields);
+            value = result?.messageType ?? value;
+          }
+          if (errors.messageType?.hasError) {
+            runValidationTasks("messageType", value);
+          }
+          setMessageType(value);
+        }}
+        onBlur={() => runValidationTasks("messageType", messageType)}
+        errorMessage={errors.messageType?.errorMessage}
+        hasError={errors.messageType?.hasError}
+        {...getOverrideProps(overrides, "messageType")}
+      ></TextField>
+      <TextField
+        label="Session"
+        isRequired={false}
+        isReadOnly={false}
+        value={session}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              owner,
+              message,
+              messageType,
+              session: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.session ?? value;
+          }
+          if (errors.session?.hasError) {
+            runValidationTasks("session", value);
+          }
+          setSession(value);
+        }}
+        onBlur={() => runValidationTasks("session", session)}
+        errorMessage={errors.session?.errorMessage}
+        hasError={errors.session?.hasError}
+        {...getOverrideProps(overrides, "session")}
       ></TextField>
       <Flex
         justifyContent="space-between"

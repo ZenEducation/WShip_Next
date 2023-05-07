@@ -4,9 +4,11 @@ import { schema } from './schema';
 
 
 
-const { Post, Message } = initSchema(schema);
+const { Group, Post, Message, ArrGroupItem } = initSchema(schema);
 
 export {
+  Group,
   Post,
-  Message
+  Message,
+  ArrGroupItem
 };

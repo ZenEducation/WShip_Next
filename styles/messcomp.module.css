@@ -1,43 +1,52 @@
 .sentMessageContainer {
-    display: flex;
-    flex-direction: column;
-    float: right;
-    align-items: flex-end;
-    justify-content: flex-end;
-    margin: 8px;
-  }
-  
-  .sentMessage {
-    text-align: center;
-    padding: 0 10px;
-    padding-top: 15px;
-    color: #fff;
-    background: linear-gradient(243deg, #2397f5, #498efc 100%);
-    border-radius: 5px;
-  }
-  
-  .receivedMessageContainer {
-    display: flex;
-    flex-direction: column;
-    float: right;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin: 8px;
-  }
-  
-  .receivedMessage {
-    text-align: center;
-    padding: 0 10px;
-    padding-top: 15px;
-    color: #000;
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  float: right;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin: 8px;
+}
+.infoFilesContainer {
+  width: 100%;
+  margin-top: 15px;
+  color: #fff;
+  box-shadow: 1px 5px 5px 1px #d0d0d0;
+  border-radius: 5px;
+}
+.sentMessage {
+  text-align: center;
+  padding: 0 10px;
+  padding-top: 15px;
+  color: #fff;
+  background: linear-gradient(243deg, #2397f5, #498efc 100%);
+  border-radius: 5px;
+}
 
-    background: white;
-    border-radius: 8px;
-  }
-  
-  .senderText {
-    font-size: 14px;
-    color: rgba(0, 0, 0, 0.7);
-    margin-bottom: 4px;
-  }
+.receivedMessageContainer {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 8px;
+}
+
+.receivedMessage {
+  text-align: center;
+  padding: 0 10px;
+  padding-top: 15px;
+  color: #000;
+  border-radius: 5px;
+
+  background: white;
+  border-radius: 8px;
+}
+
+.senderText {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 4px;
+}
+.downloadIcon {
+  cursor: pointer;
+}

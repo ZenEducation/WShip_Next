@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Modal from "react-bootstrap/Modal";
 import "react-toastify/dist/ReactToastify.css";
-import { Spinner } from "react-bootstrap";
+import { Dropdown, DropdownButton, Spinner } from "react-bootstrap";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import parse from "html-react-parser";
 import { Storage } from "@aws-amplify/storage";
 import ImageUploader from "./components/ImageUploader";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 const ReactQuill = dynamic(import("react-quill"), {
   ssr: false,
   loading: () => <p>Loading ...</p>,
@@ -60,19 +60,26 @@ export default function Home() {
   const [show, setShow] = useState(false);
   const [imgShow, setImgShow] = useState(false);
   const [data, setData] = useState();
-
   const [profile, setProfile] = useState("");
   const [userImage, setUserImage] = useState(null);
+  const [country, setCountry] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [gender, setGender] = useState("Select Gender");
+  const [email, setEmail] = useState("");
+  const [github, setGithub] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [instagram, setInstagram] = useState("");
+
   const handleClose = () => setShow(false);
   const handleImgClose = () => setImgShow(false);
   const handleShow = () => setShow(true);
   const handleImgShow = () => setImgShow(true);
-  const router = useRouter()
+  const router = useRouter();
 
   const imageUploadHandler = (event) => {
     setUserImage(event.target.files[0]);
   };
-  let imgPromise;
   const submitImagehandler = async () => {
     handleImgClose();
     setUserImage("");
@@ -89,7 +96,6 @@ export default function Home() {
     } catch (err) {
       console.log(err);
     }
-    console.log(imgPromise);
   };
   const signOutHandler = async () => {
     try {
@@ -112,6 +118,15 @@ export default function Home() {
             name: name,
             designation: designation,
             content: content,
+            imgUrl: "Nil",
+            country: country,
+            phoneNo: phoneNo,
+            gender: gender,
+            email: email,
+            github: github,
+            facebook: facebook,
+            instagram: instagram,
+            linkedin: linkedin,
           })
         );
         console.log("Post saved successfully!");
@@ -135,6 +150,14 @@ export default function Home() {
             updated.name = name;
             updated.designation = designation;
             updated.content = content;
+            (updated.country = country),
+              (updated.phoneNo = phoneNo),
+              (updated.gender = gender),
+              (updated.email = email),
+              (updated.github = github),
+              (updated.facebook = facebook),
+              (updated.instagram = instagram),
+              (updated.linkedin = linkedin);
           })
         );
         toast.success("Updated successfully", {
@@ -153,9 +176,26 @@ export default function Home() {
   const getImage = async () => {
     setLoading(true);
     const currentUser = await Auth.currentAuthenticatedUser();
+    const original = await DataStore.query(Post, (c) =>
+      c.userid.eq(currentUser.username)
+    );
 
-    let getImgUrl = await Storage.get(currentUser.username);
-    setProfile(getImgUrl);
+    let imgUrl = await Storage.get(currentUser.username);
+    try {
+      const update = await DataStore.save(
+        Post.copyOf(original[0], (updated) => {
+          updated.imgUrl = imgUrl;
+        })
+      );
+      console.log(update);
+    } catch (err) {
+      toast.error(err, {
+        position: toast.POSITION.BOTTOM_CENTER,
+      });
+      console.log("Error", err);
+    }
+
+    setProfile(imgUrl);
     setLoading(false);
   };
 
@@ -173,6 +213,14 @@ export default function Home() {
         setName(posts[0].name);
         setDesignation(posts[0].designation);
         setContent(posts[0].content);
+        setCountry(posts[0].country);
+        setPhoneNo(posts[0].phoneNo);
+        setGender(posts[0].gender);
+        setEmail(posts[0].email);
+        setGithub(posts[0].github);
+        setFacebook(posts[0].facebook);
+        setInstagram(posts[0].instagram);
+        setLinkedin(posts[0].linkedin);
         setMode("EDIT");
       }
       console.log(
@@ -195,18 +243,41 @@ export default function Home() {
         <Button className="logout" onClick={() => signOutHandler()}>
           Log Out
         </Button>
-        <Button variant="primary" onClick={()=>{router.push("/messaging")}}>
-          Chat
-        </Button>
+        {!data ? (
+          <Button variant="primary" onClick={handleShow}>
+            Add All required information for chatting
+          </Button>
+        ) : null}
+        {data ? (
+          <Button
+            variant="primary"
+            onClick={() => {
+              router.push("/messaging");
+            }}
+          >
+            Chat
+          </Button>
+        ) : null}
         {!loading ? (
           data && profile ? (
             <>
               <div className="contentWrapper">
                 <div>
-                  <h3 className="topPara">Name : {data.name}</h3>
-                  <h3 className="midPara">Designation : {data.designation}</h3>
-                  <h3 className="bottomPara">Content : </h3>
-                  <p className="contentPara">{parse(data.content)}</p>
+                  <div className="midPara">Name : {data.name}</div>
+                  <div className="midPara">
+                    Designation : {data.designation}
+                  </div>
+                  <div className="midPara">Country : {data.country}</div>
+                  <div className="midPara">Phone : {data.phoneNo}</div>
+                  <div className="midPara">Gender : {data.gender}</div>
+                  <div className="midPara">Email : {data.email}</div>
+                  <div className="midPara">Github : {data.github}</div>
+                  <div className="midPara">Facebook : {data.facebook}</div>
+                  <div className="midPara">LinkedIn : {data.linkedin}</div>
+                  <div className="midPara">Instagram : {data.instagram}</div>
+                  <div className="bottomPara">Content : </div>
+                  <div className="contentPara">{parse(data.content)}</div>
+
                   <Button variant="primary" onClick={handleShow}>
                     Edit
                   </Button>
@@ -214,7 +285,7 @@ export default function Home() {
                 <div className="image-container">
                   <img
                     className="uploaded-image"
-                    alt="Image Not Uploaded"
+                    alt="Upload image for profile picture"
                     src={profile}
                   />
                 </div>
@@ -255,7 +326,7 @@ export default function Home() {
           </Modal.Header>
           <Modal.Body>
             <Form className="formHeader">
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="text"
@@ -265,7 +336,7 @@ export default function Home() {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group className="mb-3">
                 <Form.Label>Designation</Form.Label>
                 <Form.Control
                   type="text"
@@ -274,7 +345,83 @@ export default function Home() {
                   onChange={(e) => setDesignation(e.target.value)}
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group className="mb-3">
+                <Form.Label>Country</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Country"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Phone</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Phone"
+                  value={phoneNo}
+                  onChange={(e) => setPhoneNo(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <DropdownButton
+                  id="dropdown-basic-button"
+                  title={!gender?"Select gender":gender}
+                  onSelect={(e)=>setGender(e)}
+                >
+                  <Dropdown.Item eventKey="Male">Male</Dropdown.Item>
+                  <Dropdown.Item eventKey="Female">
+                    Female
+                  </Dropdown.Item>
+                  
+                </DropdownButton>
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Github</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Github URL"
+                  value={github}
+                  onChange={(e) => setGithub(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Facebook</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Facebook URL"
+                  value={facebook}
+                  onChange={(e) => setFacebook(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Linked In</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Linked In URL"
+                  value={linkedin}
+                  onChange={(e) => setLinkedin(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Instagram</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Instagram URL"
+                  value={instagram}
+                  onChange={(e) => setInstagram(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
                 <Form.Label>Content</Form.Label>
                 <ReactQuill
                   modules={modules}

@@ -16,16 +16,22 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type MessageUpdateFormInputValues = {
     owner?: string;
     message?: string;
+    messageType?: string;
+    session?: string;
 };
 export declare type MessageUpdateFormValidationValues = {
     owner?: ValidationFunction<string>;
     message?: ValidationFunction<string>;
+    messageType?: ValidationFunction<string>;
+    session?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type MessageUpdateFormOverridesProps = {
     MessageUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     owner?: PrimitiveOverrideProps<TextFieldProps>;
     message?: PrimitiveOverrideProps<TextFieldProps>;
+    messageType?: PrimitiveOverrideProps<TextFieldProps>;
+    session?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type MessageUpdateFormProps = React.PropsWithChildren<{
     overrides?: MessageUpdateFormOverridesProps | undefined | null;

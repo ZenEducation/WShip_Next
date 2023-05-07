@@ -11,8 +11,11 @@ export const createMessage = /* GraphQL */ `
       owner
       message
       messageType
+      session
       createdAt
       updatedAt
+      _lastChangedAt
+      _version
     }
   }
 `;
@@ -26,6 +29,7 @@ export const updateMessage = /* GraphQL */ `
       owner
       message
       messageType
+      session
       createdAt
       updatedAt
     }
@@ -41,6 +45,7 @@ export const deleteMessage = /* GraphQL */ `
       owner
       message
       messageType
+      session
       createdAt
       updatedAt
     }

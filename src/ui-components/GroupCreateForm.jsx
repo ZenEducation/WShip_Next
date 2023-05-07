@@ -8,10 +8,10 @@
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Message } from "../models";
+import { Group } from "../models";
 import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
-export default function MessageCreateForm(props) {
+export default function GroupCreateForm(props) {
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -23,30 +23,26 @@ export default function MessageCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    owner: "",
-    message: "",
-    messageType: "",
+    groupName: "",
     session: "",
+    groupImgUrl: "",
   };
-  const [owner, setOwner] = React.useState(initialValues.owner);
-  const [message, setMessage] = React.useState(initialValues.message);
-  const [messageType, setMessageType] = React.useState(
-    initialValues.messageType
-  );
+  const [groupName, setGroupName] = React.useState(initialValues.groupName);
   const [session, setSession] = React.useState(initialValues.session);
+  const [groupImgUrl, setGroupImgUrl] = React.useState(
+    initialValues.groupImgUrl
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setOwner(initialValues.owner);
-    setMessage(initialValues.message);
-    setMessageType(initialValues.messageType);
+    setGroupName(initialValues.groupName);
     setSession(initialValues.session);
+    setGroupImgUrl(initialValues.groupImgUrl);
     setErrors({});
   };
   const validations = {
-    owner: [{ type: "Required" }],
-    message: [{ type: "Required" }],
-    messageType: [],
+    groupName: [],
     session: [],
+    groupImgUrl: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -74,10 +70,9 @@ export default function MessageCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          owner,
-          message,
-          messageType,
+          groupName,
           session,
+          groupImgUrl,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -107,7 +102,7 @@ export default function MessageCreateForm(props) {
               modelFields[key] = undefined;
             }
           });
-          await DataStore.save(new Message(modelFields));
+          await DataStore.save(new Group(modelFields));
           if (onSuccess) {
             onSuccess(modelFields);
           }
@@ -120,89 +115,34 @@ export default function MessageCreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "MessageCreateForm")}
+      {...getOverrideProps(overrides, "GroupCreateForm")}
       {...rest}
     >
       <TextField
-        label="Owner"
-        isRequired={true}
-        isReadOnly={false}
-        value={owner}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              owner: value,
-              message,
-              messageType,
-              session,
-            };
-            const result = onChange(modelFields);
-            value = result?.owner ?? value;
-          }
-          if (errors.owner?.hasError) {
-            runValidationTasks("owner", value);
-          }
-          setOwner(value);
-        }}
-        onBlur={() => runValidationTasks("owner", owner)}
-        errorMessage={errors.owner?.errorMessage}
-        hasError={errors.owner?.hasError}
-        {...getOverrideProps(overrides, "owner")}
-      ></TextField>
-      <TextField
-        label="Message"
-        isRequired={true}
-        isReadOnly={false}
-        value={message}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              owner,
-              message: value,
-              messageType,
-              session,
-            };
-            const result = onChange(modelFields);
-            value = result?.message ?? value;
-          }
-          if (errors.message?.hasError) {
-            runValidationTasks("message", value);
-          }
-          setMessage(value);
-        }}
-        onBlur={() => runValidationTasks("message", message)}
-        errorMessage={errors.message?.errorMessage}
-        hasError={errors.message?.hasError}
-        {...getOverrideProps(overrides, "message")}
-      ></TextField>
-      <TextField
-        label="Message type"
+        label="Group name"
         isRequired={false}
         isReadOnly={false}
-        value={messageType}
+        value={groupName}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              owner,
-              message,
-              messageType: value,
+              groupName: value,
               session,
+              groupImgUrl,
             };
             const result = onChange(modelFields);
-            value = result?.messageType ?? value;
+            value = result?.groupName ?? value;
           }
-          if (errors.messageType?.hasError) {
-            runValidationTasks("messageType", value);
+          if (errors.groupName?.hasError) {
+            runValidationTasks("groupName", value);
           }
-          setMessageType(value);
+          setGroupName(value);
         }}
-        onBlur={() => runValidationTasks("messageType", messageType)}
-        errorMessage={errors.messageType?.errorMessage}
-        hasError={errors.messageType?.hasError}
-        {...getOverrideProps(overrides, "messageType")}
+        onBlur={() => runValidationTasks("groupName", groupName)}
+        errorMessage={errors.groupName?.errorMessage}
+        hasError={errors.groupName?.hasError}
+        {...getOverrideProps(overrides, "groupName")}
       ></TextField>
       <TextField
         label="Session"
@@ -213,10 +153,9 @@ export default function MessageCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              owner,
-              message,
-              messageType,
+              groupName,
               session: value,
+              groupImgUrl,
             };
             const result = onChange(modelFields);
             value = result?.session ?? value;
@@ -230,6 +169,32 @@ export default function MessageCreateForm(props) {
         errorMessage={errors.session?.errorMessage}
         hasError={errors.session?.hasError}
         {...getOverrideProps(overrides, "session")}
+      ></TextField>
+      <TextField
+        label="Group img url"
+        isRequired={false}
+        isReadOnly={false}
+        value={groupImgUrl}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              groupName,
+              session,
+              groupImgUrl: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.groupImgUrl ?? value;
+          }
+          if (errors.groupImgUrl?.hasError) {
+            runValidationTasks("groupImgUrl", value);
+          }
+          setGroupImgUrl(value);
+        }}
+        onBlur={() => runValidationTasks("groupImgUrl", groupImgUrl)}
+        errorMessage={errors.groupImgUrl?.errorMessage}
+        hasError={errors.groupImgUrl?.hasError}
+        {...getOverrideProps(overrides, "groupImgUrl")}
       ></TextField>
       <Flex
         justifyContent="space-between"

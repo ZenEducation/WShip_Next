@@ -27,6 +27,15 @@ export default function PostCreateForm(props) {
     name: "",
     designation: "",
     content: "",
+    imgUrl: "",
+    country: "",
+    phoneNo: "",
+    gender: "",
+    email: "",
+    github: "",
+    facebook: "",
+    instagram: "",
+    linkedin: "",
   };
   const [userid, setUserid] = React.useState(initialValues.userid);
   const [name, setName] = React.useState(initialValues.name);
@@ -34,12 +43,30 @@ export default function PostCreateForm(props) {
     initialValues.designation
   );
   const [content, setContent] = React.useState(initialValues.content);
+  const [imgUrl, setImgUrl] = React.useState(initialValues.imgUrl);
+  const [country, setCountry] = React.useState(initialValues.country);
+  const [phoneNo, setPhoneNo] = React.useState(initialValues.phoneNo);
+  const [gender, setGender] = React.useState(initialValues.gender);
+  const [email, setEmail] = React.useState(initialValues.email);
+  const [github, setGithub] = React.useState(initialValues.github);
+  const [facebook, setFacebook] = React.useState(initialValues.facebook);
+  const [instagram, setInstagram] = React.useState(initialValues.instagram);
+  const [linkedin, setLinkedin] = React.useState(initialValues.linkedin);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setUserid(initialValues.userid);
     setName(initialValues.name);
     setDesignation(initialValues.designation);
     setContent(initialValues.content);
+    setImgUrl(initialValues.imgUrl);
+    setCountry(initialValues.country);
+    setPhoneNo(initialValues.phoneNo);
+    setGender(initialValues.gender);
+    setEmail(initialValues.email);
+    setGithub(initialValues.github);
+    setFacebook(initialValues.facebook);
+    setInstagram(initialValues.instagram);
+    setLinkedin(initialValues.linkedin);
     setErrors({});
   };
   const validations = {
@@ -47,6 +74,15 @@ export default function PostCreateForm(props) {
     name: [{ type: "Required" }],
     designation: [],
     content: [],
+    imgUrl: [],
+    country: [],
+    phoneNo: [],
+    gender: [],
+    email: [],
+    github: [],
+    facebook: [],
+    instagram: [],
+    linkedin: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -78,6 +114,15 @@ export default function PostCreateForm(props) {
           name,
           designation,
           content,
+          imgUrl,
+          country,
+          phoneNo,
+          gender,
+          email,
+          github,
+          facebook,
+          instagram,
+          linkedin,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -136,6 +181,15 @@ export default function PostCreateForm(props) {
               name,
               designation,
               content,
+              imgUrl,
+              country,
+              phoneNo,
+              gender,
+              email,
+              github,
+              facebook,
+              instagram,
+              linkedin,
             };
             const result = onChange(modelFields);
             value = result?.userid ?? value;
@@ -163,6 +217,15 @@ export default function PostCreateForm(props) {
               name: value,
               designation,
               content,
+              imgUrl,
+              country,
+              phoneNo,
+              gender,
+              email,
+              github,
+              facebook,
+              instagram,
+              linkedin,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -190,6 +253,15 @@ export default function PostCreateForm(props) {
               name,
               designation: value,
               content,
+              imgUrl,
+              country,
+              phoneNo,
+              gender,
+              email,
+              github,
+              facebook,
+              instagram,
+              linkedin,
             };
             const result = onChange(modelFields);
             value = result?.designation ?? value;
@@ -217,6 +289,15 @@ export default function PostCreateForm(props) {
               name,
               designation,
               content: value,
+              imgUrl,
+              country,
+              phoneNo,
+              gender,
+              email,
+              github,
+              facebook,
+              instagram,
+              linkedin,
             };
             const result = onChange(modelFields);
             value = result?.content ?? value;
@@ -230,6 +311,330 @@ export default function PostCreateForm(props) {
         errorMessage={errors.content?.errorMessage}
         hasError={errors.content?.hasError}
         {...getOverrideProps(overrides, "content")}
+      ></TextField>
+      <TextField
+        label="Img url"
+        isRequired={false}
+        isReadOnly={false}
+        value={imgUrl}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userid,
+              name,
+              designation,
+              content,
+              imgUrl: value,
+              country,
+              phoneNo,
+              gender,
+              email,
+              github,
+              facebook,
+              instagram,
+              linkedin,
+            };
+            const result = onChange(modelFields);
+            value = result?.imgUrl ?? value;
+          }
+          if (errors.imgUrl?.hasError) {
+            runValidationTasks("imgUrl", value);
+          }
+          setImgUrl(value);
+        }}
+        onBlur={() => runValidationTasks("imgUrl", imgUrl)}
+        errorMessage={errors.imgUrl?.errorMessage}
+        hasError={errors.imgUrl?.hasError}
+        {...getOverrideProps(overrides, "imgUrl")}
+      ></TextField>
+      <TextField
+        label="Country"
+        isRequired={false}
+        isReadOnly={false}
+        value={country}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userid,
+              name,
+              designation,
+              content,
+              imgUrl,
+              country: value,
+              phoneNo,
+              gender,
+              email,
+              github,
+              facebook,
+              instagram,
+              linkedin,
+            };
+            const result = onChange(modelFields);
+            value = result?.country ?? value;
+          }
+          if (errors.country?.hasError) {
+            runValidationTasks("country", value);
+          }
+          setCountry(value);
+        }}
+        onBlur={() => runValidationTasks("country", country)}
+        errorMessage={errors.country?.errorMessage}
+        hasError={errors.country?.hasError}
+        {...getOverrideProps(overrides, "country")}
+      ></TextField>
+      <TextField
+        label="Phone no"
+        isRequired={false}
+        isReadOnly={false}
+        value={phoneNo}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userid,
+              name,
+              designation,
+              content,
+              imgUrl,
+              country,
+              phoneNo: value,
+              gender,
+              email,
+              github,
+              facebook,
+              instagram,
+              linkedin,
+            };
+            const result = onChange(modelFields);
+            value = result?.phoneNo ?? value;
+          }
+          if (errors.phoneNo?.hasError) {
+            runValidationTasks("phoneNo", value);
+          }
+          setPhoneNo(value);
+        }}
+        onBlur={() => runValidationTasks("phoneNo", phoneNo)}
+        errorMessage={errors.phoneNo?.errorMessage}
+        hasError={errors.phoneNo?.hasError}
+        {...getOverrideProps(overrides, "phoneNo")}
+      ></TextField>
+      <TextField
+        label="Gender"
+        isRequired={false}
+        isReadOnly={false}
+        value={gender}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userid,
+              name,
+              designation,
+              content,
+              imgUrl,
+              country,
+              phoneNo,
+              gender: value,
+              email,
+              github,
+              facebook,
+              instagram,
+              linkedin,
+            };
+            const result = onChange(modelFields);
+            value = result?.gender ?? value;
+          }
+          if (errors.gender?.hasError) {
+            runValidationTasks("gender", value);
+          }
+          setGender(value);
+        }}
+        onBlur={() => runValidationTasks("gender", gender)}
+        errorMessage={errors.gender?.errorMessage}
+        hasError={errors.gender?.hasError}
+        {...getOverrideProps(overrides, "gender")}
+      ></TextField>
+      <TextField
+        label="Email"
+        isRequired={false}
+        isReadOnly={false}
+        value={email}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userid,
+              name,
+              designation,
+              content,
+              imgUrl,
+              country,
+              phoneNo,
+              gender,
+              email: value,
+              github,
+              facebook,
+              instagram,
+              linkedin,
+            };
+            const result = onChange(modelFields);
+            value = result?.email ?? value;
+          }
+          if (errors.email?.hasError) {
+            runValidationTasks("email", value);
+          }
+          setEmail(value);
+        }}
+        onBlur={() => runValidationTasks("email", email)}
+        errorMessage={errors.email?.errorMessage}
+        hasError={errors.email?.hasError}
+        {...getOverrideProps(overrides, "email")}
+      ></TextField>
+      <TextField
+        label="Github"
+        isRequired={false}
+        isReadOnly={false}
+        value={github}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userid,
+              name,
+              designation,
+              content,
+              imgUrl,
+              country,
+              phoneNo,
+              gender,
+              email,
+              github: value,
+              facebook,
+              instagram,
+              linkedin,
+            };
+            const result = onChange(modelFields);
+            value = result?.github ?? value;
+          }
+          if (errors.github?.hasError) {
+            runValidationTasks("github", value);
+          }
+          setGithub(value);
+        }}
+        onBlur={() => runValidationTasks("github", github)}
+        errorMessage={errors.github?.errorMessage}
+        hasError={errors.github?.hasError}
+        {...getOverrideProps(overrides, "github")}
+      ></TextField>
+      <TextField
+        label="Facebook"
+        isRequired={false}
+        isReadOnly={false}
+        value={facebook}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userid,
+              name,
+              designation,
+              content,
+              imgUrl,
+              country,
+              phoneNo,
+              gender,
+              email,
+              github,
+              facebook: value,
+              instagram,
+              linkedin,
+            };
+            const result = onChange(modelFields);
+            value = result?.facebook ?? value;
+          }
+          if (errors.facebook?.hasError) {
+            runValidationTasks("facebook", value);
+          }
+          setFacebook(value);
+        }}
+        onBlur={() => runValidationTasks("facebook", facebook)}
+        errorMessage={errors.facebook?.errorMessage}
+        hasError={errors.facebook?.hasError}
+        {...getOverrideProps(overrides, "facebook")}
+      ></TextField>
+      <TextField
+        label="Instagram"
+        isRequired={false}
+        isReadOnly={false}
+        value={instagram}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userid,
+              name,
+              designation,
+              content,
+              imgUrl,
+              country,
+              phoneNo,
+              gender,
+              email,
+              github,
+              facebook,
+              instagram: value,
+              linkedin,
+            };
+            const result = onChange(modelFields);
+            value = result?.instagram ?? value;
+          }
+          if (errors.instagram?.hasError) {
+            runValidationTasks("instagram", value);
+          }
+          setInstagram(value);
+        }}
+        onBlur={() => runValidationTasks("instagram", instagram)}
+        errorMessage={errors.instagram?.errorMessage}
+        hasError={errors.instagram?.hasError}
+        {...getOverrideProps(overrides, "instagram")}
+      ></TextField>
+      <TextField
+        label="Linkedin"
+        isRequired={false}
+        isReadOnly={false}
+        value={linkedin}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              userid,
+              name,
+              designation,
+              content,
+              imgUrl,
+              country,
+              phoneNo,
+              gender,
+              email,
+              github,
+              facebook,
+              instagram,
+              linkedin: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.linkedin ?? value;
+          }
+          if (errors.linkedin?.hasError) {
+            runValidationTasks("linkedin", value);
+          }
+          setLinkedin(value);
+        }}
+        onBlur={() => runValidationTasks("linkedin", linkedin)}
+        errorMessage={errors.linkedin?.errorMessage}
+        hasError={errors.linkedin?.hasError}
+        {...getOverrideProps(overrides, "linkedin")}
       ></TextField>
       <Flex
         justifyContent="space-between"
