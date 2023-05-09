@@ -12,7 +12,7 @@ import { createMessage } from "../graphql/mutations";
 import Message from "./components/messaging/Message";
 import { onCreateMessage } from "../graphql/subscriptions";
 import InputEmoji from "react-input-emoji";
-import { Post, Group } from "@/src/models";
+import { Post, Group } from "../src/models";
 import { Storage } from "@aws-amplify/storage";
 import { BiGlobe } from "react-icons/bi";
 import {
@@ -1178,8 +1178,8 @@ function Messaging({ messages }) {
               <Modal.Title>Add Member</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              {newMember.length!==0 ? (
-                newMember.map((userChat, index) => (
+              {newMember?.length!==0 ? (
+                newMember?.map((userChat, index) => (
                   <div
                     key={index}
                     className={

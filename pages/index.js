@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Auth, DataStore } from "aws-amplify";
-import { Post } from "@/src/models";
+import { Post } from "../src/models";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useEffect, useState } from "react";
