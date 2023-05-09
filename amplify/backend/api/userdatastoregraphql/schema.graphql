@@ -1,0 +1,38 @@
+type ArrGroupItem {
+  userid: String
+  name: String
+}
+
+type Group @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  groupName: String
+  groupData: [ArrGroupItem]
+  session: String
+  groupImgUrl: String
+}
+
+type Post @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  userid: String!
+  name: String!
+  designation: String
+  content: String
+  imgUrl: String
+  country: String
+  phoneNo: String
+  gender: String
+  email: String
+  github: String
+  facebook: String
+  instagram: String
+  linkedin: String
+}
+
+type Message @model @auth(rules: [{allow: private}, {allow: public}]) {
+  id: ID!
+  owner: String!
+  message: String!
+  messageType: String
+  session: String
+}
+ 
