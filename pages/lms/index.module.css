@@ -1,0 +1,157 @@
+.lessons-element {
+  font-family: 'Arial';
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  margin: 0;
+}
+
+.bg-container {
+  display: flex;
+  background-color: #f5eff9;
+  /* background-color: #ffffff; */
+  height: 100vh;
+  flex-direction: column;
+}
+
+.content-element {
+  font-family: 'Bahnschrift';
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 0;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+.container-each-lessons {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.each-content-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 60px;
+  width: 48%;
+  padding: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.each-content-container:hover {
+  background: #fff8e6;
+}
+
+.Deliver-Each-container {
+  border: 2px solid #cbced2;
+  border-radius: 5px;
+  width: 60px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+@media (max-width: 590px) {
+  .each-content-container {
+    width: 100%;
+    margin-right: 18px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .Deliver-Each-container {
+    width: 60px;
+    height: 46px;
+  }
+}
+
+.container-lessons-close {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 94%;
+  height: 70px;
+}
+
+.border-Deliver {
+  width: 25px;
+  height: 25px;
+}
+
+.close-container {
+  border: 2px solid #cbced2;
+  height: 23px;
+  width: 60px;
+  border-style: solid;
+  border-width: 1.5px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1px;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.close-element {
+  font-family: 'Bahnschrift';
+  font-weight: 500;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .border-Deliver {
+    font-size: 26px;
+  }
+}
+
+.container-element {
+  display: flex;
+  flex-direction: column;
+  height: 60px;
+  justify-content: flex-start;
+  padding-left: 15px;
+}
+
+.heading-element {
+  font-size: 14px;
+  margin-bottom: 0px;
+  height: 35%;
+  margin-bottom: 8px;
+  color: #6468c5;
+  padding-bottom: 3px;
+}
+
+.description-element {
+  font-weight: 500;
+  font-size: 12px;
+  margin: 0px;
+  min-height: 50%;
+  margin-bottom: 3px;
+  color: #64748b;
+}
+
+@media screen and (min-width: 768px) {
+  .description-element {
+    font-size: 14px;
+  }
+}
+
+.students-element {
+  font-family: 'Bahnschrift';
+  font-size: 17px;
+  font-weight: 500;
+}
