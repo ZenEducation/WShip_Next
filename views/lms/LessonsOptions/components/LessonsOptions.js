@@ -25,44 +25,45 @@ import { ImNewspaper } from 'react-icons/im';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import style from './Lessonsoptions.module.css';
-
+import style from '../../../../styles/Home.module.css';
 const StatisticCard = (props) => {
-  const { icon, avatarClass, label, value, growthRate, loading } = props;
+  const { icon, label, value, loading } = props;
 
   const avatarSize = 48;
 
   return (
-    <Card className={style['cursor']}>
-      <Loading
-        loading={loading}
-        customLoader={
-          <MediaSkeleton
-            avatarProps={{
-              className: 'rounded',
-              width: avatarSize,
-              height: avatarSize,
-            }}
-          />
-        }>
-        <div className=" flex justify-between items-center">
-          <div className=" flex items-center gap-3">
-            <Avatar
-              className="bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-100"
-              variant="twoTone"
-              size={avatarSize}
-              icon={icon}
+    <button className={style['button']}>
+      <Card className={style['cursor']}>
+        <Loading
+          loading={loading}
+          customLoader={
+            <MediaSkeleton
+              avatarProps={{
+                className: 'rounded',
+                width: avatarSize,
+                height: avatarSize,
+              }}
             />
+          }>
+          <div className=" flex justify-between items-center">
+            <div className=" flex items-center gap-3">
+              <Avatar
+                className="bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-100"
+                variant="twoTone"
+                size={avatarSize}
+                icon={icon}
+              />
 
-            <div>
-              <span className={style['blue']}>{label}</span>
+              <div>
+                <span className={style['blue']}>{label}</span>
 
-              <span className="">{value}</span>
+                <span className="">{value}</span>
+              </div>
             </div>
           </div>
-        </div>
-      </Loading>
-    </Card>
+        </Loading>
+      </Card>
+    </button>
   );
 };
 
