@@ -94,8 +94,7 @@ const CustomerStatistic = () => {
           icon={<BsCameraVideo />}
           avatarClass="!bg-indigo-600"
           label="Video"
-          value="Easily upload and display your video content in Thinkific"
-          //   growthRate={statisticData?.totalCustomers?.growShrink}
+          value="Easily upload and display your video content on our platform"
           loading={loading}
         />
         <StatisticCard
@@ -103,7 +102,6 @@ const CustomerStatistic = () => {
           avatarClass="!bg-blue-500"
           label="PDF"
           value="Easily upload PDF content for your students to view directly within the Course Player"
-          growthRate={statisticData?.activeCustomers?.growShrink}
           loading={loading}
         />
         <StatisticCard
@@ -111,7 +109,6 @@ const CustomerStatistic = () => {
           avatarClass="!bg-emerald-500"
           label="Text"
           value="Include bodies of text,styled HTML content, and also images or external links"
-          growthRate={statisticData?.newCustomers?.growShrink}
           loading={loading}
         />
         <StatisticCard
@@ -119,7 +116,6 @@ const CustomerStatistic = () => {
           avatarClass="!bg-blue-500"
           label="Audio"
           value="Perfect for learning on the go, audio content is great if you know your students are mobile"
-          growthRate={statisticData?.activeCustomers?.growShrink}
           loading={loading}
         />
 
@@ -135,15 +131,13 @@ const CustomerStatistic = () => {
           avatarClass="!bg-blue-500"
           label="Presentation"
           value="Display slides with audio that your students can navigate through"
-          growthRate={statisticData?.activeCustomers?.growShrink}
           loading={loading}
         />
         <StatisticCard
           icon={<TfiLayoutMediaOverlay />}
           avatarClass="!bg-blue-500"
           label="Multimedia"
-          value="Include a great resource into your course that is hosted outside od Thinkific"
-          growthRate={statisticData?.activeCustomers?.growShrink}
+          value="Include a great resource into your course that is hosted externally"
           loading={loading}
         />
         <StatisticCard
@@ -151,7 +145,6 @@ const CustomerStatistic = () => {
           avatarClass="!bg-blue-500"
           label="Live"
           value="Enable Live Lessons using Zoom's video meeting and/o webinar tools"
-          growthRate={statisticData?.activeCustomers?.growShrink}
           loading={loading}
         />
       </div>
@@ -162,7 +155,6 @@ const CustomerStatistic = () => {
           avatarClass="!bg-indigo-600"
           label="Quiz"
           value="Allow students to interact with material that was taught or presented"
-          //   growthRate={statisticData?.totalCustomers?.growShrink}
           loading={loading}
         />
         <StatisticCard
@@ -170,7 +162,6 @@ const CustomerStatistic = () => {
           avatarClass="!bg-indigo-600"
           label="Survey"
           value="Incorporate some avenues for feedback between you and your students"
-          //   growthRate={statisticData?.totalCustomers?.growShrink}
           loading={loading}
         />
         <StatisticCard
@@ -178,7 +169,6 @@ const CustomerStatistic = () => {
           avatarClass="!bg-indigo-600"
           label="Assignment"
           value="Great for any type of homework that you would like a student to sumbit for approval"
-          //   growthRate={statisticData?.totalCustomers?.growShrink}
           loading={loading}
         />
         <StatisticCard
@@ -186,7 +176,6 @@ const CustomerStatistic = () => {
           avatarClass="!bg-indigo-600"
           label="Exam"
           value="Integrate with a professional exam tool called Brillium to deliver tests with these requirements"
-          //   growthRate={statisticData?.totalCustomers?.growShrink}
           loading={loading}
         />
       </div>
