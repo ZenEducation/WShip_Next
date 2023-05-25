@@ -22,11 +22,15 @@ import { GrUpgrade } from 'react-icons/gr';
 const VideoUpload = forwardRef((props, ref) => {
   const { mode } = props;
 
-  const [lessonHeading, setLessonHeading] = useState('New Lesson');
+  const [lessonHeading, setLessonHeading] = useState('New Video Lesson');
 
   const onLessonHeading = (e) => {
     const value = e.target.value;
-    setLessonHeading(value);
+    if (value === '') {
+      setLessonHeading('New Video Lesson');
+    } else {
+      setLessonHeading(value);
+    }
   };
 
   const videosOptions = [
@@ -136,6 +140,7 @@ const VideoUpload = forwardRef((props, ref) => {
                           </Tooltip> */}
 
                     <Upload
+                      uploadSingleFiles={true}
                       allowedFileTypes={[
                         '3g2',
                         '3gp',
@@ -190,7 +195,7 @@ const VideoUpload = forwardRef((props, ref) => {
                           color="blue-900">
                           SELECT FILE
                         </Button>
-                        <p className="mt-5 p-4 bg-yellow-200 text-yellow-600 mt-2 opacity-20 dark:text-white">
+                        <p className="mt-5 p-4  bg-colour-yellow text-yellow-600 mt-2 opacity-20 dark:text-white">
                           You can upload files with the extensions: 3g2, 3gp,
                           3gpp, 3gpp2, asf, asx, avi, dv, f4p flv, mjpeg, mjpg,
                           mov, movie, mp2, mp3g, mp4, mpe, mpeg, mpg, mpg4,
@@ -226,49 +231,33 @@ const VideoUpload = forwardRef((props, ref) => {
           <Checkbox className="flex items-center" color="black">
             <span className="ml-2 ">Make this a free preview lesson</span>
           </Checkbox>
-          <Tooltip title="Students will be able to enroll for free and access all preview lessons.">
-            <HiOutlineExclamationCircle className="text-lg cursor-pointer " />
-          </Tooltip>
         </div>
 
         <div className="flex items-center  mt-4">
           <Checkbox className="flex items-center" color="black">
             <span className="ml-2 ">Make this a prerequiste</span>
           </Checkbox>
-          <Tooltip title="Students will be able to enroll for free and access all preview lessons.">
-            <HiOutlineExclamationCircle className="text-lg cursor-pointer " />
-          </Tooltip>
-          <Button
-            size="xs"
-            className="ml-2 "
-            variant="solid"
-            color="emerald-500">
-            start
-          </Button>
         </div>
         <div className="flex flex-col  mt-4">
           <Checkbox className="flex items-center" color="black">
-            <span className="ml-2">Enable discussions for this lesson </span>
-            <button className="text-blue-700 ">
-              Apply to all lessons in this course
-            </button>
+            <span className="ml-2">Apply to all lessons in this course </span>
           </Checkbox>
         </div>
         <div className="flex flex-col mt-4 mb-5">
           <Checkbox color="black" className="">
-            <span className="ml-2">Make this video downloadable</span>
+            <span className="ml-2">Make this Lesson downloadable</span>
           </Checkbox>
         </div>
         <div className="flex items-center mb-2">
           <h6>Lesson icon & label</h6>
 
-          <Button
+          {/* <Button
             size="xs"
             className="ml-2 "
             variant="solid"
             color="emerald-500">
             start
-          </Button>
+          </Button> */}
         </div>
         <div>
           <InputGroup className="mb-4 ">
@@ -290,18 +279,6 @@ const VideoUpload = forwardRef((props, ref) => {
             </span>
           </Button>
         </div>
-        <Card
-          className={`p-3 mt-5 bg-sky-100 text-emerald-900 opacity-20 dark:text-white`}>
-          <div className={`${style['flexWrap']} ${style['font-bold']}  `}>
-            <span className="mt-1 mb-1">
-              Upgrade to access more lesson settings
-            </span>
-            <span className={`flex items-center mt-1 mb-1`}>
-              <GrUpgrade className="mr-2" />
-              UPGRADE NOW
-            </span>
-          </div>
-        </Card>
       </Card>
       <div className={`${style['flexWrap-end']} mt-3 mb-5`}>
         <Button className="mr-2  mb-1 mt-1 text-blue-900">

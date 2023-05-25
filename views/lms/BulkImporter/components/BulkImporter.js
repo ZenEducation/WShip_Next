@@ -5,7 +5,7 @@ import style from '../../../../styles/Home.module.css';
 import { HiOutlineTrash } from 'react-icons/hi';
 import { Button } from 'components/ui';
 
-const PdfUpload = forwardRef((props, ref) => {
+const BulkImporter = forwardRef((props, ref) => {
   const { mode } = props;
 
   const [cards, setCards] = useState([{ id: 1, heading: 'Chapter 1' }]);
@@ -59,7 +59,7 @@ const PdfUpload = forwardRef((props, ref) => {
               SELECT FILE
             </Button>
 
-            <p className="mt-5 p-4 pl-auto bg-yellow-200 text-yellow-600 mt-2 opacity-20 dark:text-white">
+            <p className="mt-5 p-4 pl-auto bg-colour-yellow text-yellow-600 mt-2 opacity-20 dark:text-white">
               You can upload files with the extensions: pdf, ppt, doc, docx,
               xls, xlsx, txt, odt, odp, ods, csv, rtf, html, xml, epub, jpg,
               jpeg, png, gif, mp3, mp4, zip, rar, psd, ai, indd, svg, cdr, dwg,
@@ -111,9 +111,9 @@ const PdfUpload = forwardRef((props, ref) => {
   );
 });
 
-PdfUpload.defaultProps = {
+BulkImporter.defaultProps = {
   mail: {},
   mode: 'new',
 };
 
-export default PdfUpload;
+export default BulkImporter;

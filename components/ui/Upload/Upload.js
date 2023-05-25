@@ -29,6 +29,7 @@ const Upload = React.forwardRef((props, ref) => {
     className,
     field,
     form,
+    uploadSingleFiles,
     allowedFileTypes,
     ...rest
   } = props;
@@ -75,7 +76,10 @@ const Upload = React.forwardRef((props, ref) => {
     }
     file = pushFile(newFiles, file);
     let len = file.length - 1;
-    return filesToArray({ 0: file[len] });
+    if (uploadSingleFiles) {
+      return filesToArray({ 0: file[len] });
+    }
+    return filesToArray({ ...file });
   };
 
   const isFileTypeAllowed = (file) => {

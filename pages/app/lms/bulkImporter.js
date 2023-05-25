@@ -2,7 +2,7 @@ import React from 'react';
 
 import dynamic from 'next/dynamic';
 
-const Video = dynamic(() => import('@/views/lms/Video/index'), {
+const BulkImporter = dynamic(() => import('@/views/lms/BulkImporter/index'), {
   ssr: false,
 });
 
@@ -14,7 +14,7 @@ const Index = () => {
   return (
     <>
       <ClassicLayout>
-        <Video />
+        <BulkImporter />
       </ClassicLayout>
     </>
   );
