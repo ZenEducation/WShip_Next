@@ -276,3 +276,28 @@
     transform: rotate(0deg);
   }
 }
+
+/*  */
+
+.padding {
+  padding: 20px;
+}
+
+.flexWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flexWrap-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.font-bold {
+  color: rgb(73, 90, 73);
+  font-weight: 600;
+}
