@@ -276,3 +276,30 @@
     transform: rotate(0deg);
   }
 }
+
+/* lessons option css */
+
+.button {
+  text-align: left;
+  padding: 0;
+  border-style: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.cursor:hover {
+  background: #fff8e6;
+}
+
+/* fff8e6 */
+
+/* 333338 3f3e3b */
+
+/* Light mode */
+
+.blue {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6468c5;
+  display: block;
+}

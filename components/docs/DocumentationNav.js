@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Drawer, Button } from "components/ui";
-import { NavToggle } from "components/shared";
-import useThemeClass from "utils/hooks/useThemeClass";
+import React, { useState } from 'react';
+import { Drawer, Button } from 'components/ui';
+import { NavToggle } from 'components/shared';
+import useThemeClass from 'utils/hooks/useThemeClass';
 // import { NavLink } from 'react-router-dom'
-import Link from "next/link";
+import Link from 'next/link';
 const NavContent = ({ onLinkClick, routes }) => {
   const { textTheme, borderTheme } = useThemeClass();
 
@@ -38,8 +38,7 @@ const MobileNav = ({ routes }) => {
         onClose={onDrawerClose}
         onRequestClose={onDrawerClose}
         width={300}
-        placement="left"
-      >
+        placement="left">
         <NavContent onLinkClick={onDrawerClose} routes={routes} />
       </Drawer>
     </>
