@@ -8,6 +8,7 @@ import Button from '../Buttons';
 import CloseButton from '../CloseButton';
 import Notification from '../Notification';
 import toast from '../toast';
+import { HiOutlineTrash } from 'react-icons/hi';
 
 const filesToArray = (files) => Object.keys(files).map((key) => files[key]);
 
@@ -30,6 +31,7 @@ const Upload = React.forwardRef((props, ref) => {
     form,
 
     allowedFileTypes,
+    notAllowedFileTypes,
     uploadSingleFiles,
     ...rest
   } = props;
@@ -89,11 +91,22 @@ const Upload = React.forwardRef((props, ref) => {
     return allowedFileTypes.includes(fileType);
   };
 
+  const isFileTypeNotAllowed = (file) => {
+    const fileType = file.name.split('.').pop().toLowerCase();
+    return notAllowedFileTypes.includes(fileType);
+  };
+
   const onNewFileUpload = (e) => {
     const { files: newFiles } = e.target;
 
     if (allowedFileTypes !== undefined) {
       if (!isFileTypeAllowed(newFiles[0])) {
+        triggerMessage('Invalid file type. Please upload a different file.');
+        return;
+      }
+    }
+    if (notAllowedFileTypes !== undefined) {
+      if (isFileTypeNotAllowed(newFiles[0])) {
         triggerMessage('Invalid file type. Please upload a different file.');
         return;
       }
@@ -214,10 +227,11 @@ const Upload = React.forwardRef((props, ref) => {
         <div className="upload-file-list">
           {files.map((file, index) => (
             <FileItem file={file} key={file.name + index}>
-              <CloseButton
+              <Button
                 onClick={() => removeFile(index)}
-                className="upload-file-remove"
-              />
+                className="upload-file-remove upload-file-delete">
+                <HiOutlineTrash />
+              </Button>
             </FileItem>
           ))}
         </div>

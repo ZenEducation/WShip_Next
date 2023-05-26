@@ -137,8 +137,8 @@ const DownloadableLesson = forwardRef((props, ref) => {
                   labelClass="!justify-start">
                   <div>
                     <Upload
-                      uploadSingleFiles={true}
-                      allowedFileTypes={['dmg', 'smg', 'html']}
+                      // uploadSingleFiles={true}
+                      notAllowedFileTypes={['dmg', 'smg', 'html']}
                       draggable
                       className="hover:border-yellow-900 border-yellow-600">
                       <div className="mt-5 text-center">
@@ -159,7 +159,7 @@ const DownloadableLesson = forwardRef((props, ref) => {
                           SELECT FILE
                         </Button>
                         <p className="mt-5 p-4  bg-colour-yellow text-yellow-600 mt-2 opacity-20 dark:text-white">
-                          You can upload files with the extensions: .dmg, .smg,
+                          You can upload any type of files except: .dmg, .smg,
                           and .html files.
                         </p>
                       </div>
