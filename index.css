@@ -2527,6 +2527,22 @@ th {
   margin-right: 0.5rem;
   padding: 0.75rem;
 }
+
+
+.delete-button {
+  margin-left: 15px;
+  margin-right: 20px;
+  padding: 0px;
+}
+
+.upload-file-delete {
+  border-style: none;
+  border-width: 0px;
+  padding: 0px;
+  background-color: transparent;
+}
+
+
 .header {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   display: flex;
@@ -2575,6 +2591,17 @@ th {
 .header-action-item-hoverable:hover {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
+
+
+.bg-colour-yellow {
+  background-color: #fff59d;
+}
+
+.dark .bg-colour-yellow {
+  background-color: #484631;
+}
+
+
 .dark .header-action-item-hoverable:hover {
   --tw-bg-opacity: 0.4;
   --tw-text-opacity: 1;
@@ -22378,6 +22405,7 @@ hr {
   }
 }
 
+
 /* new css */
 
 .padding-cls {
@@ -22410,3 +22438,4 @@ hr {
 .dark .bg-colour-yellow {
   background-color: #484631;
 }
+
