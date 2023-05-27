@@ -2528,7 +2528,6 @@ th {
   padding: 0.75rem;
 }
 
-
 .delete-button {
   margin-left: 15px;
   margin-right: 20px;
@@ -2541,7 +2540,6 @@ th {
   padding: 0px;
   background-color: transparent;
 }
-
 
 .header {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -22404,7 +22402,6 @@ hr {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
-
 
 /* new css */
 

@@ -30,8 +30,10 @@ const Upload = React.forwardRef((props, ref) => {
     field,
     form,
 
-    uploadSingleFiles,
+
     allowedFileTypes,
+    notAllowedFileTypes,
+    uploadSingleFiles,
 
     ...rest
   } = props;
@@ -75,19 +77,29 @@ const Upload = React.forwardRef((props, ref) => {
 
         return filesToArray({ ...file });
       }
-
     }
     file = pushFile(newFiles, file);
+
+
+
     let len = file.length - 1;
     if (uploadSingleFiles) {
       return filesToArray({ 0: file[len] });
     }
-    return filesToArray({ ...file });
+ 
+
+ 
+   return filesToArray({ ...file });
   };
 
   const isFileTypeAllowed = (file) => {
     const fileType = file.name.split('.').pop().toLowerCase();
     return allowedFileTypes.includes(fileType);
+  };
+
+  const isFileTypeNotAllowed = (file) => {
+    const fileType = file.name.split('.').pop().toLowerCase();
+    return notAllowedFileTypes.includes(fileType);
   };
 
   const onNewFileUpload = (e) => {
@@ -99,12 +111,17 @@ const Upload = React.forwardRef((props, ref) => {
         return;
       }
     }
-    let result = true;
+    if (notAllowedFileTypes !== undefined) {
+      if (isFileTypeNotAllowed(newFiles[0])) {
+        triggerMessage('Invalid file type. Please upload a different file.');
+        return;
+      }
+    }
 
+    let result = true;
 
     if (beforeUpload) {
       result = beforeUpload(newFiles, files);
-
 
       if (result === false) {
         triggerMessage();
@@ -122,10 +139,8 @@ const Upload = React.forwardRef((props, ref) => {
       let updatedFiles = addNewFiles(newFiles);
       setFiles(updatedFiles);
       onChange?.(updatedFiles, files);
-
-    }
+   }
   };
-
 
   const removeFile = (fileIndex) => {
     const deletedFileList = files.filter((_, index) => index !== fileIndex);
@@ -133,13 +148,15 @@ const Upload = React.forwardRef((props, ref) => {
     onFileRemove?.(deletedFileList);
   };
 
-// >>>>>>> subProj/LMS
   const triggerUpload = (e) => {
     if (!disabled) {
       fileInputField.current?.click();
     }
     e.stopPropagation();
   };
+
+
+
 
   const renderChildren = () => {
     if (!draggable && !children) {
@@ -162,6 +179,7 @@ const Upload = React.forwardRef((props, ref) => {
       setDragOver(false);
     }
   }, [draggable]);
+
 
   const handleDragOver = useCallback(() => {
     if (draggable && !disabled) {
@@ -194,6 +212,8 @@ const Upload = React.forwardRef((props, ref) => {
 
   const uploadInputClass = classNames('upload-input', draggable && `draggable`);
 
+
+
   return (
     <>
       <div
@@ -220,7 +240,7 @@ const Upload = React.forwardRef((props, ref) => {
         <div className="upload-file-list">
           {files.map((file, index) => (
             <FileItem file={file} key={file.name + index}>
-// <<<<<<< feat/LMS/NewVideoLesson/Ajith
+
               <Button
                 onClick={() => removeFile(index)}
                 className="upload-file-remove upload-file-delete">
