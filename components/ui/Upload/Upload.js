@@ -30,9 +30,11 @@ const Upload = React.forwardRef((props, ref) => {
     field,
     form,
 
+
     allowedFileTypes,
     notAllowedFileTypes,
     uploadSingleFiles,
+
     ...rest
   } = props;
 
@@ -78,12 +80,16 @@ const Upload = React.forwardRef((props, ref) => {
     }
     file = pushFile(newFiles, file);
 
+
+
     let len = file.length - 1;
     if (uploadSingleFiles) {
       return filesToArray({ 0: file[len] });
     }
+ 
 
-    return filesToArray({ ...file });
+ 
+   return filesToArray({ ...file });
   };
 
   const isFileTypeAllowed = (file) => {
@@ -122,6 +128,7 @@ const Upload = React.forwardRef((props, ref) => {
         return;
       }
 
+
       if (typeof result === 'string' && result.length > 0) {
         triggerMessage(result);
         return;
@@ -132,7 +139,7 @@ const Upload = React.forwardRef((props, ref) => {
       let updatedFiles = addNewFiles(newFiles);
       setFiles(updatedFiles);
       onChange?.(updatedFiles, files);
-    }
+   }
   };
 
   const removeFile = (fileIndex) => {
@@ -147,6 +154,9 @@ const Upload = React.forwardRef((props, ref) => {
     }
     e.stopPropagation();
   };
+
+
+
 
   const renderChildren = () => {
     if (!draggable && !children) {
@@ -169,6 +179,7 @@ const Upload = React.forwardRef((props, ref) => {
       setDragOver(false);
     }
   }, [draggable]);
+
 
   const handleDragOver = useCallback(() => {
     if (draggable && !disabled) {
@@ -201,6 +212,8 @@ const Upload = React.forwardRef((props, ref) => {
 
   const uploadInputClass = classNames('upload-input', draggable && `draggable`);
 
+
+
   return (
     <>
       <div
@@ -227,11 +240,13 @@ const Upload = React.forwardRef((props, ref) => {
         <div className="upload-file-list">
           {files.map((file, index) => (
             <FileItem file={file} key={file.name + index}>
+
               <Button
                 onClick={() => removeFile(index)}
                 className="upload-file-remove upload-file-delete">
                 <HiOutlineTrash />
               </Button>
+
             </FileItem>
           ))}
         </div>

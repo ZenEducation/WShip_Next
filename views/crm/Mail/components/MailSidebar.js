@@ -1,37 +1,37 @@
-import React, { useEffect } from "react";
-import classNames from "classnames";
-import { Menu, Badge, ScrollBar, Drawer } from "components/ui";
+import React, { useEffect } from 'react';
+import classNames from 'classnames';
+import { Menu, Badge, ScrollBar, Drawer } from 'components/ui';
 import {
   HiOutlineInbox,
   HiOutlinePaperAirplane,
   HiOutlinePencil,
   HiOutlineStar,
   HiOutlineTrash,
-} from "react-icons/hi";
-import MainCompose from "./MainCompose";
-import useResponsive from "utils/hooks/useResponsive";
-import { updateMailId } from "../store/dataSlice";
+} from 'react-icons/hi';
+import MainCompose from './MainCompose';
+import useResponsive from 'utils/hooks/useResponsive';
+import { updateMailId } from '../store/dataSlice';
 import {
   updateSelectedCategory,
   toggleMobileSidebar,
-} from "../store/stateSlice";
-import { useSelector, useDispatch } from "react-redux";
+} from '../store/stateSlice';
+import { useSelector, useDispatch } from 'react-redux';
 // import { useNavigate, useLocation } from "react-router-dom";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 const { MenuItem, MenuGroup } = Menu;
 
 export const groupList = [
-  { value: "inbox", label: "Inbox", icon: <HiOutlineInbox /> },
-  { value: "sentItem", label: "Sent Item", icon: <HiOutlinePaperAirplane /> },
-  { value: "draft", label: "Draft", icon: <HiOutlinePencil /> },
-  { value: "starred", label: "Starred", icon: <HiOutlineStar /> },
-  { value: "deleted", label: "Deleted", icon: <HiOutlineTrash /> },
+  { value: 'inbox', label: 'Inbox', icon: <HiOutlineInbox /> },
+  { value: 'sentItem', label: 'Sent Item', icon: <HiOutlinePaperAirplane /> },
+  { value: 'draft', label: 'Draft', icon: <HiOutlinePencil /> },
+  { value: 'starred', label: 'Starred', icon: <HiOutlineStar /> },
+  { value: 'deleted', label: 'Deleted', icon: <HiOutlineTrash /> },
 ];
 
 export const labelList = [
-  { value: "work", label: "Work", dotClass: "bg-blue-500" },
-  { value: "private", label: "Private", dotClass: "bg-indigo-500" },
-  { value: "important", label: "Important", dotClass: "bg-red-500" },
+  { value: 'work', label: 'Work', dotClass: 'bg-blue-500' },
+  { value: 'private', label: 'Private', dotClass: 'bg-indigo-500' },
+  { value: 'important', label: 'Important', dotClass: 'bg-red-500' },
 ];
 
 const MailSideBarContent = () => {
@@ -47,14 +47,14 @@ const MailSideBarContent = () => {
   const direction = useSelector((state) => state.theme.direction);
 
   const onMenuClick = (category) => {
-    dispatch(updateMailId(""));
+    dispatch(updateMailId(''));
     dispatch(updateSelectedCategory(getCategory(category.value)));
     navigate.push(`/app/crm/mail/${category.value}`, { replace: true });
   };
 
   useEffect(() => {
     const path = location.pathname.substring(
-      location.pathname.lastIndexOf("/") + 1
+      location.pathname.lastIndexOf('/') + 1
     );
     const selected = getCategory(path);
     dispatch(updateSelectedCategory(selected));
@@ -64,8 +64,8 @@ const MailSideBarContent = () => {
   const getCategory = (value) => {
     const categories = [...groupList, ...labelList];
     let category = value;
-    if (category === "mail") {
-      category = "inbox";
+    if (category === 'mail') {
+      category = 'inbox';
     }
     return {
       value: category,
@@ -87,11 +87,10 @@ const MailSideBarContent = () => {
                 eventKey={menu.value}
                 className={`mb-2 ${
                   selectedCategory.value === menu.value
-                    ? "bg-gray-100 dark:bg-gray-700"
-                    : ""
+                    ? 'bg-gray-100 dark:bg-gray-700'
+                    : ''
                 }`}
-                onSelect={() => onMenuClick(menu)}
-              >
+                onSelect={() => onMenuClick(menu)}>
                 <span className="text-2xl ltr:mr-2 rtl:ml-2">{menu.icon}</span>
                 <span>{menu.label}</span>
               </MenuItem>
@@ -105,11 +104,10 @@ const MailSideBarContent = () => {
                   eventKey={label.value}
                   className={`mb-2 ${
                     selectedCategory.value === label.value
-                      ? "bg-gray-100 dark:bg-gray-700"
-                      : ""
+                      ? 'bg-gray-100 dark:bg-gray-700'
+                      : ''
                   }`}
-                  onSelect={() => onMenuClick(label)}
-                >
+                  onSelect={() => onMenuClick(label)}>
                   <Badge
                     className="ltr:mr-2 rtl:ml-2"
                     innerClass={label.dotClass}
@@ -148,12 +146,11 @@ const MailSidebar = () => {
   return (
     <div
       className={classNames(
-        "w-[280px] absolute top-0 bottom-0 ease-in-out duration-300 bg-white dark:bg-gray-800 ltr:border-r rtl:border-l border-gray-200 dark:border-gray-600 z-10",
+        'w-[280px] absolute top-0 bottom-0 ease-in-out duration-300 bg-white dark:bg-gray-800 ltr:border-r rtl:border-l border-gray-200 dark:border-gray-600 z-10',
         sideBarExpand
-          ? "ltr:left-0 rtl:right-0"
-          : "ltr:left-[-280px] rtl:right-[-280px]"
-      )}
-    >
+          ? 'ltr:left-0 rtl:right-0'
+          : 'ltr:left-[-280px] rtl:right-[-280px]'
+      )}>
       <MailSideBarContent />
     </div>
   );
