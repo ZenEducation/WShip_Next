@@ -2528,6 +2528,7 @@ th {
   padding: 0.75rem;
 }
 
+
 .delete-button {
   margin-left: 15px;
   margin-right: 20px;
@@ -2540,6 +2541,7 @@ th {
   padding: 0px;
   background-color: transparent;
 }
+
 
 .header {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -2590,6 +2592,7 @@ th {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
+
 .bg-colour-yellow {
   background-color: #fff59d;
 }
@@ -2597,6 +2600,7 @@ th {
 .dark .bg-colour-yellow {
   background-color: #484631;
 }
+
 
 .dark .header-action-item-hoverable:hover {
   --tw-bg-opacity: 0.4;
@@ -22400,3 +22404,38 @@ hr {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+
+/* new css */
+
+.padding-cls {
+  padding: 20px;
+}
+
+.flexWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flexWrap-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.font-bold-cls {
+  color: rgb(73, 90, 73);
+  font-weight: 600;
+}
+
+.bg-colour-yellow {
+  background-color: #fff59d;
+}
+
+.dark .bg-colour-yellow {
+  background-color: #484631;
+}
+

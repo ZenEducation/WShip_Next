@@ -29,8 +29,10 @@ const Upload = React.forwardRef((props, ref) => {
     className,
     field,
     form,
+
     uploadSingleFiles,
     allowedFileTypes,
+
     ...rest
   } = props;
 
@@ -73,6 +75,7 @@ const Upload = React.forwardRef((props, ref) => {
 
         return filesToArray({ ...file });
       }
+
     }
     file = pushFile(newFiles, file);
     let len = file.length - 1;
@@ -96,16 +99,18 @@ const Upload = React.forwardRef((props, ref) => {
         return;
       }
     }
-
     let result = true;
 
+
     if (beforeUpload) {
-      result = beforeUpload(newFiles);
+      result = beforeUpload(newFiles, files);
+
 
       if (result === false) {
         triggerMessage();
         return;
       }
+
 
       if (typeof result === 'string' && result.length > 0) {
         triggerMessage(result);
@@ -117,8 +122,10 @@ const Upload = React.forwardRef((props, ref) => {
       let updatedFiles = addNewFiles(newFiles);
       setFiles(updatedFiles);
       onChange?.(updatedFiles, files);
+
     }
   };
+
 
   const removeFile = (fileIndex) => {
     const deletedFileList = files.filter((_, index) => index !== fileIndex);
@@ -126,6 +133,7 @@ const Upload = React.forwardRef((props, ref) => {
     onFileRemove?.(deletedFileList);
   };
 
+// >>>>>>> subProj/LMS
   const triggerUpload = (e) => {
     if (!disabled) {
       fileInputField.current?.click();
@@ -212,11 +220,13 @@ const Upload = React.forwardRef((props, ref) => {
         <div className="upload-file-list">
           {files.map((file, index) => (
             <FileItem file={file} key={file.name + index}>
+// <<<<<<< feat/LMS/NewVideoLesson/Ajith
               <Button
                 onClick={() => removeFile(index)}
                 className="upload-file-remove upload-file-delete">
                 <HiOutlineTrash />
               </Button>
+
             </FileItem>
           ))}
         </div>
