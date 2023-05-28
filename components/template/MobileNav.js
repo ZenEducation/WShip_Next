@@ -1,20 +1,20 @@
-import React, { useState, Suspense, lazy } from "react";
-import classNames from "classnames";
-import { Drawer } from "components/ui";
+import React, { useState, Suspense, lazy } from 'react';
+import classNames from 'classnames';
+import { Drawer } from 'components/ui';
 import {
   NAV_MODE_THEMED,
   NAV_MODE_TRANSPARENT,
   DIR_RTL,
-} from "constants/theme.constant";
-import dynamic from "next/dynamic";
-import withHeaderItem from "utils/hoc/withHeaderItem";
-import { NavToggle } from "components/shared";
-import navigationConfig from "configs/navigation.config";
-import useResponsive from "utils/hooks/useResponsive";
-import { useSelector } from "react-redux";
+} from 'constants/theme.constant';
+import dynamic from 'next/dynamic';
+import withHeaderItem from 'utils/hoc/withHeaderItem';
+import { NavToggle } from 'components/shared';
+import navigationConfig from 'configs/navigation.config';
+import useResponsive from 'utils/hooks/useResponsive';
+import { useSelector } from 'react-redux';
 // import dynamic from "next/dynamic";
 const VerticalMenuContent = dynamic(
-  async () => await import("components/template/VerticalMenuContent")
+  async () => await import('components/template/VerticalMenuContent')
 );
 
 const MobileNavToggle = withHeaderItem(NavToggle);
