@@ -88,7 +88,7 @@ const BulkImporter = forwardRef((props, ref) => {
 
   return (
     <>
-      <div className="p-4">
+      <div>
         {cardsDisplay()}
 
         <Button
