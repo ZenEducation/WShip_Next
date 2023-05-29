@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Tabs } from 'components/ui';
+import { Card, Tabs } from 'components/ui';
 const { TabNav, TabList, TabContent } = Tabs;
 
 import dynamic from 'next/dynamic';
@@ -8,8 +8,9 @@ import Header from 'components/template/Header';
 import { RxCross1 } from 'react-icons/rx';
 import { Button, Dropdown } from 'components/ui';
 import { TfiEye } from 'react-icons/tfi';
-import { BsFillCaretDownFill } from 'react-icons/bs';
+import { BsArrowBarLeft, BsFillCaretDownFill } from 'react-icons/bs';
 import { HiOutlineSearch } from 'react-icons/hi';
+import { BiArrowBack } from 'react-icons/bi';
 
 const BulkImporter = dynamic(() => import('../../BulkImporter/index'), {
   ssr: false,
@@ -18,7 +19,7 @@ const BulkImporter = dynamic(() => import('../../BulkImporter/index'), {
 const PreviewDropDown = () => {
   const Toggle = (
     <Button
-      className="preview-btn header-buttons-white no-wrap-btn mr-2  mb-4 mt-3"
+      className="preview-btn header-buttons-white no-wrap-btn mr-2   mt-3"
       size="sm"
       variant="default"
       color="yellow-900">
@@ -29,8 +30,8 @@ const PreviewDropDown = () => {
 
   return (
     <Dropdown renderTitle={Toggle}>
-      <Dropdown.Item eventKey="a">PREVIEW A</Dropdown.Item>
-      <Dropdown.Item eventKey="b">PREVIEW B</Dropdown.Item>
+      <Dropdown.Item eventKey="a">ALL COURSE LESSONS</Dropdown.Item>
+      <Dropdown.Item eventKey="b">COURSE AS AN ENROLLED STUDENT</Dropdown.Item>
     </Dropdown>
   );
 };
@@ -42,17 +43,17 @@ const TabsNavBar = () => {
     <div>
       <Tabs value={currentTab} onChange={(val) => setCurrentTab(val)}>
         <div className=" flex items-center  justify-between  ">
-          <TabList>
+          <TabList className="pt-2">
             <TabNav value="Curriculum">Curriculum</TabNav>
             <TabNav value="BulkImporter">Bulk Importer</TabNav>
             <TabNav value="Settings">Settings</TabNav>
             <TabNav value="Drip">Drip</TabNav>
             <TabNav value="Pricing">Pricing</TabNav>
-            <TabNav value="purchase">After purchase</TabNav>
             <TabNav value="Publish">Publish</TabNav>
           </TabList>
           <PreviewDropDown />
         </div>
+
         <div className="p-4">
           <TabContent value="Curriculum">
             <p>Curriculum Page</p>
@@ -70,9 +71,7 @@ const TabsNavBar = () => {
           <TabContent value="Pricing">
             <p>Pricing Page</p>
           </TabContent>
-          <TabContent value="purchase">
-            <p>purchase Page</p>
-          </TabContent>
+
           <TabContent value="Publish">
             <p>Publish Page</p>
           </TabContent>
@@ -87,19 +86,15 @@ const CourseNavBar = () => {
     return (
       <span className="flex items-center justify-between new-course-text">
         <button>
-          <RxCross1 />
+          <BiArrowBack className="text-2xl" />
         </button>
-        <span className="ml-2 mr-2">|</span>
-        <span className="edit-course">Edit Course</span>
       </span>
     );
   };
 
   const HeaderCourseMiddle = () => {
     return (
-      <span className="new-course-text header-buttons-white">
-        new course 1 <BsFillCaretDownFill className=" ml-2" />
-      </span>
+      <span className="new-course-text header-buttons-white">new course 1</span>
     );
   };
 
@@ -121,6 +116,7 @@ const CourseNavBar = () => {
         headerEnd={<HeaderCourseEnd />}
       />
       <hr />
+
       <TabsNavBar />
     </>
   );
