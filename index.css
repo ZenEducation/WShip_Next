@@ -22468,3 +22468,40 @@ hr {
   flex-wrap: nowrap;
 }
 
+.upgrade-card {
+  border-radius: 5px;
+  background-color: #a7f3d0;
+}
+
+.dark .upgrade-card {
+  background-color: #26766b;
+}
+
+.free-card {
+  width: fit-content;
+}
+
+.orderFlex {
+  flex-grow: 1;
+}
+
+/* components/Sidebar.module.css */
+
+.sidebar {
+  height: 80vh;
+  overflow-y: auto;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 16px;
+}
+
+.fixed-card {
+  position: sticky;
+  bottom: 0;
+}
+
+.align-stretch {
+  align-self: stretch;
+}

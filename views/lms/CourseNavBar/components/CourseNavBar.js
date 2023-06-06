@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
-import { Card, Tabs } from 'components/ui';
+import { CardsContext } from '../../CardsComponent/CardsContext';
+
+import { Card, Tabs, Menu } from 'components/ui';
 const { TabNav, TabList, TabContent } = Tabs;
 
 import dynamic from 'next/dynamic';
@@ -13,6 +15,26 @@ import { HiOutlineSearch } from 'react-icons/hi';
 import { BiArrowBack } from 'react-icons/bi';
 
 const BulkImporter = dynamic(() => import('../../BulkImporter/index'), {
+  ssr: false,
+});
+
+const PricingPage = dynamic(() => import('../../Pricing/index'), {
+  ssr: false,
+});
+
+const SettingsPage = dynamic(() => import('../../Settings/index'), {
+  ssr: false,
+});
+
+const Dripping = dynamic(() => import('../../Dripping/index'), {
+  ssr: false,
+});
+
+const Publish = dynamic(() => import('../../Publish/index'), {
+  ssr: false,
+});
+
+const Curriculum = dynamic(() => import('../../Curriculum/index'), {
   ssr: false,
 });
 
@@ -29,7 +51,7 @@ const PreviewDropDown = () => {
   );
 
   return (
-    <Dropdown renderTitle={Toggle}>
+    <Dropdown placement="middle-end-top" renderTitle={Toggle}>
       <Dropdown.Item eventKey="a">ALL COURSE LESSONS</Dropdown.Item>
       <Dropdown.Item eventKey="b">COURSE AS AN ENROLLED STUDENT</Dropdown.Item>
     </Dropdown>
@@ -56,24 +78,24 @@ const TabsNavBar = () => {
 
         <div className="p-4">
           <TabContent value="Curriculum">
-            <p>Curriculum Page</p>
+            <Curriculum />
           </TabContent>
           <TabContent value="BulkImporter">
             <BulkImporter />
           </TabContent>
           <TabContent value="Settings">
-            <p>Settings Page</p>
+            <SettingsPage />
           </TabContent>
 
           <TabContent value="Drip">
-            <p>Drip Page</p>
+            <Dripping />
           </TabContent>
           <TabContent value="Pricing">
-            <p>Pricing Page</p>
+            <PricingPage />
           </TabContent>
 
           <TabContent value="Publish">
-            <p>Publish Page</p>
+            <Publish />
           </TabContent>
         </div>
       </Tabs>
@@ -82,6 +104,9 @@ const TabsNavBar = () => {
 };
 
 const CourseNavBar = () => {
+  const { cards, setCards } = useContext(CardsContext);
+
+  console.log('CourseNavBar', cards);
   const HeaderCourseStart = () => {
     return (
       <span className="flex items-center justify-between new-course-text">

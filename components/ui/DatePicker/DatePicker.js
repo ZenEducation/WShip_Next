@@ -1,13 +1,13 @@
-import React, { useState, useRef, forwardRef, useEffect } from "react";
-import dayjs from "dayjs";
-import useControllableState from "../hooks/useControllableState";
-import useMergedRef from "../hooks/useMergeRef";
-import Calendar from "./Calendar";
-import BasePicker from "./BasePicker";
-import { useConfig } from "../ConfigProvider";
-import capitalize from "../utils/capitalize";
+import React, { useState, useRef, forwardRef, useEffect } from 'react';
+import dayjs from 'dayjs';
+import useControllableState from '../hooks/useControllableState';
+import useMergedRef from '../hooks/useMergeRef';
+import Calendar from './Calendar';
+import BasePicker from './BasePicker';
+import { useConfig } from '../ConfigProvider';
+import capitalize from '../utils/capitalize';
 
-const DEFAULT_INPUT_FORMAT = "YYYY-MM-DD";
+const DEFAULT_INPUT_FORMAT = 'YYYY-MM-DD';
 
 const DatePicker = forwardRef((props, ref) => {
   const {
@@ -59,7 +59,7 @@ const DatePicker = forwardRef((props, ref) => {
   const finalLocale = locale || themeLocale;
 
   const dateFormat =
-    type === "date"
+    type === 'date'
       ? DEFAULT_INPUT_FORMAT
       : inputFormat || DEFAULT_INPUT_FORMAT;
 
@@ -84,7 +84,7 @@ const DatePicker = forwardRef((props, ref) => {
   const [inputState, setInputState] = useState(
     _value instanceof Date
       ? capitalize(dayjs(_value).locale(finalLocale).format(dateFormat))
-      : ""
+      : ''
   );
 
   const closeDropdown = () => {
@@ -99,7 +99,7 @@ const DatePicker = forwardRef((props, ref) => {
 
   useEffect(() => {
     if (value === null && !focused) {
-      setInputState("");
+      setInputState('');
     }
 
     if (value instanceof Date && !focused) {
@@ -125,15 +125,15 @@ const DatePicker = forwardRef((props, ref) => {
       capitalize(dayjs(date).locale(finalLocale).format(dateFormat))
     );
     closePickerOnChange && closeDropdown();
-    useEffect(() => {
-      typeof window.setTimeout(() => inputRef.current?.focus(), 0);
-    }, []);
+    // useEffect(() => {
+    //   typeof window.setTimeout(() => inputRef.current?.focus(), 0);
+    // }, []);
   };
 
   const handleClear = () => {
     setValue(null);
     setLastValidValue(null);
-    setInputState("");
+    setInputState('');
     openPickerOnClear && openDropdown();
     inputRef.current?.focus();
   };
@@ -141,7 +141,7 @@ const DatePicker = forwardRef((props, ref) => {
   const parseDate = (date) => dayjs(date, dateFormat, finalLocale).toDate();
 
   const setDateFromInput = () => {
-    let date = typeof _value === "string" ? parseDate(_value) : _value;
+    let date = typeof _value === 'string' ? parseDate(_value) : _value;
 
     if (maxDate && dayjs(date).isAfter(maxDate)) {
       date = maxDate;
@@ -164,7 +164,7 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const handleInputBlur = (event) => {
-    typeof onBlur === "function" && onBlur(event);
+    typeof onBlur === 'function' && onBlur(event);
     setFocused(false);
 
     if (inputtable) {
@@ -173,14 +173,14 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter" && inputtable) {
+    if (event.key === 'Enter' && inputtable) {
       closeDropdown();
       setDateFromInput();
     }
   };
 
   const handleInputFocus = (event) => {
-    typeof onFocus === "function" && onFocus(event);
+    typeof onFocus === 'function' && onFocus(event);
     setFocused(true);
   };
 
@@ -213,7 +213,7 @@ const DatePicker = forwardRef((props, ref) => {
       onKeyDown={handleKeyDown}
       name={name}
       inputLabel={inputState}
-      clearable={type === "date" ? false : clearable && !!_value && !disabled}
+      clearable={type === 'date' ? false : clearable && !!_value && !disabled}
       clearButton={clearButton}
       onClear={handleClear}
       disabled={disabled}
@@ -222,8 +222,7 @@ const DatePicker = forwardRef((props, ref) => {
       type={type}
       inputPrefix={inputPrefix}
       inputSuffix={inputSuffix}
-      {...rest}
-    >
+      {...rest}>
       <Calendar
         locale={finalLocale}
         month={inputtable ? calendarMonth : undefined}
@@ -260,14 +259,14 @@ const DatePicker = forwardRef((props, ref) => {
 DatePicker.defaultProps = {
   closePickerOnChange: true,
   labelFormat: {
-    month: "MMM",
-    year: "YYYY",
+    month: 'MMM',
+    year: 'YYYY',
   },
   defaultOpen: false,
-  name: "date",
+  name: 'date',
   clearable: true,
   disabled: false,
-  firstDayOfWeek: "monday",
+  firstDayOfWeek: 'monday',
   openPickerOnClear: false,
 };
 

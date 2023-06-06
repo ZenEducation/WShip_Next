@@ -30,16 +30,18 @@ const Upload = React.forwardRef((props, ref) => {
     field,
     form,
 
-
     allowedFileTypes,
     notAllowedFileTypes,
     uploadSingleFiles,
+
+    onUploadChange,
 
     ...rest
   } = props;
 
   const fileInputField = useRef(null);
   const [files, setFiles] = useState(fileList);
+
   const [dragOver, setDragOver] = useState(false);
 
   const { themeColor, primaryColorLevel } = useConfig();
@@ -63,6 +65,7 @@ const Upload = React.forwardRef((props, ref) => {
     for (let f of newFiles) {
       file.push(f);
     }
+
     return file;
   };
 
@@ -80,16 +83,12 @@ const Upload = React.forwardRef((props, ref) => {
     }
     file = pushFile(newFiles, file);
 
-
-
     let len = file.length - 1;
     if (uploadSingleFiles) {
       return filesToArray({ 0: file[len] });
     }
- 
 
- 
-   return filesToArray({ ...file });
+    return filesToArray({ ...file });
   };
 
   const isFileTypeAllowed = (file) => {
@@ -128,7 +127,6 @@ const Upload = React.forwardRef((props, ref) => {
         return;
       }
 
-
       if (typeof result === 'string' && result.length > 0) {
         triggerMessage(result);
         return;
@@ -137,14 +135,24 @@ const Upload = React.forwardRef((props, ref) => {
 
     if (result) {
       let updatedFiles = addNewFiles(newFiles);
+
+      if (onUploadChange !== undefined) {
+        onUploadChange?.(updatedFiles);
+      }
+
       setFiles(updatedFiles);
       onChange?.(updatedFiles, files);
-   }
+    }
   };
 
   const removeFile = (fileIndex) => {
     const deletedFileList = files.filter((_, index) => index !== fileIndex);
     setFiles(deletedFileList);
+
+    if (onUploadChange !== undefined) {
+      onUploadChange?.(deletedFileList);
+    }
+
     onFileRemove?.(deletedFileList);
   };
 
@@ -154,9 +162,6 @@ const Upload = React.forwardRef((props, ref) => {
     }
     e.stopPropagation();
   };
-
-
-
 
   const renderChildren = () => {
     if (!draggable && !children) {
@@ -179,7 +184,6 @@ const Upload = React.forwardRef((props, ref) => {
       setDragOver(false);
     }
   }, [draggable]);
-
 
   const handleDragOver = useCallback(() => {
     if (draggable && !disabled) {
@@ -212,11 +216,10 @@ const Upload = React.forwardRef((props, ref) => {
 
   const uploadInputClass = classNames('upload-input', draggable && `draggable`);
 
-
-
   return (
     <>
       <div
+        // onEventUpload={files}
         ref={ref}
         className={uploadClass}
         {...(draggable ? draggableProp : { onClick: triggerUpload })}
@@ -236,17 +239,18 @@ const Upload = React.forwardRef((props, ref) => {
         {renderChildren()}
       </div>
       {tip}
+      {console.log('tip', tip)}
+      {console.log('showList', showList)}
+      {console.log('files', files)}
       {showList && (
         <div className="upload-file-list">
           {files.map((file, index) => (
             <FileItem file={file} key={file.name + index}>
-
               <Button
                 onClick={() => removeFile(index)}
                 className="upload-file-remove upload-file-delete">
                 <HiOutlineTrash />
               </Button>
-
             </FileItem>
           ))}
         </div>
