@@ -14,9 +14,9 @@ const Settings = () => {
   const [value, setValue] = useState('Basic');
 
   const handleSelect = (key, e) => {
-    console.log('key', key);
+    // console.log('key', key);
     setValue(key);
-    console.log('event', e);
+    // console.log('event', e);
   };
   return (
     <div className="flex">
@@ -34,7 +34,7 @@ const Settings = () => {
           </Menu.MenuItem>
         </Menu>
       </div>
-      <div>
+      <div className="orderFlex">
         {value === 'Basic' && <BasicSettings />}
 
         {value === 'image' && <CourseImgDescription />}

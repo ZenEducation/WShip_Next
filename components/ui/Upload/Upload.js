@@ -239,9 +239,7 @@ const Upload = React.forwardRef((props, ref) => {
         {renderChildren()}
       </div>
       {tip}
-      {console.log('tip', tip)}
-      {console.log('showList', showList)}
-      {console.log('files', files)}
+
       {showList && (
         <div className="upload-file-list">
           {files.map((file, index) => (
