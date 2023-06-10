@@ -56,8 +56,8 @@ const BulkImporter = forwardRef((props, ref) => {
     setCards(updatedCards);
     setCurriculumAndCards(updatedBulk);
   };
-
-  const newPdfLesson = (id, heading, onUploadChange) => {
+  // fileList
+  const newPdfLesson = (id, heading, onUploadChange, card) => {
     const onHeadingChange = (e) => {
       const value = e.target.value;
 
@@ -78,7 +78,7 @@ const BulkImporter = forwardRef((props, ref) => {
         }
         return eachCard;
       });
-      // setCards(newHeadingCards);
+      setCards(newHeadingCards);
       setCurriculumAndCards(newHeadingBulk);
     };
 
@@ -100,6 +100,7 @@ const BulkImporter = forwardRef((props, ref) => {
         </div>
 
         <Upload
+          fileList={card.uploads}
           notAllowedFileTypes={[
             'jpeg',
             'jpg',
@@ -162,7 +163,7 @@ const BulkImporter = forwardRef((props, ref) => {
 
   const cardsDisplay = () => {
     return cards.map((card) =>
-      newPdfLesson(card.id, card.heading, handleUploadChange)
+      newPdfLesson(card.id, card.heading, handleUploadChange, card)
     );
   };
 
@@ -269,7 +270,7 @@ const BulkImporter = forwardRef((props, ref) => {
       )}
 
       {LessonsOptionTab === 'LessonsOptionTab' && (
-        <div className="ml-2">
+        <div className="ml-2 orderFlex">
           <Button
             size="sm"
             onClick={onSideBarClose}

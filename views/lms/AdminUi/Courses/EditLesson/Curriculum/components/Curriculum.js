@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
-import { Input, Card, Checkbox, Radio } from 'components/ui';
+import { Input, Card, Checkbox, Radio, Dropdown } from 'components/ui';
 
 import Notification from 'components/ui/Notification/';
 
@@ -60,10 +60,14 @@ const Curriculum = () => {
     }
 
     if (value === '') {
-      setSelectedCard({ id: selectedCard.id, name: 'Untitled chapter' });
+      setSelectedCard({
+        id: selectedCard.id,
+        name: 'Untitled chapter',
+        type: 'curriculum',
+      });
       setInputVal('');
     } else {
-      setSelectedCard({ id: selectedCard.id, name: value });
+      setSelectedCard({ id: selectedCard.id, name: value, type: 'curriculum' });
       setInputVal(newName);
     }
 
@@ -222,6 +226,42 @@ const Curriculum = () => {
     }, 100);
   };
 
+  const DeleteButtonFunc = () => {
+    const Toggle = (
+      <Button size="sm">
+        <BsThreeDotsVertical className="text-xl" />
+      </Button>
+    );
+
+    return (
+      <Dropdown
+        placement="bottom-center"
+        // variant="divider"
+        renderTitle={Toggle}>
+        <Dropdown.Item
+          onClick={async () => {
+            console.log('curriculumAndCards Before', curriculumAndCards);
+            await setCurriculumAndCards(
+              curriculumAndCards.filter((card) => card.id !== selectedCard.id)
+            );
+
+            console.log('curriculumAndCards After', curriculumAndCards);
+            const currVal = await curriculumAndCards.filter(
+              (eachCard) => eachCard.type === 'curriculum'
+            );
+
+            console.log('currValAfter', currVal);
+
+            await setSelectedCard(currVal[0]);
+            await setInputVal('');
+          }}
+          eventKey="a">
+          DELETE
+        </Dropdown.Item>
+      </Dropdown>
+    );
+  };
+
   return (
     <div className="flex ">
       {sideBar && <CurrAndBulkSideBar />}
@@ -236,43 +276,53 @@ const Curriculum = () => {
                 className="mb-2 mt-2  mr-3">
                 <BsThreeDotsVertical className="text-xl mb-2" />
               </Button>
-              <h5>New Chapter: {selectedCard.name}</h5>
+              {selectedCard !== undefined && (
+                <h5>New Chapter: {selectedCard.name}</h5>
+              )}
             </div>
 
             {/* {selectedCard.name} */}
-            <div className="">
-              <Button size="sm" className="mr-2  mb-1 mt-1 text-blue-900">
-                DISCARD CHANGES
-              </Button>
+            {selectedCard !== undefined && (
+              <div className="">
+                <Button size="sm" className="mr-2  mb-1 mt-1 text-blue-900">
+                  DISCARD CHANGES
+                </Button>
 
-              <Button
-                className="mr-2  mb-1 mt-1"
-                variant="solid"
-                color="blue-900"
-                size="sm"
-                onClick={onSaveBtn}>
-                SAVE
-              </Button>
-            </div>
+                <Button
+                  className="mr-2  mb-1 mt-1"
+                  variant="solid"
+                  color="blue-900"
+                  size="sm"
+                  onClick={onSaveBtn}>
+                  SAVE
+                </Button>
+              </div>
+            )}
           </div>
-          <Card>
-            <div className="mb-s">
-              <h6>Course name</h6>
-              <Input
-                value={inputVal}
-                onChange={onLessonHeading}
-                className=""
-                placeholder="My Chapter"
-              />
-            </div>
+          {selectedCard !== undefined && (
+            <Card>
+              <div className="mb-s">
+                <div className="flexWrap mb-2">
+                  <h6>Course name</h6>
+                  {DeleteButtonFunc()}
+                </div>
 
-            <div className="mt-4"></div>
-          </Card>
+                <Input
+                  value={inputVal}
+                  onChange={onLessonHeading}
+                  className=""
+                  placeholder="My Chapter"
+                />
+              </div>
+
+              <div className="mt-4"></div>
+            </Card>
+          )}
         </div>
       )}
 
       {LessonsOptionTab === 'LessonsOptionTab' && (
-        <div className="ml-2">
+        <div className="ml-2 orderFlex">
           <Button
             size="sm"
             onClick={onSideBarClose}

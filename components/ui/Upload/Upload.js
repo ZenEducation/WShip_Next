@@ -40,7 +40,10 @@ const Upload = React.forwardRef((props, ref) => {
   } = props;
 
   const fileInputField = useRef(null);
+  console.log('fileList Upload', fileList);
   const [files, setFiles] = useState(fileList);
+
+  console.log('files Upload', files);
 
   const [dragOver, setDragOver] = useState(false);
 

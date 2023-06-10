@@ -20,6 +20,9 @@ const CurrAndBulkSideBar = () => {
   const { tabMenu, setTabMenu } = useContext(CardsContext);
   const { LessonsOptionTab, setLessonsOptionTab } = useContext(CardsContext);
 
+  const [lessonFrom, setLessonFrom] = useState();
+  console.log('lessonFrom', lessonFrom);
+
   const { curriculumAndCards, setCurriculumAndCards } =
     useContext(CardsContext);
 
@@ -74,6 +77,8 @@ const CurrAndBulkSideBar = () => {
   };
 
   const onAddLesson = (eachCard) => {
+    console.log('eachCard ', eachCard);
+
     setLessonsOptionTab('LessonsOptionTab');
   };
 

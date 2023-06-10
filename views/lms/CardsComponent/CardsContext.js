@@ -5,12 +5,12 @@ const CardsContext = React.createContext();
 
 const CardsProvider = ({ children }) => {
   const [cards, setCards] = useState([
-    { id: 1, heading: 'Chapter 1', uploads: [], type: 'bulkImporter' },
+    // { id: 1, heading: 'Chapter 1', uploads: [], type: 'bulkImporter' },
   ]);
 
   const [curriculumAndCards, setCurriculumAndCards] = useState([
-    { id: 1, heading: 'Chapter 1', uploads: [], type: 'bulkImporter' },
-    { id: 2, name: 'Untitled chapter 1', type: 'curriculum' },
+    // { id: 1, heading: 'Chapter 1', uploads: [], type: 'bulkImporter' },
+    // { id: 2, name: 'Untitled chapter 1', type: 'curriculum' },
   ]);
 
   const [curriculumValue, setCurriculumValue] = useState([
@@ -23,7 +23,13 @@ const CardsProvider = ({ children }) => {
     (eachCard) => eachCard.type === 'curriculum'
   );
 
+  console.log('currVal', currVal);
+
+  console.log('curriculumAndCards', curriculumAndCards);
+
   const [selectedCard, setSelectedCard] = useState(currVal[0]);
+
+  console.log('selectedCard', selectedCard);
 
   const [inputVal, setInputVal] = useState('');
 

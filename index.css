@@ -22576,10 +22576,12 @@ hr {
   transform: translateX(-100%);
 }
 
-
 @media (max-width: 525px) {
-  .display-preview-btn{
+  .display-preview-btn {
     display: none;
   }
 }
 
+.question-type {
+  max-width: 380px;
+}
