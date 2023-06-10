@@ -22488,7 +22488,7 @@ hr {
 /* components/Sidebar.module.css */
 
 .sidebar {
-  height: 80vh;
+  min-height: 58vh;
   overflow-y: auto;
 }
 
@@ -22540,3 +22540,46 @@ hr {
   font-size: 20px;
   cursor: pointer;
 }
+
+.sidebae-width {
+  min-width: 180px;
+  width: 44%;
+}
+
+.text-para {
+  width: 66%;
+}
+
+/* @media (min-width: 640px) {
+  .dialog {
+    max-width: 36rem;
+  }
+} */
+
+.sidebar-trans {
+  /* Sidebar styles */
+  transition: height 1s ease; /* Transition effect with 1-second duration */
+  /* Set the initial height of the sidebar */
+  overflow: hidden; /* Hide the content that overflows the sidebar */
+}
+
+.sidebarTransaction {
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-100%); /* Start with sidebar closed */
+}
+
+.sidebarTransaction.open {
+  transform: translateX(0);
+}
+
+.sidebarTransaction.closed {
+  transform: translateX(-100%);
+}
+
+
+@media (max-width: 525px) {
+  .display-preview-btn{
+    display: none;
+  }
+}
+

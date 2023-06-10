@@ -9,12 +9,10 @@ const CloseWithEscBackdrop = () => {
   };
 
   const onDialogClose = (e) => {
-    console.log('onDialogClose', e);
     setIsOpen(false);
   };
 
   const onDialogOk = (e) => {
-    console.log('onDialogOk', e);
     setIsOpen(false);
   };
 

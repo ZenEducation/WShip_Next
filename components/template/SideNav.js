@@ -1,7 +1,7 @@
-import React from "react";
-import classNames from "classnames";
-import { ScrollBar } from "components/ui";
-import PropTypes from "prop-types";
+import React from 'react';
+import classNames from 'classnames';
+import { ScrollBar } from 'components/ui';
+import PropTypes from 'prop-types';
 import {
   SIDE_NAV_WIDTH,
   SIDE_NAV_COLLAPSED_WIDTH,
@@ -10,14 +10,14 @@ import {
   NAV_MODE_TRANSPARENT,
   SIDE_NAV_CONTENT_GUTTER,
   LOGO_X_GUTTER,
-} from "constants/theme.constant";
-import Logo from "components/template/Logo";
-import navigationConfig from "configs/navigation.config";
-import VerticalMenuContent from "components/template/VerticalMenuContent";
-import useResponsive from "utils/hooks/useResponsive";
+} from 'constants/theme.constant';
+import Logo from 'components/template/Logo';
+import navigationConfig from 'configs/navigation.config';
+import VerticalMenuContent from 'components/template/VerticalMenuContent';
+import useResponsive from 'utils/hooks/useResponsive';
 
-import { useSelector } from "react-redux";
-import dynamic from "next/dynamic";
+import { useSelector } from 'react-redux';
+import dynamic from 'next/dynamic';
 
 const sideNavStyle = {
   width: SIDE_NAV_WIDTH,
@@ -83,15 +83,15 @@ const SideNav = () => {
       <div
         style={sideNavCollapse ? sideNavCollapseStyle : sideNavStyle}
         className={classNames(
-          "side-nav",
+          'side-nav',
           sideNavColor(),
-          !sideNavCollapse && "side-nav-expand"
-        )}
-      >
+          !sideNavCollapse && 'side-nav-expand'
+        )}>
         <div className="side-nav-header">
           <Logo
+            className="text-center"
             mode={logoMode()}
-            type={sideNavCollapse ? "streamline" : "full"}
+            type={sideNavCollapse ? 'streamline' : 'full'}
             gutter={sideNavCollapse ? SIDE_NAV_CONTENT_GUTTER : LOGO_X_GUTTER}
           />
         </div>
@@ -119,7 +119,7 @@ SideNav.propTypes = {
 SideNav.defaultProps = {
   themed: false,
   darkMode: false,
-  themeColor: "",
+  themeColor: '',
 };
 
 export default SideNav;

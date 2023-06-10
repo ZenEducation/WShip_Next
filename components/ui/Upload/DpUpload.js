@@ -32,6 +32,8 @@ const DpUpload = React.forwardRef((props, ref) => {
     field,
     form,
 
+    dumSave,
+
     allowedFileTypes,
     notAllowedFileTypes,
     uploadSingleFiles,
@@ -40,6 +42,10 @@ const DpUpload = React.forwardRef((props, ref) => {
 
     ...rest
   } = props;
+
+  let dummySave = () => {
+    console.log('DP UPLOAD FUNC');
+  };
 
   const fileInputField = useRef(null);
   const [files, setFiles] = useState(fileList);
