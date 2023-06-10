@@ -87,9 +87,9 @@ const SideNav = () => {
           sideNavColor(),
           !sideNavCollapse && 'side-nav-expand'
         )}>
-        <div className="side-nav-header">
+        <div className="side-nav-header flex justify-center ">
           <Logo
-            className="text-center"
+            className="  "
             mode={logoMode()}
             type={sideNavCollapse ? 'streamline' : 'full'}
             gutter={sideNavCollapse ? SIDE_NAV_CONTENT_GUTTER : LOGO_X_GUTTER}

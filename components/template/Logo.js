@@ -26,8 +26,7 @@ const Logo = (props) => {
         ...{ width: logoWidth },
       }}>
       <Image
-        className="text-center"
-        // {imgClass}
+        className={imgClass}
         src={mode == MODE_DARK ? imageLms : imageLms}
         alt={`${APP_NAME} logo`}
         width={110}
