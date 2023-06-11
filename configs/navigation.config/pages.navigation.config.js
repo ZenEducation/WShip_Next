@@ -6,37 +6,47 @@ import {
 import { ADMIN, USER } from 'constants/roles.constant'
 
 const pagesNavigationConfig = [
-    {
-        key: 'pages',
-        path: '',
-        title: 'PAGES',
-        translateKey: 'nav.pages.pages',
-        icon: 'pages',
-        type: NAV_ITEM_TYPE_TITLE,
+  {
+    key: "pages",
+    path: "",
+    title: "PAGES",
+    translateKey: "nav.pages.pages",
+    icon: "pages",
+    type: NAV_ITEM_TYPE_TITLE,
+    authority: [ADMIN, USER],
+    subMenu: [
+      {
+        key: "pages.welcome",
+        path: `${PAGES_PREFIX_PATH}/welcome`,
+        title: "Welcome",
+        translateKey: "nav.pages.welcome",
+        icon: "welcome",
+        type: NAV_ITEM_TYPE_ITEM,
         authority: [ADMIN, USER],
-        subMenu: [
-            {
-                key: 'pages.welcome',
-                path: `${PAGES_PREFIX_PATH}/welcome`,
-                title: 'Welcome',
-                translateKey: 'nav.pages.welcome',
-                icon: 'welcome',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [ADMIN, USER],
-                subMenu: [],
-            },
-            {
-                key: 'pages.accessDenied',
-                path: '/access-denied',
-                title: 'Access Denied',
-                translateKey: 'nav.pages.accessDenied',
-                icon: 'accessDenied',
-                type: NAV_ITEM_TYPE_ITEM,
-                authority: [ADMIN, USER],
-                subMenu: [],
-            },
-        ],
-    },
-]
+        subMenu: [],
+      },
+      {
+        key: "pages.jobform",
+        path: `${PAGES_PREFIX_PATH}/jobform`,
+        title: "jobform",
+        translateKey: "nav.pages.jobform",
+        icon: "forms",
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [ADMIN, USER],
+        subMenu: [],
+      },
+      {
+        key: "pages.accessDenied",
+        path: "/access-denied",
+        title: "Access Denied",
+        translateKey: "nav.pages.accessDenied",
+        icon: "accessDenied",
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [ADMIN, USER],
+        subMenu: [],
+      },
+    ],
+  },
+];
 
 export default pagesNavigationConfig
