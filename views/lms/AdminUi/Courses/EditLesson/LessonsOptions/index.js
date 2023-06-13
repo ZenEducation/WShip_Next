@@ -5,12 +5,13 @@ import reducer from './store';
 
 injectReducer('crmCustomers', reducer);
 
-const Customers = () => {
+const LessonsPage = ({ lessonFrom }) => {
+  // console.log('lessonFrom lessonFrom lessonFrom', lessonFrom);
   return (
     <>
-      <LessonsOptions />
+      <LessonsOptions lessonFrom={lessonFrom} />
     </>
   );
 };
 
-export default Customers;
+export default LessonsPage;

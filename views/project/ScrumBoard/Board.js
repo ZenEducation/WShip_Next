@@ -1,22 +1,22 @@
-import React, { useEffect, lazy, Suspense } from "react";
-import { Dialog } from "components/ui";
-import { Droppable, DragDropContext } from "react-beautiful-dnd";
-import { getBoards } from "./store/dataSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { updateColumns, updateOrdered } from "./store/dataSlice";
-import { closeDialog } from "./store/stateSlice";
-import { reorder, reorderQuoteMap } from "./utils";
-import BoardColumn from "./BoardColumn";
-import dynamic from "next/dynamic";
-const TicketContent = dynamic(async () => await import("./TicketContent"));
+import React, { useEffect, lazy, Suspense } from 'react';
+import { Dialog } from 'components/ui';
+import { Droppable, DragDropContext } from 'react-beautiful-dnd';
+import { getBoards } from './store/dataSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateColumns, updateOrdered } from './store/dataSlice';
+import { closeDialog } from './store/stateSlice';
+import { reorder, reorderQuoteMap } from './utils';
+import BoardColumn from './BoardColumn';
+import dynamic from 'next/dynamic';
+const TicketContent = dynamic(async () => await import('./TicketContent'));
 const AddNewTicketContent = dynamic(
-  async () => await import("./AddNewTicketContent")
+  async () => await import('./AddNewTicketContent')
 );
 const AddNewColumnContent = dynamic(
-  async () => await import("./AddNewColumnContent")
+  async () => await import('./AddNewColumnContent')
 );
 const AddNewMemberContent = dynamic(
-  async () => await import("./AddNewMemberContent")
+  async () => await import('./AddNewMemberContent')
 );
 
 const Board = (props) => {
@@ -39,7 +39,7 @@ const Board = (props) => {
 
   const onDragEnd = (result) => {
     if (result.combine) {
-      if (result.type === "COLUMN") {
+      if (result.type === 'COLUMN') {
         const shallow = [...ordered];
         shallow.splice(result.source.index, 1);
         dispatch(updateOrdered(shallow));
@@ -71,7 +71,7 @@ const Board = (props) => {
       return;
     }
 
-    if (result.type === "COLUMN") {
+    if (result.type === 'COLUMN') {
       const newOrdered = reorder(ordered, source.index, destination.index);
       dispatch(updateOrdered(newOrdered));
       return;
@@ -94,14 +94,12 @@ const Board = (props) => {
           type="COLUMN"
           direction="horizontal"
           ignoreContainerClipping={containerHeight}
-          isCombineEnabled={isCombineEnabled}
-        >
+          isCombineEnabled={isCombineEnabled}>
           {(provided) => (
             <div
               className="scrumboard flex flex-col flex-auto w-full h-full mb-2"
               ref={provided.innerRef}
-              {...provided.droppableProps}
-            >
+              {...provided.droppableProps}>
               <div className="scrumboard-body flex max-w-full overflow-x-auto h-full mt-4">
                 {ordered.map((key, index) => (
                   <BoardColumn
@@ -124,16 +122,15 @@ const Board = (props) => {
         isOpen={dialogOpen}
         onClose={onDialogClose}
         onRequestClose={onDialogClose}
-        width={dialogView !== "TICKET" ? 520 : 800}
-        closable={dialogView !== "TICKET"}
-      >
+        width={dialogView !== 'TICKET' ? 520 : 800}
+        closable={dialogView !== 'TICKET'}>
         <Suspense fallback={<></>}>
-          {dialogView === "TICKET" && (
+          {dialogView === 'TICKET' && (
             <TicketContent onTicketClose={onDialogClose} />
           )}
-          {dialogView === "NEW_TICKET" && <AddNewTicketContent />}
-          {dialogView === "NEW_COLUMN" && <AddNewColumnContent />}
-          {dialogView === "ADD_MEMBER" && <AddNewMemberContent />}
+          {dialogView === 'NEW_TICKET' && <AddNewTicketContent />}
+          {dialogView === 'NEW_COLUMN' && <AddNewColumnContent />}
+          {dialogView === 'ADD_MEMBER' && <AddNewMemberContent />}
         </Suspense>
       </Dialog>
     </>

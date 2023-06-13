@@ -1,7 +1,14 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
+
+import { v4 as uuidv4 } from 'uuid';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+
+import { CardsContext } from '../../../../../CardsComponent/CardsContext';
+
+import Notification from 'components/ui/Notification/';
+import toast from 'components/ui/toast';
 
 import {
   Input,
@@ -35,26 +42,90 @@ import { RichTextEditor } from 'components/shared';
 const QuizLesson = forwardRef((props, ref) => {
   const { mode } = props;
   const { editorRef } = ref;
+
+  console.log('editorRef', editorRef);
+
+  const { curriculumAndCards, setCurriculumAndCards } =
+    useContext(CardsContext);
+
+  // console.log('curriculumAndCards', curriculumAndCards);
+
+  const [isUploadableShow, setIsUploadableShow] = useState(false);
+
+  const { selectedLesson, setSelectedLesson } = useContext(CardsContext);
+
+  let chapterLesson;
+  let targetLessonObj;
+  if (selectedLesson.isShowLesson) {
+    chapterLesson = curriculumAndCards.find((eachChapter) =>
+      eachChapter.lessons.some((eachLesson) => {
+        return eachLesson.id === selectedLesson.lessonId;
+      })
+    );
+
+    let targetLesson = chapterLesson.lessons.filter(
+      (eachLesson) => eachLesson.id === selectedLesson.lessonId
+    );
+
+    targetLessonObj = targetLesson[0];
+  }
+
+  // console.log('targetLessonObj', targetLessonObj);
+
   const [quizList, setQuizList] = useState([
     {
-      id: 1,
+      id: uuidv4(),
       question: 'What is your question?',
       questionType: 'one',
-      choices: [{ choice: 'Yes' }, { choice: 'No' }],
+      choices: [
+        { id: uuidv4(), choice: 'Yes', check: false },
+        { id: uuidv4(), choice: 'No', check: false },
+      ],
       explanation: '',
       type: 'quiz',
     },
   ]);
 
-  console.log('quizList quizList', quizList);
-  const [lessonHeading, setLessonHeading] = useState('New Quiz Lesson');
-
   const onLessonHeading = (e) => {
     const value = e.target.value;
     if (value === '') {
-      setLessonHeading('New Quiz Lesson');
+      const updatedLessonHeading = {
+        ...targetLessonObj,
+        lessonHeading: 'New Quiz Lesson',
+      };
+      targetLessonObj = updatedLessonHeading;
+      // console.log('targetLessonObj input Val 2', targetLessonObj);
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: 'New Quiz Lesson' };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     } else {
-      setLessonHeading(value);
+      const updatedLessonHeading = { ...targetLessonObj, lessonHeading: value };
+      targetLessonObj = updatedLessonHeading;
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: value };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     }
   };
 
@@ -107,14 +178,42 @@ const QuizLesson = forwardRef((props, ref) => {
         </Button>
       );
 
+      const DeleteQuestion = () => {
+        const updatedCurriculum = curriculumAndCards.map((item) => {
+          if (item.id === chapterLesson.id) {
+            const updatedLessonContent = item.lessons.map((lesson) => {
+              if (lesson.id === selectedLesson.lessonId) {
+                const updatedContent = lesson.lessonContent.filter(
+                  (card) => card.id !== eachQuiz.id
+                );
+
+                return {
+                  ...lesson,
+                  lessonContent: updatedContent,
+                };
+              }
+              return lesson;
+            });
+            return {
+              ...item,
+              lessons: updatedLessonContent,
+            };
+          }
+          return item;
+        });
+
+        setCurriculumAndCards(updatedCurriculum);
+      };
+
       return (
         <Dropdown
           placement="bottom-center"
           // variant="divider"
           renderTitle={Toggle}>
           <Dropdown.Item
-            onClick={() =>
-              setQuizList(quizList.filter((card) => card.id !== eachQuiz.id))
+            onClick={
+              () => DeleteQuestion()
+              // setQuizList(quizList.filter((card) => card.id !== eachQuiz.id))
             }
             eventKey="a">
             DELETE
@@ -123,46 +222,159 @@ const QuizLesson = forwardRef((props, ref) => {
       );
     };
 
-    const QuestionTypeDrop = () => {
-      const Toggle = (
-        <Button>
-          <BsThreeDotsVertical className="text-xl" />
-        </Button>
-      );
+    const onDeleteChoice = (DelChoice) => {
+      // console.log('onAddChoice', eachQuiz);
+      // eachQuiz
 
-      return (
-        <Dropdown
-          placement="bottom-start"
-          // variant="divider"
-          renderTitle={Toggle}>
-          <Dropdown.Item eventKey="a">DELETE</Dropdown.Item>
-        </Dropdown>
-      );
-    };
+      const updatedCurriculum = curriculumAndCards.map((item) => {
+        if (item.id === chapterLesson.id) {
+          const updatedLessonContent = item.lessons.map((lesson) => {
+            if (lesson.id === selectedLesson.lessonId) {
+              const updatedContent = lesson.lessonContent.map((content) => {
+                if (content.id === eachQuiz.id) {
+                  const deletedChoices = content.choices.filter(
+                    (eachChoice) => eachChoice.id !== DelChoice.id
+                  );
 
-    const onDeleteChoice = (index) => {
-      console.log('onDeleteChoice', index, eachQuiz);
+                  return { ...content, choices: deletedChoices };
+                }
+
+                return content;
+              });
+
+              return {
+                ...lesson,
+                lessonContent: updatedContent,
+              };
+            }
+            return lesson;
+          });
+          return {
+            ...item,
+            lessons: updatedLessonContent,
+          };
+        }
+        return item;
+      });
+
+      setCurriculumAndCards(updatedCurriculum);
     };
 
     const eachChoiceListDisplay = (eachChoice, index) => {
+      const handleChoiceChange = (content) => {
+        const div = document.createElement('div');
+        div.innerHTML = content;
+        const text = div.textContent || div.innerText;
+
+        const updatedCurriculum = curriculumAndCards.map((item) => {
+          if (item.id === chapterLesson.id) {
+            const updatedLessonContent = item.lessons.map((lesson) => {
+              if (lesson.id === selectedLesson.lessonId) {
+                const updatedContent = lesson.lessonContent.map((content) => {
+                  if (content.id === eachQuiz.id) {
+                    const updatedChoice = content.choices.map((eChoice) => {
+                      if (eChoice.id === eachChoice.id) {
+                        eChoice.choice = text;
+                        return eChoice;
+                      }
+                      return eChoice;
+                    });
+
+                    return { ...content, choices: updatedChoice };
+                  }
+                  return content;
+                });
+                return {
+                  ...lesson,
+                  lessonContent: updatedContent,
+                };
+              }
+              return lesson;
+            });
+            return {
+              ...item,
+              lessons: updatedLessonContent,
+            };
+          }
+          return item;
+        });
+      };
+
+      const onCheckChoice = (event) => {
+        const value = event.target.checked;
+
+        const updatedCurriculum = curriculumAndCards.map((item) => {
+          if (item.id === chapterLesson.id) {
+            const updatedLessonContent = item.lessons.map((lesson) => {
+              if (lesson.id === selectedLesson.lessonId) {
+                const updatedContent = lesson.lessonContent.map((content) => {
+                  if (content.id === eachQuiz.id) {
+                    const updatedChoice = content.choices.map((eChoice) => {
+                      if (content.questionType !== 'one') {
+                        if (eChoice.id === eachChoice.id) {
+                          eChoice.check = value;
+                          return eChoice;
+                        }
+                        return eChoice;
+                      } // } else {
+                      if (eChoice.id === eachChoice.id) {
+                        eChoice.check = value;
+                        return eChoice;
+                      }
+                      eChoice.check = false;
+                      return eChoice;
+                      // }
+                      // if (eChoice.id === eachChoice.id) {
+                      //   eChoice.check = value;
+                      //   return eChoice;
+                      // }
+                      // return eChoice;
+                    });
+
+                    return { ...content, choices: updatedChoice };
+                  }
+                  return content;
+                });
+                return {
+                  ...lesson,
+                  lessonContent: updatedContent,
+                };
+              }
+              return lesson;
+            });
+            return {
+              ...item,
+              lessons: updatedLessonContent,
+            };
+          }
+          return item;
+        });
+        setCurriculumAndCards(updatedCurriculum);
+      };
+
       return (
-        <Card key={index} className=" mb-3 mt-3 ">
+        <Card key={eachChoice.id} className=" mb-3 mt-3 ">
           <div className="flexWrap ">
             <b>choice {index + 1}</b>
-            <button onClick={() => onDeleteChoice(index)}>
+            <button onClick={() => onDeleteChoice(eachChoice)}>
               <HiOutlineTrash className="text-lg" />
             </button>
           </div>
+          {console.log('eachChoice.choice', eachChoice, eachChoice.choice)}
           <RichTextEditor
             value={eachChoice.choice}
             className=" mt-2 "
             placeholder="Type something"
             ref={editorRef} // Pass the ref to the RichTextEditor component
-            //  onChange={handleEditorChange} // Specify the change event handler
+            onChange={handleChoiceChange} // Specify the change event handler
             modules={modules}
           />
           <div className="flex  items-center  mt-4">
-            <Checkbox className="flex items-center " color="black">
+            <Checkbox
+              onClick={onCheckChoice}
+              checked={eachChoice.check}
+              className="flex items-center "
+              color="black">
               <span className="ml-2 ">This is a correct answer</span>
             </Checkbox>
           </div>
@@ -176,8 +388,38 @@ const QuizLesson = forwardRef((props, ref) => {
       );
     };
 
-    console.log('eachQuiz', eachQuiz);
-    console.log('index', index);
+    const handleExplanationChange = (content) => {
+      const div = document.createElement('div');
+      div.innerHTML = content;
+      const text = div.textContent || div.innerText;
+
+      const updatedCurriculum = curriculumAndCards.map((item) => {
+        if (item.id === chapterLesson.id) {
+          const updatedLessonContent = item.lessons.map((lesson) => {
+            if (lesson.id === selectedLesson.lessonId) {
+              const updatedContent = lesson.lessonContent.map((content) => {
+                if (content.id === eachQuiz.id) {
+                  content.explanation = text;
+                  return content;
+                }
+                return content;
+              });
+              return {
+                ...lesson,
+                lessonContent: updatedContent,
+              };
+            }
+            return lesson;
+          });
+          return {
+            ...item,
+            lessons: updatedLessonContent,
+          };
+        }
+        return item;
+      });
+      setCurriculumAndCards(updatedCurriculum);
+    };
 
     const handleQuestionChange = (content) => {
       // console.log(content); // Do something with the updated content
@@ -187,34 +429,150 @@ const QuizLesson = forwardRef((props, ref) => {
 
       // console.log(text); // Extracted text from the <p> element
 
-      const newHeadingBulk = quizList.map((eachCard) => {
-        if (eachCard.id === eachQuiz.id) {
-          eachCard.question = text;
-          return eachCard;
+      const updatedCurriculum = curriculumAndCards.map((item) => {
+        if (item.id === chapterLesson.id) {
+          const updatedLessonContent = item.lessons.map((lesson) => {
+            if (lesson.id === selectedLesson.lessonId) {
+              const updatedContent = lesson.lessonContent.map((content) => {
+                if (content.id === eachQuiz.id) {
+                  content.question = text;
+                  return content;
+                }
+                return content;
+              });
+              return {
+                ...lesson,
+                lessonContent: updatedContent,
+              };
+            }
+            return lesson;
+          });
+          return {
+            ...item,
+            lessons: updatedLessonContent,
+          };
         }
-        return eachCard;
+        return item;
       });
-
-      setQuizList(newHeadingBulk);
+      setCurriculumAndCards(updatedCurriculum);
     };
 
     const onAddChoice = () => {
-      console.log('onAddChoice', eachQuiz);
+      // console.log('onAddChoice', eachQuiz);
       // eachQuiz
 
-      const UpdatedChoiceQuiz = quizList.map((eachQuizCard) => {
-        if (eachQuizCard.id === eachQuiz.id) {
-          console.log('eachQuizCard.choices', eachQuizCard.choices);
-          const newChoice = [...eachQuizCard.choices, { choice: '' }];
-          return { ...eachQuizCard, choices: newChoice };
+      const updatedCurriculum = curriculumAndCards.map((item) => {
+        if (item.id === chapterLesson.id) {
+          const updatedLessonContent = item.lessons.map((lesson) => {
+            if (lesson.id === selectedLesson.lessonId) {
+              // const updatedContent = [...lesson.lessonContent, newQuestion];
+
+              const updatedContent = lesson.lessonContent.map((content) => {
+                if (content.id === eachQuiz.id) {
+                  const newChoice = [
+                    ...content.choices,
+                    { id: uuidv4(), choice: '', check: false },
+                  ];
+                  return { ...content, choices: newChoice };
+                }
+                return content;
+              });
+
+              return {
+                ...lesson,
+                lessonContent: updatedContent,
+              };
+            }
+            return lesson;
+          });
+          return {
+            ...item,
+            lessons: updatedLessonContent,
+          };
         }
-        return eachQuizCard;
+        return item;
       });
 
-      setQuizList(UpdatedChoiceQuiz);
+      setCurriculumAndCards(updatedCurriculum);
 
-      console.log('UpdatedChoiceQuiz UpdatedChoiceQuiz', UpdatedChoiceQuiz);
+      // console.log('UpdatedChoiceQuiz UpdatedChoiceQuiz', UpdatedChoiceQuiz);
     };
+
+    const handleTypeChange = (e) => {
+      const updatedCurriculum = curriculumAndCards.map((item) => {
+        if (item.id === chapterLesson.id) {
+          const updatedLessonContent = item.lessons.map((lesson) => {
+            if (lesson.id === selectedLesson.lessonId) {
+              // const updatedContent = [...lesson.lessonContent, newQuestion];
+
+              const updatedContent = lesson.lessonContent.map((content) => {
+                // console.log('eachQuiz', eachQuiz);
+                if (content.id === eachQuiz.id) {
+                  content.questionType = e.value;
+                  return content;
+                }
+                // console.log(...content, newQuestion);
+
+                return content;
+              });
+
+              return {
+                ...lesson,
+                lessonContent: updatedContent,
+              };
+            }
+            return lesson;
+          });
+          return {
+            ...item,
+            lessons: updatedLessonContent,
+          };
+        }
+        return item;
+      });
+
+      setCurriculumAndCards(updatedCurriculum);
+    };
+
+    const onDuplicateQuestion = () => {
+      console.log('eachQuiz.id', eachQuiz.id);
+      const newQuestion = {
+        id: uuidv4(),
+        question: eachQuiz.question,
+        questionType: eachQuiz.questionType,
+        choices: eachQuiz.choices,
+        explanation: eachQuiz.explanation,
+        type: eachQuiz.type,
+      };
+
+      const updatedCurriculum = curriculumAndCards.map((item) => {
+        if (item.id === chapterLesson.id) {
+          const updatedLessonContent = item.lessons.map((lesson) => {
+            console.log('lesson', lesson);
+            if (lesson.id === selectedLesson.lessonId) {
+              console.log('lesson', lesson);
+              const updatedContent = [...lesson.lessonContent, newQuestion];
+              console.log('updatedContent', updatedContent);
+
+              return {
+                ...lesson,
+                lessonContent: updatedContent,
+              };
+            }
+            return lesson;
+          });
+          return {
+            ...item,
+            lessons: updatedLessonContent,
+          };
+        }
+        return item;
+      });
+      console.log(updatedCurriculum);
+      setCurriculumAndCards(updatedCurriculum);
+    };
+
+    console.log('eachQuiz', eachQuiz.question);
 
     return (
       <Card key={eachQuiz.id} className="mb-3">
@@ -224,8 +582,11 @@ const QuizLesson = forwardRef((props, ref) => {
           </h4>
           <div className="flexWrap">
             <div className="flexWrap">
-              <Button size="sm" className="text-blue-900">
-                DISCARD CHANGES
+              <Button
+                onClick={onDuplicateQuestion}
+                size="sm"
+                className="text-blue-900">
+                DUPLICATE
               </Button>
 
               {DeleteButtonFunc()}
@@ -236,7 +597,7 @@ const QuizLesson = forwardRef((props, ref) => {
         <Select
           //   isClearable
           // value={currentName}
-          // onChange={handleChange}
+          onChange={handleTypeChange}
           placeholder="Type something..."
           // onInputChange={handleInputChange}
           // componentAs={CreatableSelect}
@@ -244,7 +605,9 @@ const QuizLesson = forwardRef((props, ref) => {
           options={QuestionType}></Select>
         <br />
         <b className=" mt-1">Question</b>
+        {console.log('eachQuiz.question', eachQuiz.question)}
         <RichTextEditor
+          /////  value={eachQuiz.question}
           className="mt-1"
           placeholder="Type something"
           ref={editorRef} // Pass the ref to the RichTextEditor component
@@ -263,9 +626,11 @@ const QuizLesson = forwardRef((props, ref) => {
         <br />
         <b>Explanation</b>
         <RichTextEditor
+          // value={eachQuiz.explanation}
           className="mt-1"
           placeholder="Type something"
           ref={editorRef} // Pass the ref to the RichTextEditor component
+          onChange={handleExplanationChange}
           //  onChange={handleEditorChange} // Specify the change event handler
           modules={modules}
         />
@@ -274,26 +639,81 @@ const QuizLesson = forwardRef((props, ref) => {
   };
 
   const QuizQuestionsDisplay = () => {
-    return quizList.map((eachQuiz, index) => eachQuizDisplay(eachQuiz, index));
+    return targetLessonObj.lessonContent.map((eachQuiz, index) =>
+      eachQuizDisplay(eachQuiz, index)
+    );
   };
 
   const onAddQuestion = () => {
     const newQuestion = {
-      id: Math.random() * Math.random(),
+      id: uuidv4(),
       question: 'What is your new question?',
       questionType: 'one',
-      choices: [{ choice: '' }, { choice: '' }],
+      choices: [
+        { id: uuidv4(), choice: '', check: false },
+        { id: uuidv4(), choice: '', check: false },
+      ],
       explanation: '',
       type: 'quiz',
     };
 
-    setQuizList([...quizList, newQuestion]);
+    const updatedCurriculum = curriculumAndCards.map((item) => {
+      if (item.id === chapterLesson.id) {
+        const updatedLessonContent = item.lessons.map((lesson) => {
+          if (lesson.id === selectedLesson.lessonId) {
+            const updatedContent = [...lesson.lessonContent, newQuestion];
+
+            return {
+              ...lesson,
+              lessonContent: updatedContent,
+            };
+          }
+          return lesson;
+        });
+        return {
+          ...item,
+          lessons: updatedLessonContent,
+        };
+      }
+      return item;
+    });
+
+    setCurriculumAndCards(updatedCurriculum);
+    setIsUploadableShow(false);
+  };
+
+  const triggerMessage = (msg) => {
+    toast.push(
+      <Notification className="bg-green-200" type="success" duration={3000}>
+        <h6>{msg || 'Successfully saved the chapter!'}</h6>
+      </Notification>,
+      {
+        placement: 'top-center',
+      }
+    );
+  };
+
+  const onLessonSave = () => {
+    triggerMessage();
+  };
+
+  if (targetLessonObj === undefined) {
+    return (
+      <div className="flex justify-center items-center mt-5">
+        <h1 className="mt-5">Loading</h1>
+      </div>
+    );
+  }
+
+  const onAddImport = () => {
+    console.log('onAddImport');
+    setIsUploadableShow(true);
   };
 
   return (
     <>
-      <div className="flexWrap padding-cls">
-        <h4>{lessonHeading}</h4>
+      <div className="flexWrap ">
+        <h4 className="ml-3">{targetLessonObj.lessonHeading}</h4>
         <div className="flexWrap">
           <div className="flex items-center mb-1 mt-1 ml-2">
             <Checkbox size="xs" color="blue-900" className="m-0" />
@@ -309,6 +729,7 @@ const QuizLesson = forwardRef((props, ref) => {
             </Button>
 
             <Button
+              onClick={onLessonSave}
               className="mr-2  mb-1 mt-1"
               variant="solid"
               color="blue-900">
@@ -335,11 +756,64 @@ const QuizLesson = forwardRef((props, ref) => {
           ADD QUESTION
         </Button>
 
-        <Button size="sm" className="mr-2 text-blue-900 mb-1 mt-1 ">
+        <Button
+          onClick={onAddImport}
+          size="sm"
+          className="mr-2 text-blue-900 mb-1 mt-1 ">
           IMPORT QUESTIONS
         </Button>
       </div>
 
+      {isUploadableShow && (
+        <Card>
+          <Upload
+            // fileList={card.uploads}
+            notAllowedFileTypes={[
+              'jpeg',
+              'jpg',
+              'png',
+              'gif',
+              'bmp',
+              'svg',
+              'psd',
+              'ai',
+              'eps',
+              'webp',
+              'ico',
+              'raw',
+              'heic',
+              'exr',
+            ]}
+            // onUploadChange={(files) => onUploadChange(id, files)}
+            draggable
+            className="hover:border-yellow-900 border-yellow-600">
+            <div className="mt-5 text-center">
+              <p className="mt-2 font-semibold">
+                <span className=" text-yellow-600 dark:text-white">
+                  Drag & drop video, audio,& PDF files here
+                </span>
+                <br />
+                <span className="text-yellow-600 dark:text-white">or</span>
+              </p>
+              <Button
+                className="mt-3 mb-4 p-3 pl-5 pr-5"
+                variant="solid"
+                color="blue-900">
+                SELECT FILE
+              </Button>
+              <div>
+                <p className=" mt-5 p-4 pl-auto bg-colour-yellow text-yellow-600 mt-2 opacity-20 dark:text-white">
+                  You can upload files with the extensions: 3g2, 3gp, 3gpp,
+                  3gpp2, asf, asx, avi, dv, f4p, f4v, flv, mjpeg, mjpg, mkv,
+                  mov, movie, mp2, mp3g, mp4, mpe, mpeg, mpg, mpg4, ogg, ogv,
+                  ogx, qt, rm, viv, vivo, webm, wm, wmv, wmx, wvx, m4v, aac,
+                  mp2, mp3, mpga, ogg, wav, m4a, pdf
+                </p>
+              </div>
+            </div>
+          </Upload>
+        </Card>
+      )}
       <Card>
         <h4>Lesson settings</h4>
 

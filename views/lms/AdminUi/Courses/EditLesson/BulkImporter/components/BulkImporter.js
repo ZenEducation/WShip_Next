@@ -1,10 +1,15 @@
 import React, { forwardRef, useContext, useState } from 'react';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
 import { Input, Card, Upload } from 'components/ui';
 
 import style from '../../../../../../../styles/Home.module.css';
+
+import SelectedLessonPage from '../../SelectedLessonPage/index';
+
 import { HiOutlineTrash } from 'react-icons/hi';
 import { Button } from 'components/ui';
 import FileItem from '@/components/ui/Upload/FileItem';
@@ -18,11 +23,7 @@ import LessonsOptions from '../../LessonsOptions/index';
 const BulkImporter = forwardRef((props, ref) => {
   const { mode } = props;
 
-  // const [cards, setCards] = useState([
-  //   { id: 1, heading: 'Chapter 1', uploads: [] },
-  // ]);
-
-  const { cards, setCards } = useContext(CardsContext);
+  // const { cards, setCards } = useContext(CardsContext);
 
   const { tabMenu, setTabMenu } = useContext(CardsContext);
   const { LessonsOptionTab, setLessonsOptionTab } = useContext(CardsContext);
@@ -30,21 +31,23 @@ const BulkImporter = forwardRef((props, ref) => {
   const { curriculumAndCards, setCurriculumAndCards } =
     useContext(CardsContext);
 
+  const { lessonFrom, setLessonFrom } = useContext(CardsContext);
+
   const { sideBar, setSideBar } = useContext(CardsContext);
 
   const handleDelete = (id) => {
-    setCards(cards.filter((card) => card.id !== id));
+    // setCards(cards.filter((card) => card.id !== id));
 
     setCurriculumAndCards(curriculumAndCards.filter((card) => card.id !== id));
   };
 
   const handleUploadChange = (id, updatedFiles) => {
-    const updatedCards = cards.map((card) => {
-      if (card.id === id) {
-        return { ...card, uploads: updatedFiles };
-      }
-      return card;
-    });
+    // const updatedCards = cards.map((card) => {
+    //   if (card.id === id) {
+    //     return { ...card, uploads: updatedFiles };
+    //   }
+    //   return card;
+    // });
 
     const updatedBulk = curriculumAndCards.map((card) => {
       if (card.id === id) {
@@ -53,7 +56,7 @@ const BulkImporter = forwardRef((props, ref) => {
       return card;
     });
 
-    setCards(updatedCards);
+    // setCards(updatedCards);
     setCurriculumAndCards(updatedBulk);
   };
   // fileList
@@ -61,13 +64,13 @@ const BulkImporter = forwardRef((props, ref) => {
     const onHeadingChange = (e) => {
       const value = e.target.value;
 
-      const newHeadingCards = cards.map((eachCard) => {
-        if (eachCard.id === id) {
-          eachCard.heading = value;
-          return eachCard;
-        }
-        return eachCard;
-      });
+      // const newHeadingCards = cards.map((eachCard) => {
+      //   if (eachCard.id === id) {
+      //     eachCard.heading = value;
+      //     return eachCard;
+      //   }
+      //   return eachCard;
+      // });
 
       curriculumAndCards;
 
@@ -78,7 +81,7 @@ const BulkImporter = forwardRef((props, ref) => {
         }
         return eachCard;
       });
-      setCards(newHeadingCards);
+      // setCards(newHeadingCards);
       setCurriculumAndCards(newHeadingBulk);
     };
 
@@ -151,18 +154,44 @@ const BulkImporter = forwardRef((props, ref) => {
 
   const handleAddChapter = () => {
     const newCard = {
-      id: Math.random() * Math.random(),
+      id: uuidv4(),
       heading: `Chapter ${curriculumAndCards.length + 1}`,
       uploads: [],
+      lessons: [
+        {
+          id: uuidv4(),
+          lessonHeading: 'New Quiz Lesson',
+          lessonContent: [
+            {
+              id: uuidv4(),
+              question: 'What is your question?',
+              questionType: 'one',
+              choices: [
+                { id: uuidv4(), choice: 'Yes' },
+                { id: uuidv4(), choice: 'No' },
+              ],
+              explanation: '',
+            },
+          ],
+          type: 'Quiz',
+        },
+      ],
       type: 'bulkImporter',
     };
 
-    setCards([...cards, newCard]);
+    // setCards([...cards, newCard]);
     setCurriculumAndCards([...curriculumAndCards, newCard]);
   };
 
   const cardsDisplay = () => {
-    return cards.map((card) =>
+    const bulkImporterCards = curriculumAndCards.filter(
+      (eachCard) => eachCard.type === 'bulkImporter'
+    );
+    // return cards.map((card) =>
+    //   newPdfLesson(card.id, card.heading, handleUploadChange, card)
+    // );
+
+    return bulkImporterCards.map((card) =>
       newPdfLesson(card.id, card.heading, handleUploadChange, card)
     );
   };
@@ -202,10 +231,6 @@ const BulkImporter = forwardRef((props, ref) => {
     );
   };
 
-  const cardsDisplaySideBar = () => {
-    return cards.map((eachCard) => eachCardCart(eachCard));
-  };
-
   const onSideBarClose = () => {
     // setSideBar(!sideBar);
 
@@ -236,7 +261,7 @@ const BulkImporter = forwardRef((props, ref) => {
       </div> */}
       {sideBar && <CurrAndBulkSideBar />}
 
-      {LessonsOptionTab !== 'LessonsOptionTab' && (
+      {LessonsOptionTab === 'BulkImporter' && (
         <div className="ml-2 orderFlex">
           <Button
             size="sm"
@@ -277,7 +302,19 @@ const BulkImporter = forwardRef((props, ref) => {
             className="mb-2 mt-2  mr-3">
             <BsThreeDotsVertical className="text-xl mb-2" />
           </Button>
-          <LessonsOptions />
+          <LessonsOptions lessonFrom={lessonFrom} />
+        </div>
+      )}
+
+      {LessonsOptionTab === 'ShowLessonPage' && (
+        <div className="ml-2 orderFlex">
+          <Button
+            size="sm"
+            onClick={onSideBarClose}
+            className="mb-2 mt-2  mr-3">
+            <BsThreeDotsVertical className="text-xl mb-2" />
+          </Button>
+          <SelectedLessonPage />
         </div>
       )}
     </div>

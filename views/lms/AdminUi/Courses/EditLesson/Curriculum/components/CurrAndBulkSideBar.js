@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
@@ -15,13 +16,15 @@ import { AiOutlineGlobal, AiOutlinePlus } from 'react-icons/ai';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
 const CurrAndBulkSideBar = () => {
-  const { curriculumValue, setCurriculumValue } = useContext(CardsContext);
+  // const { curriculumValue, setCurriculumValue } = useContext(CardsContext);
 
   const { tabMenu, setTabMenu } = useContext(CardsContext);
   const { LessonsOptionTab, setLessonsOptionTab } = useContext(CardsContext);
+  const { selectedLesson, setSelectedLesson } = useContext(CardsContext);
 
-  const [lessonFrom, setLessonFrom] = useState();
-  console.log('lessonFrom', lessonFrom);
+  const { lessonFrom, setLessonFrom } = useContext(CardsContext);
+
+  // console.log('lessonFrom', lessonFrom);
 
   const { curriculumAndCards, setCurriculumAndCards } =
     useContext(CardsContext);
@@ -71,14 +74,28 @@ const CurrAndBulkSideBar = () => {
   };
 
   const onSelectCurr = (eachCard) => {
+    console.log(' ON SELETE CHAPTER');
     setSelectedCard(eachCard);
     setInputVal('');
+    setLessonsOptionTab('Curriculum');
     setTabMenu('Curriculum');
   };
 
   const onAddLesson = (eachCard) => {
-    console.log('eachCard ', eachCard);
+    // console.log(' ON SELETE LESSON');
 
+    setLessonFrom(eachCard);
+
+    if (eachCard.type === 'curriculum') {
+      setTabMenu('Curriculum');
+
+      // setLessonsOptionTab('LessonsOptionTab');
+    } else if (eachCard.type === 'bulkImporter') {
+      setTabMenu('BulkImporter');
+      setLessonsOptionTab('BulkImporter');
+
+      // setLe
+    }
     setLessonsOptionTab('LessonsOptionTab');
   };
 
@@ -92,9 +109,11 @@ const CurrAndBulkSideBar = () => {
         key={eachCard.id}
         className="mb-2 cursor-pointer ">
         <h5 className="mb-2">{eachCard.name}</h5>
+        {displayAddedLessons(eachCard.lessons)}
         <div className="flexWrap">
           <Button
-            onClick={() => {
+            onClick={(event) => {
+              event.stopPropagation(); // Prevent event propagation
               onAddLesson(eachCard);
             }}
             size="xs"
@@ -115,9 +134,53 @@ const CurrAndBulkSideBar = () => {
   const displayEachUpload = (eachUpload) => {
     return (
       <div className="upload-file-list">
-        {eachUpload.map((file, index) => (
-          <FileItem file={file} key={file.name + index}></FileItem>
-        ))}
+        {eachUpload.map((file, index) => {
+          // console.log('file', file);
+          return <FileItem file={file} key={file.name + index}></FileItem>;
+        })}
+      </div>
+    );
+  };
+
+  const displayAddedLessons = (eachLesson, chapterType) => {
+    // onClick={(event) => {
+    //   event.stopPropagation(); // Prevent event propagation
+    //   console.log('Lesson Clicked');
+    //   setLessonsOptionTab('ShowLessonPage');
+    // }}
+    return (
+      <div className="  upload-file-list">
+        {eachLesson.map((lesson, index) => {
+          const file = {
+            ...lesson,
+            name: lesson.lessonHeading,
+          };
+          return (
+            <div
+              className="cursor-pointer"
+              key={lesson.id}
+              onClick={(event) => {
+                event.stopPropagation(); // Prevent event propagation
+                // console.log('Lesson Clicked', lesson);
+                setSelectedLesson({
+                  lessonId: lesson.id,
+                  lessonType: lesson.type,
+                  isShowLesson: true,
+                });
+                if (chapterType === 'bulkImporter') {
+                  setTabMenu('BulkImporter');
+                } else {
+                  setTabMenu('Curriculum');
+                }
+                setLessonsOptionTab('ShowLessonPage');
+              }}>
+              <FileItem
+                file={file}
+                onlyName={true}
+                key={lesson.lessonHeading + index}></FileItem>
+            </div>
+          );
+        })}
       </div>
     );
   };
@@ -125,15 +188,22 @@ const CurrAndBulkSideBar = () => {
   const BulkImpSideBar = (cardsList) => {
     return (
       <Card
+        onClick={() => {
+          console.log('Bulk importer Clicked');
+          setTabMenu('BulkImporter');
+          setLessonsOptionTab('BulkImporter');
+        }}
         key={cardsList.id}
         className="mb-2 "
         // style={{ minWidth: 335, maxWidth: 335 }}
       >
         <h5 className="mb-2">{cardsList.heading}</h5>
         {displayEachUpload(cardsList.uploads)}
+        {displayAddedLessons(cardsList.lessons, cardsList.type)}
         <div className="flexWrap">
           <Button
-            onClick={() => {
+            onClick={(event) => {
+              event.stopPropagation(); // Prevent event propagation
               onAddLesson(cardsList);
             }}
             size="xs"
@@ -162,13 +232,33 @@ const CurrAndBulkSideBar = () => {
 
   const handleAddChapter = () => {
     const newCuruculumCard = {
-      id: Math.random() * Math.random() * Math.random(),
+      id: uuidv4(),
       name: `Untitled chapter ${curriculumAndCards.length + 1}`,
+      lessons: [
+        {
+          id: uuidv4(),
+          lessonHeading: 'New Quiz Lesson',
+          lessonContent: [
+            {
+              id: uuidv4(),
+              question: 'What is your question?',
+              questionType: 'one',
+              choices: [
+                { id: uuidv4(), choice: 'Yes' },
+                { id: uuidv4(), choice: 'No' },
+              ],
+              explanation: '',
+            },
+          ],
+          type: 'Quiz',
+        },
+      ],
       type: 'curriculum',
     };
 
     setCurriculumAndCards([...curriculumAndCards, newCuruculumCard]);
     setSelectedCard(newCuruculumCard);
+    setLessonsOptionTab('Curriculum');
 
     setTabMenu('Curriculum');
   };
@@ -196,7 +286,7 @@ const CurrAndBulkSideBar = () => {
       className="align-stretch sidebae-width">
       {/* sidebae-width */}
 
-      <div className="sidebar">{curruculamSideBarcards()}</div>
+      <div className="">{curruculamSideBarcards()}</div>
 
       <Card className=" fixed-card mt-3 ">
         <div className="flexWrap ">

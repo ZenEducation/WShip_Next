@@ -1,7 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+
+import { v4 as uuidv4 } from 'uuid';
+
 import { Card, Avatar, Button } from 'components/ui';
 import { GrowShrinkTag, MediaSkeleton, Loading } from 'components/shared';
 import { getCustomerStatistic } from '../store/dataSlice';
+
+import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
 import { BsCameraVideo, BsFileEarmarkText } from 'react-icons/bs';
 
@@ -28,12 +33,95 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from '../../../../../../../styles/Home.module.css';
 
 const StatisticCard = (props) => {
-  const { icon, label, value, loading } = props;
+  const { icon, label, value, loading, lessonFrom } = props;
+
+  const { curriculumAndCards, setCurriculumAndCards } =
+    useContext(CardsContext);
+
+  const { selectedLesson, setSelectedLesson } = useContext(CardsContext);
+
+  const { tabMenu, setTabMenu } = useContext(CardsContext);
+
+  const { LessonsOptionTab, setLessonsOptionTab } = useContext(CardsContext);
 
   const avatarSize = 48;
 
+  const onAddSampleLesson = () => {
+    const newLessonId = uuidv4();
+
+    const updatedChapters = curriculumAndCards.map((eachChapter) => {
+      if (eachChapter.id !== lessonFrom.id) {
+        return eachChapter;
+      }
+      switch (label) {
+        case 'Quiz':
+          const newLessons = {
+            id: newLessonId,
+            lessonHeading: 'New Quiz Lesson',
+            lessonContent: [
+              {
+                id: uuidv4(),
+                question: 'What is your question?',
+                questionType: 'one',
+                choices: [
+                  { id: uuidv4(), choice: 'Yes', check: false },
+                  { id: uuidv4(), choice: 'No', check: false },
+                ],
+                explanation: '',
+              },
+            ],
+            type: 'Quiz',
+          };
+          return {
+            ...eachChapter,
+            lessons: [...eachChapter.lessons, newLessons],
+          };
+          break;
+        default:
+          return eachChapter;
+      }
+    });
+
+    // console.log('updatedChapter IN quiz', updatedChapters);
+
+    setCurriculumAndCards(updatedChapters);
+
+    const updatedSelectedLesson = {
+      lessonId: newLessonId,
+      lessonType: label,
+      isShowLesson: true,
+    };
+
+    setSelectedLesson(updatedSelectedLesson);
+
+    setLessonsOptionTab('ShowLessonPage');
+
+    if (updatedSelectedLesson.isShowLesson) {
+      const chapterLesson = updatedChapters.find((eachChapter) =>
+        eachChapter.lessons.some((eachLesson) => {
+          // console.log(
+          //   'eachLesson.id === selectedLesson',
+          //   eachLesson.id === updatedSelectedLesson
+          // );
+          // console.log('eachLesson.id', eachLesson.id);
+          // console.log(' selectedLesson', updatedSelectedLesson);
+          return eachLesson.id === updatedSelectedLesson.lessonId;
+        })
+      );
+
+      // console.log('chapterLesson', chapterLesson);
+      // if (chapterLesson !== undefined) {
+      //   if (chapterLesson.type === 'curriculum') {
+      //     setTabMenu('Curriculum');
+      //   } else if ('bulkImporter') {
+      //     setTabMenu('BulkImporter');
+      //   }
+      // }
+    }
+  };
+
   return (
-    <button className={style['button']}>
+    <button onClick={onAddSampleLesson} className={style['button']}>
       <Card className={style['cursor']}>
         <Loading
           loading={loading}
@@ -68,8 +156,10 @@ const StatisticCard = (props) => {
   );
 };
 
-const CustomerStatistic = () => {
+const LessonsOptions = ({ lessonFrom }) => {
   const dispatch = useDispatch();
+
+  // console.log('lessonFrom lessonFrom LESSONS', lessonFrom);
 
   const statisticData = useSelector(
     (state) => state.crmCustomers.data.statisticData
@@ -92,6 +182,7 @@ const CustomerStatistic = () => {
       <h6 className="mb-2">Deliver learning content</h6>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<BsCameraVideo />}
           avatarClass="!bg-indigo-600"
           label="Video"
@@ -99,6 +190,7 @@ const CustomerStatistic = () => {
           loading={loading}
         />
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<AiOutlineFilePdf />}
           avatarClass="!bg-blue-500"
           label="PDF"
@@ -106,6 +198,7 @@ const CustomerStatistic = () => {
           loading={loading}
         />
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<BsFileEarmarkText />}
           avatarClass="!bg-emerald-500"
           label="Text"
@@ -113,6 +206,7 @@ const CustomerStatistic = () => {
           loading={loading}
         />
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<RxSpeakerQuiet />}
           avatarClass="!bg-blue-500"
           label="Audio"
@@ -121,6 +215,7 @@ const CustomerStatistic = () => {
         />
 
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<MdOutlineCloudDownload />}
           avatarClass="!bg-blue-500"
           label="Download"
@@ -128,6 +223,7 @@ const CustomerStatistic = () => {
           loading={loading}
         />
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<HiOutlinePresentationChartLine />}
           avatarClass="!bg-blue-500"
           label="Presentation"
@@ -135,6 +231,7 @@ const CustomerStatistic = () => {
           loading={loading}
         />
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<TfiLayoutMediaOverlay />}
           avatarClass="!bg-blue-500"
           label="Multimedia"
@@ -142,6 +239,7 @@ const CustomerStatistic = () => {
           loading={loading}
         />
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<TbBuildingBroadcastTower />}
           avatarClass="!bg-blue-500"
           label="Live"
@@ -152,6 +250,7 @@ const CustomerStatistic = () => {
       <h6 className="mb-4 mt-5">Assess your students</h6>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<BsCameraVideo />}
           avatarClass="!bg-indigo-600"
           label="Quiz"
@@ -159,6 +258,7 @@ const CustomerStatistic = () => {
           loading={loading}
         />
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<FcSurvey />}
           avatarClass="!bg-indigo-600"
           label="Survey"
@@ -166,6 +266,7 @@ const CustomerStatistic = () => {
           loading={loading}
         />
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<MdOutlineAssignment />}
           avatarClass="!bg-indigo-600"
           label="Assignment"
@@ -173,6 +274,7 @@ const CustomerStatistic = () => {
           loading={loading}
         />
         <StatisticCard
+          lessonFrom={lessonFrom}
           icon={<ImNewspaper />}
           avatarClass="!bg-indigo-600"
           label="Exam"
@@ -184,4 +286,4 @@ const CustomerStatistic = () => {
   );
 };
 
-export default CustomerStatistic;
+export default LessonsOptions;

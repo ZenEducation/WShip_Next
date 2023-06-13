@@ -136,7 +136,13 @@ const SpecificDateComp = ({ cards, releaseDate }) => {
 };
 
 const Dripping = () => {
-  const { cards } = useContext(CardsContext);
+  // const { cards } = useContext(CardsContext);
+
+  const { curriculumAndCards } = useContext(CardsContext);
+
+  const cards = curriculumAndCards.filter(
+    (eachCard) => eachCard.type === 'bulkImporter'
+  );
 
   const options1 = [
     { value: 'Day(s)', label: 'Day(s)' },

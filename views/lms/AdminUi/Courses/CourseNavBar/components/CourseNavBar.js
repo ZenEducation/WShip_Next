@@ -76,7 +76,7 @@ const PreviewDropDown = () => {
 const TabsNavBar = () => {
   const { tabMenu, setTabMenu } = useContext(CardsContext);
 
-  console.log('CourseNavBar', tabMenu);
+  // console.log('CourseNavBar', tabMenu);
 
   const [currentTab, setCurrentTab] = useState('Curriculum');
 

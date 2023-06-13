@@ -16,8 +16,6 @@ const LOGO_SRC_PATH = '/../../public/img/logo/';
 const Logo = (props) => {
   const { type, mode, gutter, className, imgClass, style, logoWidth } = props;
 
-  console.log('imgClass imgClass', imgClass);
-
   return (
     <div
       className={classNames('logo', className, gutter)}

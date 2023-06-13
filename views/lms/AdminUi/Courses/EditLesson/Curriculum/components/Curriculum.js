@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
 import { Input, Card, Checkbox, Radio, Dropdown } from 'components/ui';
@@ -17,6 +19,8 @@ import CurrAndBulkSideBar from './CurrAndBulkSideBar';
 
 import LessonsOptions from '../../LessonsOptions/index';
 
+import SelectedLessonPage from '../../SelectedLessonPage/index';
+
 import { setSideNavCollapse } from 'store/theme/themeSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,9 +28,11 @@ import { useDispatch, useSelector } from 'react-redux';
 // Curriculum
 
 const Curriculum = () => {
-  const { curriculumValue, setCurriculumValue } = useContext(CardsContext);
+  // const { curriculumValue, setCurriculumValue } = useContext(CardsContext);
 
   const { tabMenu, setTabMenu } = useContext(CardsContext);
+
+  const { lessonFrom, setLessonFrom } = useContext(CardsContext);
 
   const { LessonsOptionTab, setLessonsOptionTab } = useContext(CardsContext);
 
@@ -36,6 +42,11 @@ const Curriculum = () => {
   const { selectedCard, setSelectedCard } = useContext(CardsContext);
 
   const { sideBar, setSideBar } = useContext(CardsContext);
+
+  const { selectedLesson, setSelectedLesson } = useContext(CardsContext);
+
+  // console.log('selectedLesson Cur', selectedLesson);
+  // console.log('curriculumAndCards curr', curriculumAndCards);
 
   const currVal = curriculumAndCards.filter(
     (eachCard) => eachCard.type === 'curriculum'
@@ -63,11 +74,53 @@ const Curriculum = () => {
       setSelectedCard({
         id: selectedCard.id,
         name: 'Untitled chapter',
+        lessons: [
+          {
+            id: uuidv4(),
+            lessonHeading: 'New Quiz Lesson',
+            lessonContent: [
+              {
+                id: uuidv4(),
+                question: 'What is your question?',
+                questionType: 'one',
+                choices: [
+                  { id: uuidv4(), choice: 'Yes' },
+                  { id: uuidv4(), choice: 'No' },
+                ],
+                explanation: '',
+              },
+            ],
+            type: 'Quiz',
+          },
+        ],
         type: 'curriculum',
       });
       setInputVal('');
     } else {
-      setSelectedCard({ id: selectedCard.id, name: value, type: 'curriculum' });
+      setSelectedCard({
+        id: selectedCard.id,
+        name: value,
+        lessons: [
+          {
+            id: uuidv4(),
+            lessonHeading: 'New Quiz Lesson',
+            lessonContent: [
+              {
+                id: uuidv4(),
+                question: 'What is your question?',
+                questionType: 'one',
+                choices: [
+                  { id: uuidv4(), choice: 'Yes' },
+                  { id: uuidv4(), choice: 'No' },
+                ],
+                explanation: '',
+              },
+            ],
+            type: 'Quiz',
+          },
+        ],
+        type: 'curriculum',
+      });
       setInputVal(newName);
     }
 
@@ -75,7 +128,30 @@ const Curriculum = () => {
       if (eachCard.id !== selectedCard.id) {
         return eachCard;
       }
-      return { id: eachCard.id, name: newName, type: 'curriculum' };
+      return {
+        id: eachCard.id,
+        name: newName,
+        lessons: [
+          {
+            id: uuidv4(),
+            lessonHeading: 'New Quiz Lesson',
+            lessonContent: [
+              {
+                id: uuidv4(),
+                question: 'What is your question?',
+                questionType: 'one',
+                choices: [
+                  { id: uuidv4(), choice: 'Yes' },
+                  { id: uuidv4(), choice: 'No' },
+                ],
+                explanation: '',
+              },
+            ],
+            type: 'Quiz',
+          },
+        ],
+        type: 'curriculum',
+      };
     });
 
     setCurriculumAndCards(changedChapter);
@@ -87,7 +163,6 @@ const Curriculum = () => {
   };
 
   const cardsDisplaySideBar = (eachCard) => {
-    // console.log('eachCardCart', cardsList);
     return (
       <Card
         onClick={() => {
@@ -159,8 +234,27 @@ const Curriculum = () => {
 
   const handleAddChapter = () => {
     const newCuruculumCard = {
-      id: Math.random() * Math.random() * Math.random(),
+      id: uuidv4(),
       name: `Untitled chapter ${curriculumAndCards.length + 1}`,
+      lessons: [
+        {
+          id: uuidv4(),
+          lessonHeading: 'New Quiz Lesson',
+          lessonContent: [
+            {
+              id: uuidv4(),
+              question: 'What is your question?',
+              questionType: 'one',
+              choices: [
+                { id: uuidv4(), choice: 'Yes' },
+                { id: uuidv4(), choice: 'No' },
+              ],
+              explanation: '',
+            },
+          ],
+          type: 'Quiz',
+        },
+      ],
       type: 'curriculum',
     };
 
@@ -240,19 +334,19 @@ const Curriculum = () => {
         renderTitle={Toggle}>
         <Dropdown.Item
           onClick={async () => {
-            console.log('curriculumAndCards Before', curriculumAndCards);
             await setCurriculumAndCards(
               curriculumAndCards.filter((card) => card.id !== selectedCard.id)
             );
 
-            console.log('curriculumAndCards After', curriculumAndCards);
-            const currVal = await curriculumAndCards.filter(
+            const afterDelted = curriculumAndCards.filter(
+              (card) => card.id !== selectedCard.id
+            );
+
+            const currList = afterDelted.filter(
               (eachCard) => eachCard.type === 'curriculum'
             );
 
-            console.log('currValAfter', currVal);
-
-            await setSelectedCard(currVal[0]);
+            await setSelectedCard(currList[0]);
             await setInputVal('');
           }}
           eventKey="a">
@@ -266,7 +360,7 @@ const Curriculum = () => {
     <div className="flex ">
       {sideBar && <CurrAndBulkSideBar />}
       {/* {curruculamSideBarDisplay()} */}
-      {LessonsOptionTab !== 'LessonsOptionTab' && (
+      {LessonsOptionTab === 'Curriculum' && (
         <div className="ml-2 orderFlex">
           <div className="flexWrap  pt-1 pb-2  ">
             <div className="flexWrap">
@@ -329,7 +423,19 @@ const Curriculum = () => {
             className="mb-2 mt-2  mr-3">
             <BsThreeDotsVertical className="text-xl mb-2" />
           </Button>
-          <LessonsOptions />
+          <LessonsOptions lessonFrom={lessonFrom} />
+        </div>
+      )}
+
+      {LessonsOptionTab === 'ShowLessonPage' && (
+        <div className="ml-2 orderFlex">
+          <Button
+            size="sm"
+            onClick={onSideBarClose}
+            className="mb-2 mt-2  mr-3">
+            <BsThreeDotsVertical className="text-xl mb-2" />
+          </Button>
+          <SelectedLessonPage />
         </div>
       )}
     </div>
