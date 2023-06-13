@@ -1,6 +1,45 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getGroup = /* GraphQL */ `
+  query GetGroup($id: ID!) {
+    getGroup(id: $id) {
+      id
+      groupName
+      groupData {
+        userid
+        name
+      }
+      session
+      groupImgUrl
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listGroups = /* GraphQL */ `
+  query ListGroups(
+    $filter: ModelGroupFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listGroups(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        groupName
+        groupData {
+          userid
+          name
+        }
+        session
+        groupImgUrl
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {
@@ -9,11 +48,17 @@ export const getPost = /* GraphQL */ `
       name
       designation
       content
+      imgUrl
+      country
+      phoneNo
+      gender
+      email
+      github
+      facebook
+      instagram
+      linkedin
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -30,44 +75,19 @@ export const listPosts = /* GraphQL */ `
         name
         designation
         content
+        imgUrl
+        country
+        phoneNo
+        gender
+        email
+        github
+        facebook
+        instagram
+        linkedin
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncPosts = /* GraphQL */ `
-  query SyncPosts(
-    $filter: ModelPostFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncPosts(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        userid
-        name
-        designation
-        content
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -77,11 +97,10 @@ export const getMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
+      session
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -96,42 +115,12 @@ export const listMessages = /* GraphQL */ `
         id
         owner
         message
+        messageType
+        session
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncMessages = /* GraphQL */ `
-  query SyncMessages(
-    $filter: ModelMessageFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncMessages(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        owner
-        message
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;

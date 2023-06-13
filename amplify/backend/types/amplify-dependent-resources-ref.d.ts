@@ -1,13 +1,13 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "userdatastoregraphql": {
+    "wshipnext": {
       "GraphQLAPIEndpointOutput": "string",
       "GraphQLAPIIdOutput": "string",
       "GraphQLAPIKeyOutput": "string"
     }
   },
   "auth": {
-    "userdatastoregraphqlc28b55e2": {
+    "wshipnext0d5deea6": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
@@ -18,7 +18,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "s3wshipnext1": {
+    "s3wshipnextchatappstorage88959747": {
       "BucketName": "string",
       "Region": "string"
     }

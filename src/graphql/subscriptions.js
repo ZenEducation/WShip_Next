@@ -1,6 +1,54 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateGroup = /* GraphQL */ `
+  subscription OnCreateGroup($filter: ModelSubscriptionGroupFilterInput) {
+    onCreateGroup(filter: $filter) {
+      id
+      groupName
+      groupData {
+        userid
+        name
+      }
+      session
+      groupImgUrl
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateGroup = /* GraphQL */ `
+  subscription OnUpdateGroup($filter: ModelSubscriptionGroupFilterInput) {
+    onUpdateGroup(filter: $filter) {
+      id
+      groupName
+      groupData {
+        userid
+        name
+      }
+      session
+      groupImgUrl
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteGroup = /* GraphQL */ `
+  subscription OnDeleteGroup($filter: ModelSubscriptionGroupFilterInput) {
+    onDeleteGroup(filter: $filter) {
+      id
+      groupName
+      groupData {
+        userid
+        name
+      }
+      session
+      groupImgUrl
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost($filter: ModelSubscriptionPostFilterInput) {
     onCreatePost(filter: $filter) {
@@ -9,11 +57,17 @@ export const onCreatePost = /* GraphQL */ `
       name
       designation
       content
+      imgUrl
+      country
+      phoneNo
+      gender
+      email
+      github
+      facebook
+      instagram
+      linkedin
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -25,11 +79,17 @@ export const onUpdatePost = /* GraphQL */ `
       name
       designation
       content
+      imgUrl
+      country
+      phoneNo
+      gender
+      email
+      github
+      facebook
+      instagram
+      linkedin
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -41,11 +101,17 @@ export const onDeletePost = /* GraphQL */ `
       name
       designation
       content
+      imgUrl
+      country
+      phoneNo
+      gender
+      email
+      github
+      facebook
+      instagram
+      linkedin
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -55,11 +121,10 @@ export const onCreateMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
+      session
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -69,11 +134,10 @@ export const onUpdateMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
+      session
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -83,11 +147,10 @@ export const onDeleteMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
+      session
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

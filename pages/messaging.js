@@ -190,7 +190,7 @@ function Messaging({ messages }) {
     }
     getMessages();
   }, [user]);
-
+  console.log(selectedUser)
   const handleSubmit = async (event) => {
     // Prevent the page from reloading
     event.preventDefault();
@@ -862,7 +862,7 @@ function Messaging({ messages }) {
                 )}
               </div>
               <div className={styles.chatbox}>
-                {stateMessages && selectedUser !== ""
+                {stateMessages && selectedUser !== "" && selectedUser
                   ? // sort messages oldest to newest client-side
                     stateMessages
                       .sort((a, b) => b.createdAt.localeCompare(a.createdAt))

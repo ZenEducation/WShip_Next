@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3wshipnextchatappstorage88959747",
+  "bucketName": "wshipnext-chatapp-storage-88959747",
+  "policyUUID": "78045561",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

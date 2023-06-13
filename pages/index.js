@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Auth, DataStore } from "aws-amplify";
+import { Auth, DataStore, Predicates } from "aws-amplify";
 import { Post } from "../src/models";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -85,7 +85,7 @@ export default function Home() {
     setUserImage("");
     setLoading(true);
     try {
-      imgPromise = await Storage.put(userName, userImage, {
+      await Storage.put(userName, userImage, {
         contentType: userImage.type,
       });
 
@@ -208,6 +208,27 @@ export default function Home() {
       const posts = await DataStore.query(Post, (c) =>
         c.userid.eq(currentUser.username)
       );
+      const allPosts = await DataStore.query(Post)
+      allPosts.map(async (item) => {
+        const original = await DataStore.query(Post, (c) =>
+          c.userid.eq(item.userid)
+        );
+
+        let imgUrl = await Storage.get(item.userid);
+        try {
+          const update = await DataStore.save(
+            Post.copyOf(original[0], (updated) => {
+              updated.imgUrl = imgUrl;
+            })
+          );
+
+        } catch (err) {
+          // toast.error(err, {
+          //   position: toast.POSITION.BOTTOM_CENTER,
+          // });
+          console.log("Error", err);
+        }
+      });
       if (posts.length !== 0) {
         setData(posts[0]);
         setName(posts[0].name);
@@ -233,6 +254,7 @@ export default function Home() {
     setLoading(false);
   };
   useEffect(() => {
+
     getDocs();
     getImage();
   }, []);

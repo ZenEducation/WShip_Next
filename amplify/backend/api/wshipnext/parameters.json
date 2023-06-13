@@ -1,12 +1,11 @@
 {
-  "AppSyncApiName": "userdatastoregraphql",
+  "AppSyncApiName": "wshipnext",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
   "AuthCognitoUserPoolId": {
     "Fn::GetAtt": [
-      "authuserdatastoregraphqlc28b55e2",
+      "authwshipnext0d5deea6",
       "Outputs.UserPoolId"
     ]
-  },
-  "AuthModeLastUpdated": "2023-04-24T11:51:28.351Z"
+  }
 }

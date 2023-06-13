@@ -1,6 +1,63 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createGroup = /* GraphQL */ `
+  mutation CreateGroup(
+    $input: CreateGroupInput!
+    $condition: ModelGroupConditionInput
+  ) {
+    createGroup(input: $input, condition: $condition) {
+      id
+      groupName
+      groupData {
+        userid
+        name
+      }
+      session
+      groupImgUrl
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateGroup = /* GraphQL */ `
+  mutation UpdateGroup(
+    $input: UpdateGroupInput!
+    $condition: ModelGroupConditionInput
+  ) {
+    updateGroup(input: $input, condition: $condition) {
+      id
+      groupName
+      groupData {
+        userid
+        name
+      }
+      session
+      groupImgUrl
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteGroup = /* GraphQL */ `
+  mutation DeleteGroup(
+    $input: DeleteGroupInput!
+    $condition: ModelGroupConditionInput
+  ) {
+    deleteGroup(input: $input, condition: $condition) {
+      id
+      groupName
+      groupData {
+        userid
+        name
+      }
+      session
+      groupImgUrl
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createPost = /* GraphQL */ `
   mutation CreatePost(
     $input: CreatePostInput!
@@ -12,11 +69,17 @@ export const createPost = /* GraphQL */ `
       name
       designation
       content
+      imgUrl
+      country
+      phoneNo
+      gender
+      email
+      github
+      facebook
+      instagram
+      linkedin
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -31,11 +94,17 @@ export const updatePost = /* GraphQL */ `
       name
       designation
       content
+      imgUrl
+      country
+      phoneNo
+      gender
+      email
+      github
+      facebook
+      instagram
+      linkedin
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -50,11 +119,17 @@ export const deletePost = /* GraphQL */ `
       name
       designation
       content
+      imgUrl
+      country
+      phoneNo
+      gender
+      email
+      github
+      facebook
+      instagram
+      linkedin
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -67,11 +142,10 @@ export const createMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
+      session
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -84,11 +158,10 @@ export const updateMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
+      session
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -101,11 +174,10 @@ export const deleteMessage = /* GraphQL */ `
       id
       owner
       message
+      messageType
+      session
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

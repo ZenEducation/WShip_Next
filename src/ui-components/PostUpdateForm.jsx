@@ -14,7 +14,7 @@ import { DataStore } from "aws-amplify";
 export default function PostUpdateForm(props) {
   const {
     id: idProp,
-    post,
+    post: postModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -73,14 +73,16 @@ export default function PostUpdateForm(props) {
     setLinkedin(cleanValues.linkedin);
     setErrors({});
   };
-  const [postRecord, setPostRecord] = React.useState(post);
+  const [postRecord, setPostRecord] = React.useState(postModelProp);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = idProp ? await DataStore.query(Post, idProp) : post;
+      const record = idProp
+        ? await DataStore.query(Post, idProp)
+        : postModelProp;
       setPostRecord(record);
     };
     queryData();
-  }, [idProp, post]);
+  }, [idProp, postModelProp]);
   React.useEffect(resetStateValues, [postRecord]);
   const validations = {
     userid: [{ type: "Required" }],
@@ -661,7 +663,7 @@ export default function PostUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || post)}
+          isDisabled={!(idProp || postModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -673,7 +675,7 @@ export default function PostUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || post) ||
+              !(idProp || postModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}
