@@ -1,0 +1,28 @@
+{
+  "chatapp": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-wshipnext-chatapp-174728-authRole",
+      "UnauthRoleArn": "arn:aws:iam::596109967064:role/amplify-wshipnext-chatapp-174728-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::596109967064:role/amplify-wshipnext-chatapp-174728-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-wshipnext-chatapp-174728-deployment",
+      "UnauthRoleName": "amplify-wshipnext-chatapp-174728-unauthRole",
+      "StackName": "amplify-wshipnext-chatapp-174728",
+      "StackId": "arn:aws:cloudformation:ap-south-1:596109967064:stack/amplify-wshipnext-chatapp-174728/5d3b71d0-0a12-11ee-9108-0ad9338ef582",
+      "AmplifyAppId": "d2syplfyxh3vlv"
+    },
+    "categories": {
+      "auth": {
+        "wshipnext9e82a671": {},
+        "wshipnext0d5deea6": {}
+      },
+      "storage": {
+        "s3wshipnextstorage87dd448c": {},
+        "s3wshipnextchatappstorage88959747": {}
+      },
+      "api": {
+        "wshipnext": {}
+      }
+    }
+  }
+}
