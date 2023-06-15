@@ -124,6 +124,8 @@ const CardsProvider = ({ children }) => {
   });
   // console.log('selectedLesson', selectedLesson);
 
+  const [accorSelected, setAccorSelected] = useState(null);
+
   return (
     <CardsContext.Provider
       value={{
@@ -147,6 +149,8 @@ const CardsProvider = ({ children }) => {
         setLessonFrom,
         selectedLesson,
         setSelectedLesson,
+        accorSelected,
+        setAccorSelected,
       }}>
       {children}
     </CardsContext.Provider>

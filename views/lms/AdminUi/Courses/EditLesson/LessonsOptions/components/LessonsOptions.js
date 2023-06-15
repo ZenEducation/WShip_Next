@@ -55,7 +55,7 @@ const StatisticCard = (props) => {
       }
       switch (label) {
         case 'Quiz':
-          const newLessons = {
+          const newQuizLesson = {
             id: newLessonId,
             lessonHeading: 'New Quiz Lesson',
             lessonContent: [
@@ -74,9 +74,28 @@ const StatisticCard = (props) => {
           };
           return {
             ...eachChapter,
-            lessons: [...eachChapter.lessons, newLessons],
+            lessons: [...eachChapter.lessons, newQuizLesson],
           };
           break;
+        case 'Survey':
+          const newSurveyLesson = {
+            id: newLessonId,
+            lessonHeading: 'New Survey Lesson',
+            lessonContent: [
+              {
+                id: uuidv4(),
+                question: 'What is your question?',
+                questionType: 'one',
+                choices: [],
+                isOptional: false,
+              },
+            ],
+            type: 'Survey',
+          };
+          return {
+            ...eachChapter,
+            lessons: [...eachChapter.lessons, newSurveyLesson],
+          };
         default:
           return eachChapter;
       }

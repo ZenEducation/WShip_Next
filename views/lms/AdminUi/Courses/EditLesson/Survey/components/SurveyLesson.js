@@ -38,20 +38,20 @@ import { AiFillFilePdf } from 'react-icons/ai';
 import { RichTextEditor } from 'components/shared';
 import { MdExpandLess, MdExpandMore } from 'react-icons/md';
 
-// QuizLesson
+// Quiz SurveyLesson
 
-const QuizLesson = forwardRef((props, ref) => {
+const SurveyLesson = forwardRef((props, ref) => {
   const { mode } = props;
   const { editorRef } = ref;
 
-  console.log('editorRef', editorRef);
+  // console.log('editorRef', editorRef);
 
   const { curriculumAndCards, setCurriculumAndCards } =
     useContext(CardsContext);
 
-  // console.log('curriculumAndCards', curriculumAndCards);
+  console.log('curriculumAndCards', curriculumAndCards);
 
-  const [isUploadableShow, setIsUploadableShow] = useState(false);
+  // console.log('curriculumAndCards', curriculumAndCards);
 
   const { selectedLesson, setSelectedLesson } = useContext(CardsContext);
 
@@ -73,7 +73,7 @@ const QuizLesson = forwardRef((props, ref) => {
 
   // console.log('targetLessonObj', targetLessonObj);
 
-  const [quizList, setQuizList] = useState([
+  const [quizList, setSurveyList] = useState([
     {
       id: uuidv4(),
       question: 'What is your question?',
@@ -83,7 +83,7 @@ const QuizLesson = forwardRef((props, ref) => {
         { id: uuidv4(), choice: 'No', check: false },
       ],
       explanation: '',
-      type: 'quiz',
+      type: 'Survey',
     },
   ]);
 
@@ -92,7 +92,7 @@ const QuizLesson = forwardRef((props, ref) => {
     if (value === '') {
       const updatedLessonHeading = {
         ...targetLessonObj,
-        lessonHeading: 'New Quiz Lesson',
+        lessonHeading: 'New Survey Lesson',
       };
       targetLessonObj = updatedLessonHeading;
       // console.log('targetLessonObj input Val 2', targetLessonObj);
@@ -100,7 +100,7 @@ const QuizLesson = forwardRef((props, ref) => {
         if (eachChapter.id === chapterLesson.id) {
           const updatedLessons = eachChapter.lessons.map((eachLesson) => {
             if (eachLesson.id === targetLessonObj.id) {
-              return { ...eachLesson, lessonHeading: 'New Quiz Lesson' };
+              return { ...eachLesson, lessonHeading: 'New Survey Lesson' };
             }
             return eachLesson;
           });
@@ -129,8 +129,6 @@ const QuizLesson = forwardRef((props, ref) => {
       setCurriculumAndCards(updatedChaptersHeading);
     }
   };
-
-  const [value, setValue] = useState('');
 
   const modules = {
     toolbar: [
@@ -167,11 +165,14 @@ const QuizLesson = forwardRef((props, ref) => {
   };
 
   const QuestionType = [
-    { value: 'one', label: 'One correct answer' },
-    { value: 'oneOrMore', label: 'One or more correct answers' },
+    { value: 'one', label: 'One answer' },
+    { value: 'oneOrMore', label: 'One or more answers' },
+    { value: 'rating', label: 'Rating' },
+    { value: 'scale', label: 'Scale' },
+    { value: 'freeText', label: 'Free Text' },
   ];
 
-  const eachQuizDisplay = (eachQuiz, index) => {
+  const eachSurveyDisplay = (eachQuiz, index) => {
     const { accorSelected, setAccorSelected } = useContext(CardsContext);
     const accorToggle = (i) => {
       if (accorSelected === i) {
@@ -217,11 +218,11 @@ const QuizLesson = forwardRef((props, ref) => {
       return (
         <Dropdown
           placement="bottom-center"
+          // variant="divider"
           onClick={(event) => {
             event.stopPropagation(); // Prevent event propagation
             // DeleteQuestion();
           }}
-          // variant="divider"
           renderTitle={Toggle}>
           <Dropdown.Item
             onClick={
@@ -313,58 +314,6 @@ const QuizLesson = forwardRef((props, ref) => {
         });
       };
 
-      const onCheckChoice = (event) => {
-        const value = event.target.checked;
-
-        const updatedCurriculum = curriculumAndCards.map((item) => {
-          if (item.id === chapterLesson.id) {
-            const updatedLessonContent = item.lessons.map((lesson) => {
-              if (lesson.id === selectedLesson.lessonId) {
-                const updatedContent = lesson.lessonContent.map((content) => {
-                  if (content.id === eachQuiz.id) {
-                    const updatedChoice = content.choices.map((eChoice) => {
-                      if (content.questionType !== 'one') {
-                        if (eChoice.id === eachChoice.id) {
-                          eChoice.check = value;
-                          return eChoice;
-                        }
-                        return eChoice;
-                      } // } else {
-                      if (eChoice.id === eachChoice.id) {
-                        eChoice.check = value;
-                        return eChoice;
-                      }
-                      eChoice.check = false;
-                      return eChoice;
-                      // }
-                      // if (eChoice.id === eachChoice.id) {
-                      //   eChoice.check = value;
-                      //   return eChoice;
-                      // }
-                      // return eChoice;
-                    });
-
-                    return { ...content, choices: updatedChoice };
-                  }
-                  return content;
-                });
-                return {
-                  ...lesson,
-                  lessonContent: updatedContent,
-                };
-              }
-              return lesson;
-            });
-            return {
-              ...item,
-              lessons: updatedLessonContent,
-            };
-          }
-          return item;
-        });
-        setCurriculumAndCards(updatedCurriculum);
-      };
-
       return (
         <Card key={eachChoice.id} className=" mb-3 mt-3 ">
           <div className="flexWrap ">
@@ -373,7 +322,7 @@ const QuizLesson = forwardRef((props, ref) => {
               <HiOutlineTrash className="text-lg" />
             </button>
           </div>
-          {console.log('eachChoice.choice', eachChoice, eachChoice.choice)}
+          {/* {console.log('eachChoice.choice', eachChoice, eachChoice.choice)} */}
           <RichTextEditor
             value={eachChoice.choice}
             className=" mt-2 "
@@ -382,15 +331,6 @@ const QuizLesson = forwardRef((props, ref) => {
             onChange={handleChoiceChange} // Specify the change event handler
             modules={modules}
           />
-          <div className="flex  items-center  mt-4">
-            <Checkbox
-              onClick={onCheckChoice}
-              checked={eachChoice.check}
-              className="flex items-center "
-              color="black">
-              <span className="ml-2 ">This is a correct answer</span>
-            </Checkbox>
-          </div>
         </Card>
       );
     };
@@ -399,39 +339,6 @@ const QuizLesson = forwardRef((props, ref) => {
       return choicesList.map((eachChoice, index) =>
         eachChoiceListDisplay(eachChoice, index)
       );
-    };
-
-    const handleExplanationChange = (content) => {
-      const div = document.createElement('div');
-      div.innerHTML = content;
-      const text = div.textContent || div.innerText;
-
-      const updatedCurriculum = curriculumAndCards.map((item) => {
-        if (item.id === chapterLesson.id) {
-          const updatedLessonContent = item.lessons.map((lesson) => {
-            if (lesson.id === selectedLesson.lessonId) {
-              const updatedContent = lesson.lessonContent.map((content) => {
-                if (content.id === eachQuiz.id) {
-                  content.explanation = text;
-                  return content;
-                }
-                return content;
-              });
-              return {
-                ...lesson,
-                lessonContent: updatedContent,
-              };
-            }
-            return lesson;
-          });
-          return {
-            ...item,
-            lessons: updatedLessonContent,
-          };
-        }
-        return item;
-      });
-      setCurriculumAndCards(updatedCurriculum);
     };
 
     const handleQuestionChange = (content) => {
@@ -521,6 +428,11 @@ const QuizLesson = forwardRef((props, ref) => {
               const updatedContent = lesson.lessonContent.map((content) => {
                 // console.log('eachQuiz', eachQuiz);
                 if (content.id === eachQuiz.id) {
+                  if (eachQuiz.questionType === 'freeText') {
+                    content.questionType = e.value;
+                    content.choices = [];
+                    return content;
+                  }
                   content.questionType = e.value;
                   return content;
                 }
@@ -548,24 +460,24 @@ const QuizLesson = forwardRef((props, ref) => {
     };
 
     const onDuplicateQuestion = () => {
-      console.log('eachQuiz.id', eachQuiz.id);
+      // console.log('eachQuiz.id', eachQuiz.id);
       const newQuestion = {
         id: uuidv4(),
         question: eachQuiz.question,
         questionType: eachQuiz.questionType,
         choices: eachQuiz.choices,
-        explanation: eachQuiz.explanation,
+        isOptional: eachQuiz.isOptional,
         type: eachQuiz.type,
       };
 
       const updatedCurriculum = curriculumAndCards.map((item) => {
         if (item.id === chapterLesson.id) {
           const updatedLessonContent = item.lessons.map((lesson) => {
-            console.log('lesson', lesson);
+            // console.log('lesson', lesson);
             if (lesson.id === selectedLesson.lessonId) {
-              console.log('lesson', lesson);
+              // console.log('lesson', lesson);
               const updatedContent = [...lesson.lessonContent, newQuestion];
-              console.log('updatedContent', updatedContent);
+              // console.log('updatedContent', updatedContent);
 
               return {
                 ...lesson,
@@ -581,17 +493,51 @@ const QuizLesson = forwardRef((props, ref) => {
         }
         return item;
       });
-      console.log(updatedCurriculum);
+      // console.log(updatedCurriculum);
       setCurriculumAndCards(updatedCurriculum);
     };
 
-    console.log('eachQuiz', eachQuiz.question);
+    // console.log('eachQuiz', eachQuiz.question);
+
+    const onCheckChoice = (event) => {
+      const value = event.target.checked;
+
+      const updatedCurriculum = curriculumAndCards.map((item) => {
+        if (item.id === chapterLesson.id) {
+          const updatedLessonContent = item.lessons.map((lesson) => {
+            if (lesson.id === selectedLesson.lessonId) {
+              const updatedContent = lesson.lessonContent.map((content) => {
+                if (content.id === eachQuiz.id) {
+                  content.isOptional = value;
+                  return content;
+                }
+
+                return content;
+              });
+
+              return {
+                ...lesson,
+                lessonContent: updatedContent,
+              };
+            }
+            return lesson;
+          });
+          return {
+            ...item,
+            lessons: updatedLessonContent,
+          };
+        }
+        return item;
+      });
+
+      setCurriculumAndCards(updatedCurriculum);
+    };
 
     return (
       <Card key={eachQuiz.id} className="mb-3">
         <div
           onClick={() => accorToggle(index)}
-          className="cursor-pointer accor-title title flexWrap ">
+          className="cursor-pointer accor-title title flexWrap">
           <h4>
             Question #{index + 1}: {eachQuiz.question}
           </h4>
@@ -602,6 +548,7 @@ const QuizLesson = forwardRef((props, ref) => {
                   event.stopPropagation(); // Prevent event propagation
                   onDuplicateQuestion();
                 }}
+                // onClick={onDuplicateQuestion}
                 size="sm"
                 className="text-blue-900">
                 DUPLICATE
@@ -633,8 +580,18 @@ const QuizLesson = forwardRef((props, ref) => {
             className="orderFlex question-type"
             options={QuestionType}></Select>
           <br />
+          <div className="flex  items-center mb-4">
+            {console.log('eachQuiz.isOptional', eachQuiz.isOptional)}
+            <Checkbox
+              onClick={onCheckChoice}
+              checked={eachQuiz.isOptional}
+              className="flex items-center "
+              color="black">
+              <span className="ml-2 ">This question is optional</span>
+            </Checkbox>
+          </div>
           <b className=" mt-1">Question</b>
-          {console.log('eachQuiz.question', eachQuiz.question)}
+          {/* {console.log('eachQuiz.question', eachQuiz.question)} */}
           <RichTextEditor
             /////  value={eachQuiz.question}
             className="mt-1"
@@ -643,34 +600,27 @@ const QuizLesson = forwardRef((props, ref) => {
             onChange={handleQuestionChange} // Specify the change event handler
             modules={modules}
           />
-          {ChoicesListDisplay(eachQuiz.choices)}
-          <Button
-            size="sm"
-            onClick={onAddChoice}
-            variant="solid"
-            className="mr-2  mb-3 mt-1"
-            color="blue-900">
-            ADD CHOICE
-          </Button>
+          {eachQuiz.questionType !== 'freeText' &&
+            ChoicesListDisplay(eachQuiz.choices)}
+          {eachQuiz.questionType !== 'freeText' && (
+            <Button
+              size="sm"
+              onClick={onAddChoice}
+              variant="solid"
+              className="mr-2  mb-3 mt-1"
+              color="blue-900">
+              ADD CHOICE
+            </Button>
+          )}
           <br />
-          <b>Explanation</b>
-          <RichTextEditor
-            // value={eachQuiz.explanation}
-            className="mt-1"
-            placeholder="Type something"
-            ref={editorRef} // Pass the ref to the RichTextEditor component
-            onChange={handleExplanationChange}
-            //  onChange={handleEditorChange} // Specify the change event handler
-            modules={modules}
-          />
         </div>
       </Card>
     );
   };
 
-  const QuizQuestionsDisplay = () => {
-    return targetLessonObj.lessonContent.map((eachQuiz, index) =>
-      eachQuizDisplay(eachQuiz, index)
+  const SurveyQuestionsDisplay = () => {
+    return targetLessonObj.lessonContent.map((eachSurvey, index) =>
+      eachSurveyDisplay(eachSurvey, index)
     );
   };
 
@@ -679,12 +629,9 @@ const QuizLesson = forwardRef((props, ref) => {
       id: uuidv4(),
       question: 'What is your new question?',
       questionType: 'one',
-      choices: [
-        { id: uuidv4(), choice: '', check: false },
-        { id: uuidv4(), choice: '', check: false },
-      ],
-      explanation: '',
-      type: 'quiz',
+      choices: [],
+      isOptional: false,
+      type: 'Survey',
     };
 
     const updatedCurriculum = curriculumAndCards.map((item) => {
@@ -709,7 +656,6 @@ const QuizLesson = forwardRef((props, ref) => {
     });
 
     setCurriculumAndCards(updatedCurriculum);
-    setIsUploadableShow(false);
   };
 
   const triggerMessage = (msg) => {
@@ -734,11 +680,6 @@ const QuizLesson = forwardRef((props, ref) => {
       </div>
     );
   }
-
-  const onAddImport = () => {
-    console.log('onAddImport');
-    setIsUploadableShow(true);
-  };
 
   return (
     <>
@@ -775,7 +716,7 @@ const QuizLesson = forwardRef((props, ref) => {
           <Input onChange={onLessonHeading} placeholder="Title" />
         </div>
       </Card>
-      {QuizQuestionsDisplay()}
+      {SurveyQuestionsDisplay()}
       <div className="flex mt-3 mb-5 flex-wrap">
         <Button
           onClick={onAddQuestion}
@@ -785,65 +726,8 @@ const QuizLesson = forwardRef((props, ref) => {
           color="blue-900">
           ADD QUESTION
         </Button>
-
-        <Button
-          onClick={onAddImport}
-          size="sm"
-          className="mr-2 text-blue-900 mb-1 mt-1 ">
-          IMPORT QUESTIONS
-        </Button>
       </div>
 
-      {isUploadableShow && (
-        <Card>
-          <Upload
-            // fileList={card.uploads}
-            notAllowedFileTypes={[
-              'jpeg',
-              'jpg',
-              'png',
-              'gif',
-              'bmp',
-              'svg',
-              'psd',
-              'ai',
-              'eps',
-              'webp',
-              'ico',
-              'raw',
-              'heic',
-              'exr',
-            ]}
-            // onUploadChange={(files) => onUploadChange(id, files)}
-            draggable
-            className="hover:border-yellow-900 border-yellow-600">
-            <div className="mt-5 text-center">
-              <p className="mt-2 font-semibold">
-                <span className=" text-yellow-600 dark:text-white">
-                  Drag & drop video, audio,& PDF files here
-                </span>
-                <br />
-                <span className="text-yellow-600 dark:text-white">or</span>
-              </p>
-              <Button
-                className="mt-3 mb-4 p-3 pl-5 pr-5"
-                variant="solid"
-                color="blue-900">
-                SELECT FILE
-              </Button>
-              <div>
-                <p className=" mt-5 p-4 pl-auto bg-colour-yellow text-yellow-600 mt-2 opacity-20 dark:text-white">
-                  You can upload files with the extensions: 3g2, 3gp, 3gpp,
-                  3gpp2, asf, asx, avi, dv, f4p, f4v, flv, mjpeg, mjpg, mkv,
-                  mov, movie, mp2, mp3g, mp4, mpe, mpeg, mpg, mpg4, ogg, ogv,
-                  ogx, qt, rm, viv, vivo, webm, wm, wmv, wmx, wvx, m4v, aac,
-                  mp2, mp3, mpga, ogg, wav, m4a, pdf
-                </p>
-              </div>
-            </div>
-          </Upload>
-        </Card>
-      )}
       <Card>
         <h4>Lesson settings</h4>
 
@@ -884,7 +768,7 @@ const QuizLesson = forwardRef((props, ref) => {
             <Addon className="flex justify items-center">
               <BsPencilSquare className="w-10 " />
             </Addon>
-            <Input placeholder="Quiz" />
+            <Input placeholder="Survey" />
           </InputGroup>
         </div>
 
@@ -913,9 +797,9 @@ const QuizLesson = forwardRef((props, ref) => {
   );
 });
 
-QuizLesson.defaultProps = {
+SurveyLesson.defaultProps = {
   mail: {},
   mode: 'new',
 };
 
-export default QuizLesson;
+export default SurveyLesson;
