@@ -10,7 +10,7 @@ const CardsProvider = ({ children }) => {
   const [cards, setCards] = useState([
     {
       id: sampleBulkId,
-      heading: 'Chapter 1',
+      name: 'Chapter 1',
       uploads: [],
       lessons: [
         {
@@ -36,55 +36,19 @@ const CardsProvider = ({ children }) => {
   ]);
 
   const [curriculumAndCards, setCurriculumAndCards] = useState([
-    {
-      id: sampleBulkId,
-      heading: 'Chapter 1',
-      uploads: [],
-      lessons: [
-        {
-          id: uuidv4(),
-          lessonHeading: 'New Quiz Lesson',
-          lessonContent: [
-            {
-              id: uuidv4(),
-              question: 'What is your question?',
-              questionType: 'one',
-              choices: [
-                { id: uuidv4(), choice: 'Yes', check: false },
-                { id: uuidv4(), choice: 'No', check: false },
-              ],
-              explanation: '',
-            },
-          ],
-          type: 'Quiz',
-        },
-      ],
-      type: 'bulkImporter',
-    },
-    {
-      id: uuidv4(),
-      name: 'Untitled chapter 1',
-      lessons: [
-        {
-          id: uuidv4(),
-          lessonHeading: 'New Quiz Lesson',
-          lessonContent: [
-            {
-              id: uuidv4(),
-              question: 'What is your question?',
-              questionType: 'one',
-              choices: [
-                { id: uuidv4(), choice: 'Yes', check: false },
-                { id: uuidv4(), choice: 'No', check: false },
-              ],
-              explanation: '',
-            },
-          ],
-          type: 'Quiz',
-        },
-      ],
-      type: 'curriculum',
-    },
+    // {
+    //   id: sampleBulkId,
+    //   name: 'Chapter 1',
+    //   uploads: [],
+    //   lessons: [],
+    //   type: 'bulkImporter',
+    // },
+    // {
+    //   id: uuidv4(),
+    //   name: 'Untitled chapter 1',
+    //   lessons: [],
+    //   type: 'curriculum',
+    // },
   ]);
 
   // console.log('curriculumAndCards', curriculumAndCards);
@@ -126,6 +90,8 @@ const CardsProvider = ({ children }) => {
 
   const [accorSelected, setAccorSelected] = useState(null);
 
+  const [allCourseLessonsTab, setAllCourseLessonsTab] = useState('');
+
   return (
     <CardsContext.Provider
       value={{
@@ -151,6 +117,8 @@ const CardsProvider = ({ children }) => {
         setSelectedLesson,
         accorSelected,
         setAccorSelected,
+        allCourseLessonsTab,
+        setAllCourseLessonsTab,
       }}>
       {children}
     </CardsContext.Provider>

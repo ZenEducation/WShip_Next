@@ -197,7 +197,7 @@ const CurrAndBulkSideBar = () => {
         className="mb-2 "
         // style={{ minWidth: 335, maxWidth: 335 }}
       >
-        <h5 className="mb-2">{cardsList.heading}</h5>
+        <h5 className="mb-2">{cardsList.name}</h5>
         {displayEachUpload(cardsList.uploads)}
         {displayAddedLessons(cardsList.lessons, cardsList.type)}
         <div className="flexWrap">
@@ -234,25 +234,7 @@ const CurrAndBulkSideBar = () => {
     const newCuruculumCard = {
       id: uuidv4(),
       name: `Untitled chapter ${curriculumAndCards.length + 1}`,
-      lessons: [
-        {
-          id: uuidv4(),
-          lessonHeading: 'New Quiz Lesson',
-          lessonContent: [
-            {
-              id: uuidv4(),
-              question: 'What is your question?',
-              questionType: 'one',
-              choices: [
-                { id: uuidv4(), choice: 'Yes' },
-                { id: uuidv4(), choice: 'No' },
-              ],
-              explanation: '',
-            },
-          ],
-          type: 'Quiz',
-        },
-      ],
+      lessons: [],
       type: 'curriculum',
     };
 
@@ -282,11 +264,11 @@ const CurrAndBulkSideBar = () => {
   //   style={{ minWidth: 345, maxWidth: 335 }}
   return (
     <div
-      style={{ minWidth: 330, maxWidth: 335 }}
+      style={{ minWidth: 345, maxWidth: 335 }}
       className="align-stretch sidebae-width">
       {/* sidebae-width */}
 
-      <div className="">{curruculamSideBarcards()}</div>
+      <div className="sidebar">{curruculamSideBarcards()}</div>
 
       <Card className=" fixed-card mt-3 ">
         <div className="flexWrap ">

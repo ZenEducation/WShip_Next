@@ -1,7 +1,9 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+
+import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
 import {
   Input,
@@ -13,6 +15,7 @@ import {
   Checkbox,
   Tooltip,
   InputGroup,
+  toast,
 } from 'components/ui';
 import { Field, Form, Formik } from 'formik';
 import { HiOutlineExclamationCircle, HiOutlineTrash } from 'react-icons/hi';
@@ -24,26 +27,113 @@ import { GrUpgrade } from 'react-icons/gr';
 import { AiFillFilePdf } from 'react-icons/ai';
 // import { RichTextEditor } from '@/components/shared';
 import { RichTextEditor } from 'components/shared';
+import Notification from 'components/ui/Notification/';
 
 const TextLesson = forwardRef((props, ref) => {
   const { mode } = props;
   const { editorRef } = ref;
 
+  const { curriculumAndCards, setCurriculumAndCards } =
+    useContext(CardsContext);
+
+  const { selectedLesson, setSelectedLesson } = useContext(CardsContext);
+
+  let chapterLesson;
+  let targetLessonObj;
+  if (selectedLesson.isShowLesson) {
+    chapterLesson = curriculumAndCards.find((eachChapter) =>
+      eachChapter.lessons.some((eachLesson) => {
+        return eachLesson.id === selectedLesson.lessonId;
+      })
+    );
+
+    let targetLesson = chapterLesson.lessons.filter(
+      (eachLesson) => eachLesson.id === selectedLesson.lessonId
+    );
+
+    targetLessonObj = targetLesson[0];
+  }
+
+  // console.log('targetLessonObj', targetLessonObj);
   const [lessonHeading, setLessonHeading] = useState('New Text Lesson');
 
   const onLessonHeading = (e) => {
     const value = e.target.value;
+
     if (value === '') {
-      setLessonHeading('New Text Lesson');
+      const updatedLessonHeading = {
+        ...targetLessonObj,
+        lessonHeading: 'New Text Lesson',
+      };
+      targetLessonObj = updatedLessonHeading;
+      // console.log('targetLessonObj input Val 2', targetLessonObj);
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: 'New Text Lesson' };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     } else {
-      setLessonHeading(value);
+      const updatedLessonHeading = { ...targetLessonObj, lessonHeading: value };
+      targetLessonObj = updatedLessonHeading;
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: value };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     }
   };
 
-  const [value, setValue] = useState('');
+  const [richTextVal, setRichTextVal] = useState('');
 
   const handleEditorChange = (content) => {
+    setRichTextVal(content);
     console.log(content); // Do something with the updated content
+
+    const div = document.createElement('div');
+    div.innerHTML = content;
+    console.log('div.innerHTML', div.innerHTML);
+    console.log('div.textContent', div.textContent);
+    console.log('div.innerText', div.innerText);
+    const value = div.textContent || div.innerText;
+    console.log('Text', value);
+    const updatedLessonHeading = { ...targetLessonObj, description: content };
+    targetLessonObj = updatedLessonHeading;
+    const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+      if (eachChapter.id === chapterLesson.id) {
+        const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+          if (eachLesson.id === targetLessonObj.id) {
+            return { ...eachLesson, description: content };
+          }
+          return eachLesson;
+        });
+        return { ...eachChapter, lessons: updatedLessons };
+      }
+      return eachChapter;
+    });
+
+    setCurriculumAndCards(updatedChaptersHeading);
+  };
+
+  const onKeyDownText = (event) => {
+    console.log('onKeyDownText', event.target.textContent);
   };
 
   const modules = {
@@ -80,10 +170,25 @@ const TextLesson = forwardRef((props, ref) => {
     },
   };
 
+  const triggerMessage = (msg) => {
+    toast.push(
+      <Notification className="bg-green-200" type="success" duration={3000}>
+        <h6>{msg || 'Successfully saved the chapter!'}</h6>
+      </Notification>,
+      {
+        placement: 'top-center',
+      }
+    );
+  };
+
+  const onLessonSave = () => {
+    triggerMessage();
+  };
+
   return (
     <>
-      <div className="flexWrap padding-cls">
-        <h4>{lessonHeading}</h4>
+      <div className="flexWrap">
+        <h4>{targetLessonObj.lessonHeading}</h4>
         <div className="flexWrap">
           <div className="flex items-center mb-1 mt-1 ml-2">
             <Checkbox size="xs" color="blue-900" className="m-0" />
@@ -99,6 +204,7 @@ const TextLesson = forwardRef((props, ref) => {
             </Button>
 
             <Button
+              onClick={onLessonSave}
               className="mr-2  mb-1 mt-1"
               variant="solid"
               color="blue-900">
@@ -126,12 +232,18 @@ const TextLesson = forwardRef((props, ref) => {
                   invalid={errors.message && touched.message}
                   errorMessage={errors.message}>
                   <RichTextEditor
+                    // value={targetLessonObj.description}
                     placeholder="Type something"
-                    ref={editorRef} // Pass the ref to the RichTextEditor component
+                    // Pass the ref to the RichTextEditor component
                     onChange={handleEditorChange} // Specify the change event handler
                     modules={modules}
                   />
                 </FormItem>
+                {/* <div
+                  dangerouslySetInnerHTML={{
+                    __html: richTextVal,
+                  }}
+                /> */}
               </FormContainer>
             </Form>
           )}

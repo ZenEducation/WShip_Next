@@ -86,6 +86,8 @@ const StatisticCard = (props) => {
                 id: uuidv4(),
                 question: 'What is your question?',
                 questionType: 'one',
+                leftLabel: '',
+                rightLabel: '',
                 choices: [],
                 isOptional: false,
               },
@@ -96,6 +98,91 @@ const StatisticCard = (props) => {
             ...eachChapter,
             lessons: [...eachChapter.lessons, newSurveyLesson],
           };
+
+        case 'Video':
+          const newVidepLesson = {
+            id: newLessonId,
+            lessonHeading: 'New Video Lesson',
+            description: '',
+            videoLibrary: [],
+            uploadedVideo: [],
+            type: 'Video',
+          };
+          return {
+            ...eachChapter,
+            lessons: [...eachChapter.lessons, newVidepLesson],
+          };
+          break;
+        case 'Audio':
+          const newAudioLesson = {
+            id: newLessonId,
+            lessonHeading: 'New Audio Lesson',
+            description: '',
+            uploadedAudio: [],
+            type: 'Audio',
+          };
+          return {
+            ...eachChapter,
+            lessons: [...eachChapter.lessons, newAudioLesson],
+          };
+          break;
+        case 'PDF':
+          const newPdfLesson = {
+            id: newLessonId,
+            lessonHeading: 'New Pdf Lesson',
+            description: '',
+            uploadedPdf: [],
+            type: 'PDF',
+          };
+          return {
+            ...eachChapter,
+            lessons: [...eachChapter.lessons, newPdfLesson],
+          };
+          break;
+
+        case 'Text':
+          const newTextLesson = {
+            id: newLessonId,
+            lessonHeading: 'New Text Lesson',
+            description: '',
+            type: 'Text',
+          };
+          return {
+            ...eachChapter,
+            lessons: [...eachChapter.lessons, newTextLesson],
+          };
+          break;
+
+        // Download
+        case 'Download':
+          const newDownloadLesson = {
+            id: newLessonId,
+            lessonHeading: 'New Download Lesson',
+            description: '',
+            uploadedDownloadable: [],
+            type: 'Download',
+          };
+          return {
+            ...eachChapter,
+            lessons: [...eachChapter.lessons, newDownloadLesson],
+          };
+          break;
+
+        // PPT
+        case 'Presentation':
+          const newPptLesson = {
+            id: newLessonId,
+            lessonHeading: 'New PPT Lesson',
+            description: '',
+            uploadedPpt: [],
+            type: 'Presentation',
+          };
+          return {
+            ...eachChapter,
+            lessons: [...eachChapter.lessons, newPptLesson],
+          };
+          break;
+
         default:
           return eachChapter;
       }

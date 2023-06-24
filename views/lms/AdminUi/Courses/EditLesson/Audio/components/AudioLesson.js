@@ -1,7 +1,9 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+
+import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
 import {
   Input,
@@ -13,6 +15,8 @@ import {
   Checkbox,
   Tooltip,
   InputGroup,
+  toast,
+  Notification,
 } from 'components/ui';
 import { Field, Form, Formik } from 'formik';
 
@@ -35,21 +39,145 @@ const AudioLesson = forwardRef((props, ref) => {
   const { mode } = props;
   const { editorRef } = ref;
 
+  const { curriculumAndCards, setCurriculumAndCards } =
+    useContext(CardsContext);
+  // console.log('curriculumAndCards', curriculumAndCards);
+
+  const { selectedLesson, setSelectedLesson } = useContext(CardsContext);
+
+  let chapterLesson;
+  let targetLessonObj;
+  if (selectedLesson.isShowLesson) {
+    chapterLesson = curriculumAndCards.find((eachChapter) =>
+      eachChapter.lessons.some((eachLesson) => {
+        return eachLesson.id === selectedLesson.lessonId;
+      })
+    );
+
+    let targetLesson = chapterLesson.lessons.filter(
+      (eachLesson) => eachLesson.id === selectedLesson.lessonId
+    );
+
+    targetLessonObj = targetLesson[0];
+  }
+
+  // console.log('targetLessonObj', targetLessonObj);
+
   const [lessonHeading, setLessonHeading] = useState('New Audio Lesson');
 
   const onLessonHeading = (e) => {
     const value = e.target.value;
+    // if (value === '') {
+    //   setLessonHeading('New Audio Lesson');
+    // } else {
+    //   setLessonHeading(value);
+    // }
+
     if (value === '') {
-      setLessonHeading('New Audio Lesson');
+      const updatedLessonHeading = {
+        ...targetLessonObj,
+        lessonHeading: 'New Audio Lesson',
+      };
+      targetLessonObj = updatedLessonHeading;
+      // console.log('targetLessonObj input Val 2', targetLessonObj);
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: 'New Audio Lesson' };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     } else {
-      setLessonHeading(value);
+      const updatedLessonHeading = { ...targetLessonObj, lessonHeading: value };
+      targetLessonObj = updatedLessonHeading;
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: value };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     }
   };
 
   const [value, setValue] = useState('');
 
   const handleEditorChange = (content) => {
-    console.log(content); // Do something with the updated content
+    // console.log(content); // Do something with the updated content
+
+    const div = document.createElement('div');
+    div.innerHTML = content;
+    const value = div.textContent || div.innerText;
+    // console.log('Text', value);
+    const updatedLessonHeading = { ...targetLessonObj, description: content };
+    targetLessonObj = updatedLessonHeading;
+    const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+      if (eachChapter.id === chapterLesson.id) {
+        const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+          if (eachLesson.id === targetLessonObj.id) {
+            return { ...eachLesson, description: content };
+          }
+          return eachLesson;
+        });
+        return { ...eachChapter, lessons: updatedLessons };
+      }
+      return eachChapter;
+    });
+
+    setCurriculumAndCards(updatedChaptersHeading);
+  };
+
+  const onUploadChange = (id, updatedFiles) => {
+    // console.log('updatedFiles', updatedFiles);
+
+    const updatedLessonHeading = {
+      ...targetLessonObj,
+      uploadedAudio: updatedFiles,
+    };
+    targetLessonObj = updatedLessonHeading;
+    const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+      if (eachChapter.id === chapterLesson.id) {
+        const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+          if (eachLesson.id === targetLessonObj.id) {
+            return { ...eachLesson, uploadedAudio: updatedFiles };
+          }
+          return eachLesson;
+        });
+        return { ...eachChapter, lessons: updatedLessons };
+      }
+      return eachChapter;
+    });
+
+    setCurriculumAndCards(updatedChaptersHeading);
+  };
+
+  const triggerMessage = (msg) => {
+    toast.push(
+      <Notification className="bg-green-200" type="success" duration={3000}>
+        <h6>{msg || 'Successfully saved the chapter!'}</h6>
+      </Notification>,
+      {
+        placement: 'top-center',
+      }
+    );
+  };
+
+  const onLessonSave = () => {
+    triggerMessage();
   };
 
   const modules = {
@@ -86,10 +214,18 @@ const AudioLesson = forwardRef((props, ref) => {
     },
   };
 
+  if (targetLessonObj === undefined) {
+    return (
+      <div className="flex justify-center items-center mt-5">
+        <h1 className="mt-5">Loading</h1>
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="flexWrap padding-cls">
-        <h4>{lessonHeading}</h4>
+      <div className="flexWrap ">
+        <h4>{targetLessonObj.lessonHeading}</h4>
         <div className="flexWrap">
           <div className="flex items-center mb-1 mt-1 ml-2">
             <Checkbox size="xs" color="blue-900" className="m-0" />
@@ -105,6 +241,7 @@ const AudioLesson = forwardRef((props, ref) => {
             </Button>
 
             <Button
+              onClick={onLessonSave}
               className="mr-2  mb-1 mt-1"
               variant="solid"
               color="blue-900">
@@ -126,7 +263,7 @@ const AudioLesson = forwardRef((props, ref) => {
                   <Input onChange={onLessonHeading} placeholder="Title" />
                 </FormItem>
                 <FormItem
-                  label="Message"
+                  label="Description"
                   labelClass="!justify-start"
                   invalid={errors.message && touched.message}
                   errorMessage={errors.message}>
@@ -144,6 +281,10 @@ const AudioLesson = forwardRef((props, ref) => {
                   <div>
                     <Upload
                       uploadSingleFiles={true}
+                      fileList={targetLessonObj.uploadedAudio}
+                      onUploadChange={(files) =>
+                        onUploadChange(targetLessonObj.id, files)
+                      }
                       allowedFileTypes={[
                         'aac',
                         'mp2',

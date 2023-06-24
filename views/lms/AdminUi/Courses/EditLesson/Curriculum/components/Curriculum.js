@@ -12,7 +12,7 @@ import toast from 'components/ui/toast';
 
 import { Button } from 'components/ui';
 import { AiOutlineGlobal, AiOutlinePlus } from 'react-icons/ai';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import { BsPencilSquare, BsThreeDotsVertical } from 'react-icons/bs';
 import FileItem from '@/components/ui/Upload/FileItem';
 
 import CurrAndBulkSideBar from './CurrAndBulkSideBar';
@@ -74,25 +74,7 @@ const Curriculum = () => {
       setSelectedCard({
         id: selectedCard.id,
         name: 'Untitled chapter',
-        lessons: [
-          {
-            id: uuidv4(),
-            lessonHeading: 'New Quiz Lesson',
-            lessonContent: [
-              {
-                id: uuidv4(),
-                question: 'What is your question?',
-                questionType: 'one',
-                choices: [
-                  { id: uuidv4(), choice: 'Yes' },
-                  { id: uuidv4(), choice: 'No' },
-                ],
-                explanation: '',
-              },
-            ],
-            type: 'Quiz',
-          },
-        ],
+        lessons: [],
         type: 'curriculum',
       });
       setInputVal('');
@@ -100,25 +82,7 @@ const Curriculum = () => {
       setSelectedCard({
         id: selectedCard.id,
         name: value,
-        lessons: [
-          {
-            id: uuidv4(),
-            lessonHeading: 'New Quiz Lesson',
-            lessonContent: [
-              {
-                id: uuidv4(),
-                question: 'What is your question?',
-                questionType: 'one',
-                choices: [
-                  { id: uuidv4(), choice: 'Yes' },
-                  { id: uuidv4(), choice: 'No' },
-                ],
-                explanation: '',
-              },
-            ],
-            type: 'Quiz',
-          },
-        ],
+        lessons: [],
         type: 'curriculum',
       });
       setInputVal(newName);
@@ -131,25 +95,7 @@ const Curriculum = () => {
       return {
         id: eachCard.id,
         name: newName,
-        lessons: [
-          {
-            id: uuidv4(),
-            lessonHeading: 'New Quiz Lesson',
-            lessonContent: [
-              {
-                id: uuidv4(),
-                question: 'What is your question?',
-                questionType: 'one',
-                choices: [
-                  { id: uuidv4(), choice: 'Yes' },
-                  { id: uuidv4(), choice: 'No' },
-                ],
-                explanation: '',
-              },
-            ],
-            type: 'Quiz',
-          },
-        ],
+        lessons: [],
         type: 'curriculum',
       };
     });
@@ -204,7 +150,7 @@ const Curriculum = () => {
         key={cardsList.id}
         className="mb-2"
         style={{ minWidth: 335, maxWidth: 335 }}>
-        <h5 className="mb-2">{cardsList.heading}</h5>
+        <h5 className="mb-2">{cardsList.name}</h5>
         {displayEachUpload(cardsList.uploads)}
         <div className="flexWrap">
           <Button
@@ -236,25 +182,7 @@ const Curriculum = () => {
     const newCuruculumCard = {
       id: uuidv4(),
       name: `Untitled chapter ${curriculumAndCards.length + 1}`,
-      lessons: [
-        {
-          id: uuidv4(),
-          lessonHeading: 'New Quiz Lesson',
-          lessonContent: [
-            {
-              id: uuidv4(),
-              question: 'What is your question?',
-              questionType: 'one',
-              choices: [
-                { id: uuidv4(), choice: 'Yes' },
-                { id: uuidv4(), choice: 'No' },
-              ],
-              explanation: '',
-            },
-          ],
-          type: 'Quiz',
-        },
-      ],
+      lessons: [],
       type: 'curriculum',
     };
 
@@ -356,6 +284,25 @@ const Curriculum = () => {
     );
   };
 
+  const displayEmptyPage = () => {
+    return (
+      <div className="flex orderFlex flex-col items-center">
+        <BsPencilSquare className="text-6xl" />
+        <p className="text-2xl text-center text-black mt-4 mb-2 dark:text-white">
+          Let's build your course!
+        </p>
+        <p className="mt-2 mb-3 text-center">
+          The ‘Curriculum’ tab is where you'll determine the layout of your
+          course, add your content, and include quizzes, surveys, discussions,
+          and more! Click the 'Add Chapter' button on the left to get started.
+        </p>
+        <p className="text-black dark:text-white">
+          Click 'Add Chapter' to create one.
+        </p>
+      </div>
+    );
+  };
+
   return (
     <div className="flex ">
       {sideBar && <CurrAndBulkSideBar />}
@@ -370,12 +317,15 @@ const Curriculum = () => {
                 className="mb-2 mt-2  mr-3">
                 <BsThreeDotsVertical className="text-xl mb-2" />
               </Button>
+              {selectedCard === undefined && displayEmptyPage()}
+
               {selectedCard !== undefined && (
                 <h5>New Chapter: {selectedCard.name}</h5>
               )}
             </div>
 
             {/* {selectedCard.name} */}
+
             {selectedCard !== undefined && (
               <div className="">
                 <Button size="sm" className="mr-2  mb-1 mt-1 text-blue-900">

@@ -11,10 +11,11 @@ import style from '../../../../../../../styles/Home.module.css';
 import SelectedLessonPage from '../../SelectedLessonPage/index';
 
 import { HiOutlineTrash } from 'react-icons/hi';
+
 import { Button } from 'components/ui';
 import FileItem from '@/components/ui/Upload/FileItem';
 import { AiOutlineGlobal, AiOutlinePlus } from 'react-icons/ai';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+import { BsPencilSquare, BsThreeDotsVertical } from 'react-icons/bs';
 
 import CurrAndBulkSideBar from '../../Curriculum/components/CurrAndBulkSideBar';
 
@@ -60,7 +61,7 @@ const BulkImporter = forwardRef((props, ref) => {
     setCurriculumAndCards(updatedBulk);
   };
   // fileList
-  const newPdfLesson = (id, heading, onUploadChange, card) => {
+  const newPdfLesson = (id, name, onUploadChange, card) => {
     const onHeadingChange = (e) => {
       const value = e.target.value;
 
@@ -76,7 +77,7 @@ const BulkImporter = forwardRef((props, ref) => {
 
       const newHeadingBulk = curriculumAndCards.map((eachCard) => {
         if (eachCard.id === id) {
-          eachCard.heading = value;
+          eachCard.name = value;
           return eachCard;
         }
         return eachCard;
@@ -95,7 +96,7 @@ const BulkImporter = forwardRef((props, ref) => {
           <Input
             placeholder="New Lesson"
             onChange={onHeadingChange}
-            value={heading}
+            value={name}
           />
           <Button onClick={onDelteBtn} className="ml-3">
             <HiOutlineTrash />
@@ -155,27 +156,9 @@ const BulkImporter = forwardRef((props, ref) => {
   const handleAddChapter = () => {
     const newCard = {
       id: uuidv4(),
-      heading: `Chapter ${curriculumAndCards.length + 1}`,
+      name: `Chapter ${curriculumAndCards.length + 1}`,
       uploads: [],
-      lessons: [
-        {
-          id: uuidv4(),
-          lessonHeading: 'New Quiz Lesson',
-          lessonContent: [
-            {
-              id: uuidv4(),
-              question: 'What is your question?',
-              questionType: 'one',
-              choices: [
-                { id: uuidv4(), choice: 'Yes' },
-                { id: uuidv4(), choice: 'No' },
-              ],
-              explanation: '',
-            },
-          ],
-          type: 'Quiz',
-        },
-      ],
+      lessons: [],
       type: 'bulkImporter',
     };
 
@@ -191,8 +174,26 @@ const BulkImporter = forwardRef((props, ref) => {
     //   newPdfLesson(card.id, card.heading, handleUploadChange, card)
     // );
 
+    console.log(
+      'bulkImporterCards',
+      bulkImporterCards,
+      bulkImporterCards.length
+    );
+
+    if (bulkImporterCards.length === 0) {
+      return (
+        <div className="flex flex-col items-center">
+          <BsPencilSquare className="text-6xl" />
+          <p className="text-2xl text-black mt-4 mb-2 dark:text-white">
+            This Course has no chapters
+          </p>
+          <p>Click 'Add Chapter' to create one.</p>
+        </div>
+      );
+    }
+
     return bulkImporterCards.map((card) =>
-      newPdfLesson(card.id, card.heading, handleUploadChange, card)
+      newPdfLesson(card.id, card.name, handleUploadChange, card)
     );
   };
 
@@ -212,7 +213,7 @@ const BulkImporter = forwardRef((props, ref) => {
         key={cardsList.id}
         className="mb-2"
         style={{ minWidth: 335, maxWidth: 335 }}>
-        <h5 className="mb-2">{cardsList.heading}</h5>
+        <h5 className="mb-2">{cardsList.name}</h5>
         {displayEachUpload(cardsList.uploads)}
         <div className="flexWrap">
           <Button
@@ -238,6 +239,10 @@ const BulkImporter = forwardRef((props, ref) => {
       setSideBar(!sideBar);
     }, 100);
   };
+
+  const bulkImporterCards = curriculumAndCards.filter(
+    (eachCard) => eachCard.type === 'bulkImporter'
+  );
 
   return (
     <div className="flex">
@@ -279,18 +284,20 @@ const BulkImporter = forwardRef((props, ref) => {
             </Button>
           </div>
 
-          <div className={`${style['flexWrap-end']} mt-3 mb-5`}>
-            <Button className="mr-2  mb-1 mt-1 text-blue-900">
-              DISCARD CHANGES
-            </Button>
+          {bulkImporterCards.length !== 0 && (
+            <div className={`${style['flexWrap-end']} mt-3 mb-5`}>
+              <Button className="mr-2  mb-1 mt-1 text-blue-900">
+                DISCARD CHANGES
+              </Button>
 
-            <Button
-              className="mr-2  mb-1 mt-1"
-              variant="solid"
-              color="blue-900">
-              SAVE
-            </Button>
-          </div>
+              <Button
+                className="mr-2  mb-1 mt-1"
+                variant="solid"
+                color="blue-900">
+                SAVE
+              </Button>
+            </div>
+          )}
         </div>
       )}
 

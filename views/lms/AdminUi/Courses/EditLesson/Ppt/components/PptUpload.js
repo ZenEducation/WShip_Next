@@ -1,4 +1,7 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
+
+import { CardsContext } from '../../../../../CardsComponent/CardsContext';
+
 import {
   Input,
   FormItem,
@@ -9,6 +12,7 @@ import {
   Checkbox,
   Tooltip,
   InputGroup,
+  toast,
 } from 'components/ui';
 import { Form, Formik } from 'formik';
 
@@ -21,24 +25,145 @@ import { GrUpgrade } from 'react-icons/gr';
 import { AiFillFilePdf } from 'react-icons/ai';
 import { RiSlideshow2Line } from 'react-icons/ri';
 
+import Notification from 'components/ui/Notification/';
+
 const PptUpload = forwardRef((props, ref) => {
   const { mode } = props;
+
+  const { curriculumAndCards, setCurriculumAndCards } =
+    useContext(CardsContext);
+
+  const { selectedLesson, setSelectedLesson } = useContext(CardsContext);
+
+  let chapterLesson;
+  let targetLessonObj;
+  if (selectedLesson.isShowLesson) {
+    chapterLesson = curriculumAndCards.find((eachChapter) =>
+      eachChapter.lessons.some((eachLesson) => {
+        return eachLesson.id === selectedLesson.lessonId;
+      })
+    );
+
+    let targetLesson = chapterLesson.lessons.filter(
+      (eachLesson) => eachLesson.id === selectedLesson.lessonId
+    );
+
+    targetLessonObj = targetLesson[0];
+  }
+
+  // console.log('targetLessonObj', targetLessonObj);
 
   const [lessonHeading, setLessonHeading] = useState('New PPT Lesson');
 
   const onLessonHeading = (e) => {
     const value = e.target.value;
+
     if (value === '') {
-      setLessonHeading('New PPT Lesson');
+      const updatedLessonHeading = {
+        ...targetLessonObj,
+        lessonHeading: 'New Quiz Lesson',
+      };
+      targetLessonObj = updatedLessonHeading;
+      // console.log('targetLessonObj input Val 2', targetLessonObj);
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: 'New Quiz Lesson' };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     } else {
-      setLessonHeading(value);
+      const updatedLessonHeading = { ...targetLessonObj, lessonHeading: value };
+      targetLessonObj = updatedLessonHeading;
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: value };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     }
+  };
+
+  const onLessonDescription = (e) => {
+    const value = e.target.value;
+    // console.log('description value', value);
+
+    const updatedLessonHeading = { ...targetLessonObj, description: value };
+    targetLessonObj = updatedLessonHeading;
+    const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+      if (eachChapter.id === chapterLesson.id) {
+        const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+          if (eachLesson.id === targetLessonObj.id) {
+            return { ...eachLesson, description: value };
+          }
+          return eachLesson;
+        });
+        return { ...eachChapter, lessons: updatedLessons };
+      }
+      return eachChapter;
+    });
+
+    setCurriculumAndCards(updatedChaptersHeading);
+  };
+
+  const onUploadChange = (id, updatedFiles) => {
+    // console.log('updatedFiles', updatedFiles);
+
+    const updatedLessonHeading = {
+      ...targetLessonObj,
+      uploadedPpt: updatedFiles,
+    };
+    targetLessonObj = updatedLessonHeading;
+    const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+      if (eachChapter.id === chapterLesson.id) {
+        const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+          if (eachLesson.id === targetLessonObj.id) {
+            return { ...eachLesson, uploadedPpt: updatedFiles };
+          }
+          return eachLesson;
+        });
+        return { ...eachChapter, lessons: updatedLessons };
+      }
+      return eachChapter;
+    });
+
+    setCurriculumAndCards(updatedChaptersHeading);
+  };
+
+  const triggerMessage = (msg) => {
+    toast.push(
+      <Notification className="bg-green-200" type="success" duration={3000}>
+        <h6>{msg || 'Successfully saved the chapter!'}</h6>
+      </Notification>,
+      {
+        placement: 'top-center',
+      }
+    );
+  };
+
+  const onLessonSave = () => {
+    triggerMessage();
   };
 
   return (
     <>
-      <div className="flexWrap padding-cls">
-        <h4>{lessonHeading}</h4>
+      <div className="flexWrap">
+        <h4>{targetLessonObj.lessonHeading}</h4>
         <div className="flexWrap">
           <div className="flex items-center mb-1 mt-1 ml-2">
             <Checkbox size="xs" color="blue-900" className="m-0" />
@@ -54,6 +179,7 @@ const PptUpload = forwardRef((props, ref) => {
             </Button>
 
             <Button
+              onClick={onLessonSave}
               className="mr-2  mb-1 mt-1"
               variant="solid"
               color="blue-900">
@@ -81,7 +207,11 @@ const PptUpload = forwardRef((props, ref) => {
                   labelClass="!justify-start"
                   invalid={errors.title && touched.title}
                   errorMessage={errors.title}>
-                  <Input placeholder="Description" textArea />
+                  <Input
+                    onChange={onLessonDescription}
+                    placeholder="Description"
+                    textArea
+                  />
                 </FormItem>
 
                 <FormItem
@@ -106,7 +236,11 @@ const PptUpload = forwardRef((props, ref) => {
                           </Tooltip> */}
 
                     <Upload
+                      fileList={targetLessonObj.uploadedPpt}
                       uploadSingleFiles={true}
+                      onUploadChange={(files) =>
+                        onUploadChange(targetLessonObj.id, files)
+                      }
                       allowedFileTypes={['pdf']}
                       draggable
                       className="hover:border-yellow-900 border-yellow-600">

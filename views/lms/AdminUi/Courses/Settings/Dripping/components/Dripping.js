@@ -17,7 +17,7 @@ const EnrollmentDateComp = ({ cards }) => {
     <div>
       {cards.map((eachCard) => (
         <Card key={eachCard.id} className="mb-3">
-          <h4>{eachCard.heading}</h4>
+          <h4>{eachCard.name}</h4>
           <hr className="mb-3 mt-3" />
 
           {eachCard.uploads.map((eachUpload, index) => (
@@ -49,7 +49,7 @@ const CourseStartDateComp = ({ cards }) => {
     <div>
       {cards.map((eachCard) => (
         <Card key={eachCard.id} className="mb-3">
-          <h4>{eachCard.heading}</h4>
+          <h4>{eachCard.name}</h4>
           <hr className="mb-3 mt-3" />
 
           {eachCard.uploads.map((eachUpload, index) => (
@@ -123,7 +123,7 @@ const SpecificDateComp = ({ cards, releaseDate }) => {
     <div>
       {cards.map((eachCard) => (
         <Card key={eachCard.id} className="mb-3">
-          <h4>{eachCard.heading}</h4>
+          <h4>{eachCard.name}</h4>
           <hr className="mb-3 mt-3" />
 
           {eachCard.uploads.map((eachUpload, index) =>
@@ -187,7 +187,7 @@ const Dripping = () => {
           <ul>
             {cards.map((eachCard) => (
               <li key={eachCard.id} className="mt-2">
-                {eachCard.heading}
+                {eachCard.name}
               </li>
             ))}
           </ul>

@@ -14,6 +14,8 @@ import { BsArrowBarLeft, BsFillCaretDownFill } from 'react-icons/bs';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { BiArrowBack } from 'react-icons/bi';
 
+import AllCourseLessons from '../../EditLesson/AllCourseLessons';
+
 const BulkImporter = dynamic(
   () => import('../../EditLesson/BulkImporter/index'),
   {
@@ -51,6 +53,8 @@ const LessonsOptions = dynamic(
 );
 
 const PreviewDropDown = () => {
+  const { allCourseLessonsTab, setAllCourseLessonsTab } =
+    useContext(CardsContext);
   const Toggle = (
     <Button
       className="preview-btn header-buttons-white no-wrap-btn mr-2   mt-3"
@@ -65,10 +69,19 @@ const PreviewDropDown = () => {
     </Button>
   );
 
+  const onDropdownItemClick = (eventKey, e) => {
+    console.log('Dropdown Item Clicked', eventKey, e);
+    setAllCourseLessonsTab(eventKey);
+  };
+
   return (
     <Dropdown placement="bottom-center" variant="divider" renderTitle={Toggle}>
-      <Dropdown.Item eventKey="a">ALL COURSE LESSONS</Dropdown.Item>
-      <Dropdown.Item eventKey="b">COURSE AS AN ENROLLED STUDENT</Dropdown.Item>
+      <Dropdown.Item onSelect={onDropdownItemClick} eventKey="allCourseLessons">
+        ALL COURSE LESSONS
+      </Dropdown.Item>
+      <Dropdown.Item onSelect={onDropdownItemClick} eventKey="b">
+        COURSE AS AN ENROLLED STUDENT
+      </Dropdown.Item>
     </Dropdown>
   );
 };
@@ -76,9 +89,12 @@ const PreviewDropDown = () => {
 const TabsNavBar = () => {
   const { tabMenu, setTabMenu } = useContext(CardsContext);
 
+  const { allCourseLessonsTab, setAllCourseLessonsTab } =
+    useContext(CardsContext);
+
   // console.log('CourseNavBar', tabMenu);
 
-  const [currentTab, setCurrentTab] = useState('Curriculum');
+  // const [allCourseLessonsTab, setAllCourseLessonsTab] = useState('');
 
   const { LessonsOptionTab, setLessonsOptionTab } = useContext(CardsContext);
 
@@ -154,18 +170,26 @@ const CourseNavBar = () => {
     );
   };
 
+  const { allCourseLessonsTab, setAllCourseLessonsTab } =
+    useContext(CardsContext);
+
   return (
     <>
-      <hr />
-      <Header
-        className="shadow dark:shadow-2xl course-nav-blue"
-        headerStart={<HeaderCourseStart />}
-        headerMiddle={<HeaderCourseMiddle />}
-        headerEnd={<HeaderCourseEnd />}
-      />
-      <hr />
+      {allCourseLessonsTab === '' && (
+        <>
+          <hr />
+          <Header
+            className="shadow dark:shadow-2xl course-nav-blue"
+            headerStart={<HeaderCourseStart />}
+            headerMiddle={<HeaderCourseMiddle />}
+            headerEnd={<HeaderCourseEnd />}
+          />
+          <hr />
+          <TabsNavBar />
+        </>
+      )}
 
-      <TabsNavBar />
+      {allCourseLessonsTab === 'allCourseLessons' && <AllCourseLessons />}
     </>
   );
 };

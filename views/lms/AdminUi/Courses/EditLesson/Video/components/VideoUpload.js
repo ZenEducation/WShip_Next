@@ -1,4 +1,9 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
+
+import { v4 as uuidv4 } from 'uuid';
+
+import { CardsContext } from '../../../../../CardsComponent/CardsContext';
+
 import {
   Input,
   FormItem,
@@ -9,6 +14,7 @@ import {
   Checkbox,
   Tooltip,
   InputGroup,
+  toast,
 } from 'components/ui';
 import { Form, Formik } from 'formik';
 import style from '../../../../../../../styles/Home.module.css';
@@ -18,19 +24,150 @@ import { Button } from 'components/ui';
 import Addon from '@/components/ui/InputGroup/Addon';
 import { BsCameraVideo } from 'react-icons/bs';
 import { GrUpgrade } from 'react-icons/gr';
+import Notification from 'components/ui/Notification/';
 
 const VideoUpload = forwardRef((props, ref) => {
   const { mode } = props;
 
-  const [lessonHeading, setLessonHeading] = useState('New Video Lesson');
+  const { curriculumAndCards, setCurriculumAndCards } =
+    useContext(CardsContext);
+  // console.log('curriculumAndCards', curriculumAndCards);
+
+  const { selectedLesson, setSelectedLesson } = useContext(CardsContext);
+
+  let chapterLesson;
+  let targetLessonObj;
+  if (selectedLesson.isShowLesson) {
+    chapterLesson = curriculumAndCards.find((eachChapter) =>
+      eachChapter.lessons.some((eachLesson) => {
+        return eachLesson.id === selectedLesson.lessonId;
+      })
+    );
+
+    let targetLesson = chapterLesson.lessons.filter(
+      (eachLesson) => eachLesson.id === selectedLesson.lessonId
+    );
+
+    targetLessonObj = targetLesson[0];
+  }
+
+  // console.log('targetLessonObj', targetLessonObj);
 
   const onLessonHeading = (e) => {
     const value = e.target.value;
+
+    // if (value === '') {
+    //   setLessonHeading('New Video Lesson');
+    // } else {
+    //   setLessonHeading(value);
+    // }
+
     if (value === '') {
-      setLessonHeading('New Video Lesson');
+      const updatedLessonHeading = {
+        ...targetLessonObj,
+        lessonHeading: 'New Video Lesson',
+      };
+      targetLessonObj = updatedLessonHeading;
+      // console.log('targetLessonObj input Val 2', targetLessonObj);
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: 'New Video Lesson' };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     } else {
-      setLessonHeading(value);
+      const updatedLessonHeading = { ...targetLessonObj, lessonHeading: value };
+      targetLessonObj = updatedLessonHeading;
+      const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+        if (eachChapter.id === chapterLesson.id) {
+          const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+            if (eachLesson.id === targetLessonObj.id) {
+              return { ...eachLesson, lessonHeading: value };
+            }
+            return eachLesson;
+          });
+          return { ...eachChapter, lessons: updatedLessons };
+        }
+        return eachChapter;
+      });
+
+      setCurriculumAndCards(updatedChaptersHeading);
     }
+  };
+
+  const onLessonDescription = (e) => {
+    const value = e.target.value;
+    // console.log('description value', value);
+
+    // if (value === '') {
+    //   setLessonHeading('New Video Lesson');
+    // } else {
+    //   setLessonHeading(value);
+    // }
+
+    const updatedLessonHeading = { ...targetLessonObj, description: value };
+    targetLessonObj = updatedLessonHeading;
+    const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+      if (eachChapter.id === chapterLesson.id) {
+        const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+          if (eachLesson.id === targetLessonObj.id) {
+            return { ...eachLesson, description: value };
+          }
+          return eachLesson;
+        });
+        return { ...eachChapter, lessons: updatedLessons };
+      }
+      return eachChapter;
+    });
+
+    setCurriculumAndCards(updatedChaptersHeading);
+  };
+
+  const onUploadChange = (id, updatedFiles) => {
+    // console.log('updatedFiles', updatedFiles);
+
+    const updatedLessonHeading = {
+      ...targetLessonObj,
+      uploadedVideo: updatedFiles,
+    };
+    targetLessonObj = updatedLessonHeading;
+    const updatedChaptersHeading = curriculumAndCards.map((eachChapter) => {
+      if (eachChapter.id === chapterLesson.id) {
+        const updatedLessons = eachChapter.lessons.map((eachLesson) => {
+          if (eachLesson.id === targetLessonObj.id) {
+            return { ...eachLesson, uploadedVideo: updatedFiles };
+          }
+          return eachLesson;
+        });
+        return { ...eachChapter, lessons: updatedLessons };
+      }
+      return eachChapter;
+    });
+
+    setCurriculumAndCards(updatedChaptersHeading);
+  };
+
+  const triggerMessage = (msg) => {
+    toast.push(
+      <Notification className="bg-green-200" type="success" duration={3000}>
+        <h6>{msg || 'Successfully saved the chapter!'}</h6>
+      </Notification>,
+      {
+        placement: 'top-center',
+      }
+    );
+  };
+
+  const onLessonSave = () => {
+    triggerMessage();
   };
 
   const videosOptions = [
@@ -61,10 +198,18 @@ const VideoUpload = forwardRef((props, ref) => {
     },
   ];
 
+  if (targetLessonObj === undefined) {
+    return (
+      <div className="flex justify-center items-center mt-5">
+        <h1 className="mt-5">Loading</h1>
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className={`${style['flexWrap']} ${style['padding']}`}>
-        <h4>{lessonHeading}</h4>
+      <div className={`${style['flexWrap']} ${style['']}`}>
+        <h4>{targetLessonObj.lessonHeading}</h4>
         <div className={`${style['flexWrap']}`}>
           <div className="flex items-center mb-1 mt-1 ml-2">
             <Checkbox size="xs" color="blue-900" className="m-0" />
@@ -80,6 +225,7 @@ const VideoUpload = forwardRef((props, ref) => {
             </Button>
 
             <Button
+              onClick={onLessonSave}
               className="mr-2  mb-1 mt-1"
               variant="solid"
               color="blue-900">
@@ -107,7 +253,12 @@ const VideoUpload = forwardRef((props, ref) => {
                   labelClass="!justify-start"
                   invalid={errors.title && touched.title}
                   errorMessage={errors.title}>
-                  <Input placeholder="Description" textArea />
+                  <Input
+                    onChange={onLessonDescription}
+                    value={targetLessonObj.description}
+                    placeholder="Description"
+                    textArea
+                  />
                 </FormItem>
                 <FormItem
                   className={mode === 'reply' ? '!hidden' : ''}
@@ -140,7 +291,11 @@ const VideoUpload = forwardRef((props, ref) => {
                           </Tooltip> */}
 
                     <Upload
+                      fileList={targetLessonObj.uploadedVideo}
                       uploadSingleFiles={true}
+                      onUploadChange={(files) =>
+                        onUploadChange(targetLessonObj.id, files)
+                      }
                       allowedFileTypes={[
                         '3g2',
                         '3gp',

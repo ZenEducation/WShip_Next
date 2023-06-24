@@ -346,9 +346,6 @@ const SurveyLesson = forwardRef((props, ref) => {
       const div = document.createElement('div');
       div.innerHTML = content;
       const text = div.textContent || div.innerText;
-
-      // console.log(text); // Extracted text from the <p> element
-
       const updatedCurriculum = curriculumAndCards.map((item) => {
         if (item.id === chapterLesson.id) {
           const updatedLessonContent = item.lessons.map((lesson) => {
@@ -433,6 +430,13 @@ const SurveyLesson = forwardRef((props, ref) => {
                     content.choices = [];
                     return content;
                   }
+                  if (eachQuiz.questionType !== 'scale') {
+                    content.questionType = e.value;
+                    content.leftLabel = '';
+                    content.rightLabel = '';
+                    return content;
+                  }
+
                   content.questionType = e.value;
                   return content;
                 }
@@ -533,6 +537,70 @@ const SurveyLesson = forwardRef((props, ref) => {
       setCurriculumAndCards(updatedCurriculum);
     };
 
+    const onLeftLabel = (e) => {
+      const value = e.target.value;
+      console.log('onLeftLabel', value);
+
+      const updatedCurriculum = curriculumAndCards.map((item) => {
+        if (item.id === chapterLesson.id) {
+          const updatedLessonContent = item.lessons.map((lesson) => {
+            if (lesson.id === selectedLesson.lessonId) {
+              const updatedContent = lesson.lessonContent.map((content) => {
+                if (content.id === eachQuiz.id) {
+                  content.leftLabel = value;
+                  return content;
+                }
+                return content;
+              });
+              return {
+                ...lesson,
+                lessonContent: updatedContent,
+              };
+            }
+            return lesson;
+          });
+          return {
+            ...item,
+            lessons: updatedLessonContent,
+          };
+        }
+        return item;
+      });
+      setCurriculumAndCards(updatedCurriculum);
+    };
+
+    const onRightLabel = (e) => {
+      const value = e.target.value;
+      console.log('onRightLabel', value);
+
+      const updatedCurriculum = curriculumAndCards.map((item) => {
+        if (item.id === chapterLesson.id) {
+          const updatedLessonContent = item.lessons.map((lesson) => {
+            if (lesson.id === selectedLesson.lessonId) {
+              const updatedContent = lesson.lessonContent.map((content) => {
+                if (content.id === eachQuiz.id) {
+                  content.rightLabel = value;
+                  return content;
+                }
+                return content;
+              });
+              return {
+                ...lesson,
+                lessonContent: updatedContent,
+              };
+            }
+            return lesson;
+          });
+          return {
+            ...item,
+            lessons: updatedLessonContent,
+          };
+        }
+        return item;
+      });
+      setCurriculumAndCards(updatedCurriculum);
+    };
+
     return (
       <Card key={eachQuiz.id} className="mb-3">
         <div
@@ -579,6 +647,23 @@ const SurveyLesson = forwardRef((props, ref) => {
             // componentAs={CreatableSelect}
             className="orderFlex question-type"
             options={QuestionType}></Select>
+          {eachQuiz.questionType === 'scale' && (
+            <div className="flex mt-4 ">
+              <div className="mb-2 progress-wrapper mr-2">
+                <h6 className="mb-1">Left Label</h6>
+                <Input
+                  value={eachQuiz.leftLabel}
+                  className="progress-wrapper"
+                  onChange={onLeftLabel}
+                />
+              </div>
+              <div className="mb-2 progress-wrapper ml-2">
+                <h6 className="mb-1">Right Label</h6>
+                <Input value={eachQuiz.rightLabel} onChange={onRightLabel} />
+              </div>
+            </div>
+          )}
+
           <br />
           <div className="flex  items-center mb-4">
             {console.log('eachQuiz.isOptional', eachQuiz.isOptional)}

@@ -1,19 +1,29 @@
-import React from 'react'
-import { Button, Dropdown } from 'components/ui'
+import React from 'react';
+import { Button, Dropdown } from 'components/ui';
 
 const CustomToggle = () => {
-    const Toggle = <Button>Toggle as Button</Button>
+  const onDropdownItemClick = (eventKey, e) => {
+    console.log('Dropdown Item Clicked', eventKey, e);
+  };
 
-    return (
-        <div>
-            <Dropdown renderTitle={Toggle}>
-                <Dropdown.Item eventKey="a">Item A</Dropdown.Item>
-                <Dropdown.Item eventKey="b">Item B</Dropdown.Item>
-                <Dropdown.Item eventKey="c">Item C</Dropdown.Item>
-                <Dropdown.Item eventKey="d">Item D</Dropdown.Item>
-            </Dropdown>
-        </div>
-    )
-}
+  const Toggle = <Button>Toggle as Button</Button>;
 
-export default CustomToggle
+  return (
+    <div>
+      <Dropdown renderTitle={Toggle}>
+        <Dropdown.Item onSelect={onDropdownItemClick} eventKey="a">
+          Item A
+        </Dropdown.Item>
+        <Dropdown.Item onSelect={onDropdownItemClick} eventKey="b">
+          Item B
+        </Dropdown.Item>
+        <Dropdown.Item onSelect={onDropdownItemClick} eventKey="c">
+          Item C
+        </Dropdown.Item>
+        <Dropdown.Item eventKey="d">Item D</Dropdown.Item>
+      </Dropdown>
+    </div>
+  );
+};
+
+export default CustomToggle;

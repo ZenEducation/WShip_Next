@@ -44,8 +44,6 @@ const QuizLesson = forwardRef((props, ref) => {
   const { mode } = props;
   const { editorRef } = ref;
 
-  console.log('editorRef', editorRef);
-
   const { curriculumAndCards, setCurriculumAndCards } =
     useContext(CardsContext);
 
@@ -373,7 +371,7 @@ const QuizLesson = forwardRef((props, ref) => {
               <HiOutlineTrash className="text-lg" />
             </button>
           </div>
-          {console.log('eachChoice.choice', eachChoice, eachChoice.choice)}
+          {/* {console.log('eachChoice.choice', eachChoice, eachChoice.choice)} */}
           <RichTextEditor
             value={eachChoice.choice}
             className=" mt-2 "
@@ -548,7 +546,7 @@ const QuizLesson = forwardRef((props, ref) => {
     };
 
     const onDuplicateQuestion = () => {
-      console.log('eachQuiz.id', eachQuiz.id);
+      // console.log('eachQuiz.id', eachQuiz.id);
       const newQuestion = {
         id: uuidv4(),
         question: eachQuiz.question,
@@ -561,11 +559,11 @@ const QuizLesson = forwardRef((props, ref) => {
       const updatedCurriculum = curriculumAndCards.map((item) => {
         if (item.id === chapterLesson.id) {
           const updatedLessonContent = item.lessons.map((lesson) => {
-            console.log('lesson', lesson);
+            // console.log('lesson', lesson);
             if (lesson.id === selectedLesson.lessonId) {
-              console.log('lesson', lesson);
+              // console.log('lesson', lesson);
               const updatedContent = [...lesson.lessonContent, newQuestion];
-              console.log('updatedContent', updatedContent);
+              // console.log('updatedContent', updatedContent);
 
               return {
                 ...lesson,
@@ -581,11 +579,11 @@ const QuizLesson = forwardRef((props, ref) => {
         }
         return item;
       });
-      console.log(updatedCurriculum);
+      // console.log(updatedCurriculum);
       setCurriculumAndCards(updatedCurriculum);
     };
 
-    console.log('eachQuiz', eachQuiz.question);
+    // console.log('eachQuiz', eachQuiz.question);
 
     return (
       <Card key={eachQuiz.id} className="mb-3">
@@ -634,7 +632,6 @@ const QuizLesson = forwardRef((props, ref) => {
             options={QuestionType}></Select>
           <br />
           <b className=" mt-1">Question</b>
-          {console.log('eachQuiz.question', eachQuiz.question)}
           <RichTextEditor
             /////  value={eachQuiz.question}
             className="mt-1"
