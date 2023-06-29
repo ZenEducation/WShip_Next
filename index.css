@@ -2590,7 +2590,6 @@ th {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
-
 .bg-colour-yellow {
   background-color: #fff59d;
 }
@@ -2598,7 +2597,6 @@ th {
 .dark .bg-colour-yellow {
   background-color: #484631;
 }
-
 
 .dark .header-action-item-hoverable:hover {
   --tw-bg-opacity: 0.4;
@@ -22436,3 +22434,214 @@ hr {
   background-color: #484631;
 }
 
+.course-nav-blue {
+  background-color: #28274f;
+}
+
+.dark .course-nav-blue {
+  background-color: #1d283e;
+}
+
+.preview-btn {
+  color: #26254d;
+}
+
+.new-course-text {
+  color: #ffffff;
+}
+
+.edit-course {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.header-buttons-white {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.no-wrap-btn {
+  border-style: solid;
+  border-color: #26254d;
+  border-width: 1px;
+  flex-wrap: nowrap;
+}
+
+.upgrade-card {
+  border-radius: 5px;
+  background-color: #a7f3d0;
+}
+
+.dark .upgrade-card {
+  background-color: #26766b;
+}
+
+.free-card {
+  width: fit-content;
+}
+
+.orderFlex {
+  flex-grow: 1;
+}
+
+/* components/Sidebar.module.css */
+
+.sidebar {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 16px;
+}
+
+.fixed-card {
+  position: sticky;
+  bottom: 0;
+}
+
+.align-stretch {
+  align-self: stretch;
+}
+
+.dp-image-container {
+  height: 140px;
+  width: 260px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sidebae-width {
+  min-width: 180px;
+  width: 44%;
+}
+
+.text-para {
+  width: 66%;
+}
+
+/* @media (min-width: 640px) {
+  .dialog {
+    max-width: 36rem;
+  }
+} */
+
+.sidebar-trans {
+  /* Sidebar styles */
+  transition: height 1s ease; /* Transition effect with 1-second duration */
+  /* Set the initial height of the sidebar */
+  overflow: hidden; /* Hide the content that overflows the sidebar */
+}
+
+.sidebarTransaction {
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-100%); /* Start with sidebar closed */
+}
+
+.sidebarTransaction.open {
+  transform: translateX(0);
+}
+
+.sidebarTransaction.closed {
+  transform: translateX(-100%);
+}
+
+@media (max-width: 525px) {
+  .display-preview-btn {
+    display: none;
+  }
+}
+
+.question-type {
+  max-width: 380px;
+}
+
+.accor-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.accor-content.show {
+  height: auto;
+  max-height: 9999px;
+  transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+}
+
+.progress-bar {
+  height: 5px;
+  border-radius: 8px;
+  background-color: #d4d1d1;
+  margin-top: 10px;
+}
+
+.progress-line {
+  height: 100%;
+  /* background-color: rgb(0, 0, 193); */
+  transition: width 0.3s;
+}
+
+.progress-steps {
+  display: flex;
+}
+
+.progress-step {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #747272;
+  border-radius: 50%;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.progress-sub-step {
+  min-width: 15px;
+  max-width: 15px;
+  height: 15px;
+  border: 1px solid #747272;
+}
+
+.progress-step.completed {
+  border: 2px solid rgb(8, 53, 116);
+  background-color: rgb(8, 53, 116);
+}
+
+.file-icon-course {
+  height: 20px;
+  width: 20px;
+}
+
+
+.self-start {
+  align-self: flex-start;
+}

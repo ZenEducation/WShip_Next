@@ -1,47 +1,47 @@
-import React, { useState, useRef, useEffect } from "react";
-import classNames from "classnames";
-import withHeaderItem from "utils/hoc/withHeaderItem";
-import { Dialog, Button } from "components/ui";
-import { apiGetSearchResult } from "services/CommonService";
-import useThemeClass from "utils/hooks/useThemeClass";
-import navigationIcon from "configs/navigation-icon.config";
-import debounce from "lodash/debounce";
-import { HiOutlineSearch, HiChevronRight } from "react-icons/hi";
+import React, { useState, useRef, useEffect } from 'react';
+import classNames from 'classnames';
+import withHeaderItem from 'utils/hoc/withHeaderItem';
+import { Dialog, Button } from 'components/ui';
+import { apiGetSearchResult } from 'services/CommonService';
+import useThemeClass from 'utils/hooks/useThemeClass';
+import navigationIcon from 'configs/navigation-icon.config';
+import debounce from 'lodash/debounce';
+import { HiOutlineSearch, HiChevronRight } from 'react-icons/hi';
 // import { Link } from 'react-router-dom'
-import Link from "next/link";
-import Highlighter from "react-highlight-words";
+import Link from 'next/link';
+import Highlighter from 'react-highlight-words';
 
 const recommendedSearch = [
   {
-    title: "Recommended",
+    title: 'Recommended',
     data: [
       {
-        title: "Documentation",
-        url: "/docs/documentation/introduction",
-        icon: "documentation",
-        category: "Docs",
-        categoryTitle: "Docs",
+        title: 'Documentation',
+        url: '/docs/documentation/introduction',
+        icon: 'documentation',
+        category: 'Docs',
+        categoryTitle: 'Docs',
       },
       {
-        title: "Changelog",
-        url: "/docs/changelog",
-        icon: "changeLog",
-        category: "Docs",
-        categoryTitle: "Docs",
+        title: 'Changelog',
+        url: '/docs/changelog',
+        icon: 'changeLog',
+        category: 'Docs',
+        categoryTitle: 'Docs',
       },
       {
-        title: "Button",
-        url: "/ui-components/button",
-        icon: "common",
-        category: "Common",
-        categoryTitle: "UI Components",
+        title: 'Button',
+        url: '/ui-components/button',
+        icon: 'common',
+        category: 'Common',
+        categoryTitle: 'UI Components',
       },
     ],
   },
 ];
 
 const ListItem = (props) => {
-  const { icon, label, url = "", isLast, keyWord, onNavigate } = props;
+  const { icon, label, url = '', isLast, keyWord, onNavigate } = props;
 
   const { textTheme } = useThemeClass();
 
@@ -49,19 +49,17 @@ const ListItem = (props) => {
     <Link href={url} onClick={onNavigate}>
       <div
         className={classNames(
-          "flex items-center justify-between rounded-lg p-3.5 cursor-pointer user-select",
-          "bg-gray-50 dark:bg-gray-700/60 hover:bg-gray-100 dark:hover:bg-gray-700/90",
-          !isLast && "mb-3"
-        )}
-      >
+          'flex items-center justify-between rounded-lg p-3.5 cursor-pointer user-select',
+          'bg-gray-50 dark:bg-gray-700/60 hover:bg-gray-100 dark:hover:bg-gray-700/90',
+          !isLast && 'mb-3'
+        )}>
         <div className="flex items-center">
           <div
             className={classNames(
-              "mr-4 rounded-md ring-1 ring-slate-900/5 shadow-sm text-xl group-hover:shadow h-6 w-6 flex items-center justify-center bg-white dark:bg-gray-700",
+              'mr-4 rounded-md ring-1 ring-slate-900/5 shadow-sm text-xl group-hover:shadow h-6 w-6 flex items-center justify-center bg-white dark:bg-gray-700',
               textTheme,
-              "dark:text-gray-100"
-            )}
-          >
+              'dark:text-gray-100'
+            )}>
             {icon && navigationIcon[icon]}
           </div>
           <div className="text-gray-900 dark:text-gray-300">
@@ -69,7 +67,7 @@ const ListItem = (props) => {
               autoEscape
               highlightClassName={classNames(
                 textTheme,
-                "underline bg-transparent font-semibold dark:text-white"
+                'underline bg-transparent font-semibold dark:text-white'
               )}
               searchWords={[keyWord]}
               textToHighlight={label}
@@ -147,17 +145,15 @@ export const Search = ({ className }) => {
   return (
     <>
       <div
-        className={classNames(className, "text-2xl")}
-        onClick={handleSearchOpen}
-      >
+        className={classNames(className, 'text-2xl')}
+        onClick={handleSearchOpen}>
         <HiOutlineSearch />
       </div>
       <Dialog
         contentClassName="p-0"
         isOpen={searchDialogOpen}
         closable={false}
-        onRequestClose={handleSearchClose}
-      >
+        onRequestClose={handleSearchClose}>
         <div>
           <div className="px-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-600">
             <div className="flex items-center">
@@ -183,7 +179,7 @@ export const Search = ({ className }) => {
                     icon={data.icon}
                     label={data.title}
                     url={data.url}
-                    keyWord={inputRef.current?.value || ""}
+                    keyWord={inputRef.current?.value || ''}
                     onNavigate={handleNavigate}
                   />
                 ))}
