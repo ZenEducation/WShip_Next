@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "components/ui";
-import { Loading } from "components/shared";
-import Logo from "components/template/Logo";
+import { Button } from "components/AfterAuth/ui";
+import { Loading } from "components/AfterAuth/shared";
+import Logo from "components/AfterAuth/template/Logo";
 import ContentTable from "./ContentTable";
 // import { useLocation } from "react-router-dom";
 import { useRouter } from "next/router";
@@ -29,7 +29,7 @@ const InvoiceContent = () => {
 
   const fetchData = async () => {
     const id = location.pathname.substring(
-      location.pathname.lastIndexOf("/") + 1
+      location.pathname.lastIndexOf("/AA/") + 1
     );
     if (id) {
       setLoading(true);

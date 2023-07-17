@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, AdaptableCard } from 'components/shared'
+import { Container, AdaptableCard } from 'components/AfterAuth/shared'
 import Articles from './components/Articles'
 import reducer from './store'
 import { injectReducer } from 'store/index'

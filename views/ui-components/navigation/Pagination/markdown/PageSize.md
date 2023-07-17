@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Pagination, Select } from 'components/ui'
+import { Pagination, Select } from 'components/AfterAuth/ui'
 
 const options = [
     { value: 5, label: '5 / page' },

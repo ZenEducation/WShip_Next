@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Loading } from 'components/shared'
+import { Loading } from 'components/AfterAuth/shared'
 import Statistic from './Statistic'
 import SalesReport from './SalesReport'
 import SalesByCategories from './SalesByCategories'

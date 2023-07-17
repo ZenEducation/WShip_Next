@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Table } from 'components/ui'
+import { Table } from 'components/AfterAuth/ui'
 import { useTable } from 'react-table'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { MdDragIndicator } from 'react-icons/md'

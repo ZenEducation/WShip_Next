@@ -3,8 +3,8 @@ import {
     AdaptableCard,
     ConfirmDialog,
     DoubleSidedImage,
-} from 'components/shared'
-import { FormItem, Dialog, Upload } from 'components/ui'
+} from 'components/AfterAuth/shared'
+import { FormItem, Dialog, Upload } from 'components/AfterAuth/ui'
 import { HiEye, HiTrash } from 'react-icons/hi'
 import { Field } from 'formik'
 import cloneDeep from 'lodash/cloneDeep'

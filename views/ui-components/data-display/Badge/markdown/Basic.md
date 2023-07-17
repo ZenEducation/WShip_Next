@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Avatar, Badge } from 'components/ui'
+import { Avatar, Badge } from 'components/AfterAuth/ui'
 import { HiOutlineUser } from 'react-icons/hi'
 
 const Basic = () => {

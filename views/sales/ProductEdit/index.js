@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Loading, DoubleSidedImage } from "components/shared";
-import { toast, Notification } from "components/ui";
+import { Loading, DoubleSidedImage } from "components/AfterAuth/shared";
+import { toast, Notification } from "components/AfterAuth/ui";
 import { useDispatch, useSelector } from "react-redux";
 import reducer from "./store";
 import { injectReducer } from "store/index";
@@ -37,7 +37,7 @@ const ProductEdit = () => {
   };
 
   const handleDiscard = () => {
-    navigate.push("/app/sales/product-list");
+    navigate.push("/AA/app/sales/product-list");
   };
 
   const handleDelete = async (setDialogOpen) => {
@@ -61,12 +61,12 @@ const ProductEdit = () => {
         placement: "top-center",
       }
     );
-    navigate.push("/app/sales/product-list");
+    navigate.push("/AA/app/sales/product-list");
   };
 
   useEffect(() => {
     const path = location.pathname.substring(
-      location.pathname.lastIndexOf("/") + 1
+      location.pathname.lastIndexOf("/AA/") + 1
     );
     const rquestParam = { id: path };
     fetchData(rquestParam);

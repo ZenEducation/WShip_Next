@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Calendar, Badge } from 'components/ui'
+import { Calendar, Badge } from 'components/AfterAuth/ui'
 
 const CustomRender = () => {
     const [value, setValue] = useState()

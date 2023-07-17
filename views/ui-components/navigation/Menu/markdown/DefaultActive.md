@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Menu } from 'components/ui'
+import { Menu } from 'components/AfterAuth/ui'
 
 const DefaultActive = () => {
     const [defaultActiveKey] = useState(['item-2', 'item-3-2'])

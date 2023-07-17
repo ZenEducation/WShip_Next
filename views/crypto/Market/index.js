@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { Tabs } from 'components/ui'
-import { AdaptableCard } from 'components/shared'
+import { Tabs } from 'components/AfterAuth/ui'
+import { AdaptableCard } from 'components/AfterAuth/shared'
 import {
     getMarketData,
     setSelectedTab,

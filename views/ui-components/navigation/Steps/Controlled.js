@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Steps, Button } from 'components/ui'
+import { Steps, Button } from 'components/AfterAuth/ui'
 
 const Controlled = () => {
     const [step, setStep] = useState(0)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs } from 'components/ui';
+import { Tabs } from 'components/AfterAuth/ui';
 
 const { TabNav, TabList, TabContent } = Tabs;
 

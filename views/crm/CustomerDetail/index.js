@@ -4,7 +4,7 @@ import {
     Loading,
     Container,
     DoubleSidedImage,
-} from 'components/shared'
+} from 'components/AfterAuth/shared'
 import CustomerProfile from './components/CustomerProfile'
 import PaymentHistory from './components/PaymentHistory'
 import CurrentSubscription from './components/CurrentSubscription'

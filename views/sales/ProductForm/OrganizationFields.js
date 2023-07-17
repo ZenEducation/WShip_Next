@@ -1,6 +1,6 @@
 import React from 'react'
-import { AdaptableCard } from 'components/shared'
-import { Input, FormItem, Select } from 'components/ui'
+import { AdaptableCard } from 'components/AfterAuth/shared'
+import { Input, FormItem, Select } from 'components/AfterAuth/ui'
 import CreatableSelect from 'react-select/creatable'
 import { Field } from 'formik'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DemoLayout from 'components/docs/DemoLayout'
+import DemoLayout from 'components/AfterAuth/docs/DemoLayout'
 
 // Demo
 import Simple from './Simple'
@@ -36,7 +36,7 @@ const demoApi = [
         api: [
             {
                 propName: 'avatarProps',
-                type: `<a class="text-indigo-600 underline" href="/ui-components/skeleton#api" target="_blank"><code>SkeletonProps</code></a>`,
+                type: `<a class="text-indigo-600 underline" href="/AA/ui-components/skeleton#api" target="_blank"><code>SkeletonProps</code></a>`,
                 default: `-`,
                 desc: 'Props for avatar skeleton',
             },
@@ -48,13 +48,13 @@ const demoApi = [
             },
             {
                 propName: 'textProps',
-                type: `<a class="text-indigo-600 underline" href="/ui-components/skeleton#api" target="_blank"><code>SkeletonProps</code></a>`,
+                type: `<a class="text-indigo-600 underline" href="/AA/ui-components/skeleton#api" target="_blank"><code>SkeletonProps</code></a>`,
                 default: `-`,
                 desc: 'Props for text skeleton',
             },
             {
                 propName: 'titleProps',
-                type: `<a class="text-indigo-600 underline" href="/ui-components/skeleton#api" target="_blank"><code>SkeletonProps</code></a>`,
+                type: `<a class="text-indigo-600 underline" href="/AA/ui-components/skeleton#api" target="_blank"><code>SkeletonProps</code></a>`,
                 default: `-`,
                 desc: 'Props for title skeleton',
             },

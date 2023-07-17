@@ -9,8 +9,8 @@ import {
     FormItem,
     Badge,
     hooks,
-} from 'components/ui'
-import { eventColors } from 'components/shared/CalendarView'
+} from 'components/AfterAuth/ui'
+import { eventColors } from 'components/AfterAuth/shared/CalendarView'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeDialog } from '../store/stateSlice'
 import { Field, Form, Formik } from 'formik'

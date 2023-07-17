@@ -1,8 +1,8 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
-import { Card, Tag } from "components/ui";
-import UsersAvatarGroup from "components/shared/UsersAvatarGroup";
-import IconText from "components/shared/IconText";
+import { Card, Tag } from "components/AfterAuth/ui";
+import UsersAvatarGroup from "components/AfterAuth/shared/UsersAvatarGroup";
+import IconText from "components/AfterAuth/shared/IconText";
 import { HiOutlineChatAlt2, HiOutlinePaperClip, HiFlag } from "react-icons/hi";
 import {
   openDialog,

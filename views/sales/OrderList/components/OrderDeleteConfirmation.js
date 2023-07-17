@@ -1,6 +1,6 @@
 import React from 'react'
-import { toast, Notification } from 'components/ui'
-import { ConfirmDialog } from 'components/shared'
+import { toast, Notification } from 'components/AfterAuth/ui'
+import { ConfirmDialog } from 'components/AfterAuth/shared'
 import { useSelector, useDispatch } from 'react-redux'
 import {
     setDeleteMode,

@@ -5,14 +5,14 @@ import React, {
     useRef,
     Fragment,
 } from 'react'
-import { Button, Avatar, Tag, Timeline, Card, Input } from 'components/ui'
+import { Button, Avatar, Tag, Timeline, Card, Input } from 'components/AfterAuth/ui'
 import {
     AdaptableCard,
     Loading,
     Container,
     RichTextEditor,
     IconText,
-} from 'components/shared'
+} from 'components/AfterAuth/shared'
 import {
     HiPencil,
     HiClock,

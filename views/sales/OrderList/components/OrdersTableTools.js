@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "components/ui";
+import { Button } from "components/AfterAuth/ui";
 import { HiDownload, HiOutlineTrash } from "react-icons/hi";
 import OrderTableSearch from "./OrderTableSearch";
 import { useSelector, useDispatch } from "react-redux";

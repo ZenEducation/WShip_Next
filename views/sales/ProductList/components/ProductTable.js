@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
-import { Avatar, Badge } from "components/ui";
-import { DataTable } from "components/shared";
+import { Avatar, Badge } from "components/AfterAuth/ui";
+import { DataTable } from "components/AfterAuth/shared";
 import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
 import { FiPackage } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Segment } from 'components/ui'
+import { Segment } from 'components/AfterAuth/ui'
 
 const Controlled = () => {
     const [singleSegmentValue, setSingleSegmentValue] = useState(['left'])

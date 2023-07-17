@@ -1,4 +1,4 @@
-import { useConfig } from 'components/ui'
+import { useConfig } from 'components/AfterAuth/ui'
 
 function useThemeClass() {
     const { themeColor, primaryColorLevel } = useConfig()

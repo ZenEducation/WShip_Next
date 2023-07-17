@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { CalendarView } from 'components/shared'
+import { CalendarView } from 'components/AfterAuth/shared'
 
 const Example = () => {
     function getDate(dayString) {

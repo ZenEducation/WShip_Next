@@ -1,9 +1,9 @@
 import React from 'react'
-import { ActionLink } from 'components/shared'
+import { ActionLink } from 'components/AfterAuth/shared'
 
 const Basic = () => {
     return (
-        <ActionLink to="/docs/documentation/introduction">Navigate</ActionLink>
+        <ActionLink to="/AA/docs/documentation/introduction">Navigate</ActionLink>
     )
 }
 

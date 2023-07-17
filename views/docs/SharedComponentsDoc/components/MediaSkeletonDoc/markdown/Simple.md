@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { MediaSkeleton, Loading } from 'components/shared'
+import { MediaSkeleton, Loading } from 'components/AfterAuth/shared'
 
 const Example = () => {
     return (

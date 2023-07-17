@@ -11,8 +11,8 @@ import {
   Dropdown,
   Tag,
   Badge,
-} from 'components/ui';
-import UsersAvatarGroup from 'components/shared/UsersAvatarGroup';
+} from 'components/AfterAuth/ui';
+import UsersAvatarGroup from 'components/AfterAuth/shared/UsersAvatarGroup';
 import dayjs from 'dayjs';
 import cloneDeep from 'lodash/cloneDeep';
 import {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Avatar } from 'components/ui'
+import { Card, Avatar } from 'components/AfterAuth/ui'
 import { HiOutlineCurrencyDollar, HiOutlineCash } from 'react-icons/hi'
 
 const AccountValues = ({ data = {}, className }) => {

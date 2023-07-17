@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'components/ui'
+import { Button } from 'components/AfterAuth/ui'
 import { useDispatch } from 'react-redux'
 import { openDialog, updateDialogView } from './store/stateSlice'
 import { HiOutlinePlusCircle } from 'react-icons/hi'

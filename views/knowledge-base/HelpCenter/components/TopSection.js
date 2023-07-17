@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Container } from 'components/shared'
+import { Container } from 'components/AfterAuth/shared'
 import {
     setSearchCategory,
     queryArticles,
@@ -13,7 +13,7 @@ import {
     Button,
     Notification,
     toast,
-} from 'components/ui'
+} from 'components/AfterAuth/ui'
 import { HiOutlineSearch } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
 

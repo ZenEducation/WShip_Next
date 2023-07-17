@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Skeleton } from 'components/ui'
+import { Skeleton } from 'components/AfterAuth/ui'
 
 const Variant = () => {
     return (

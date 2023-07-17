@@ -1,6 +1,6 @@
 import React from "react";
 import ProductForm from "views/sales/ProductForm";
-import { toast, Notification } from "components/ui";
+import { toast, Notification } from "components/AfterAuth/ui";
 import { useNavigate } from "react-router-dom";
 import { apiCreateSalesProduct } from "services/SalesService";
 import { useRouter } from "next/router";
@@ -30,12 +30,12 @@ const ProductNew = () => {
           placement: "top-center",
         }
       );
-      navigate.push("/app/sales/product-list");
+      navigate.push("/AA/app/sales/product-list");
     }
   };
 
   const handleDiscard = () => {
-    navigate.push("/app/sales/product-list");
+    navigate.push("/AA/app/sales/product-list");
   };
 
   return (

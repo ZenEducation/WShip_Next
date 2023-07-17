@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'components/ui'
+import { Button } from 'components/AfterAuth/ui'
 import { paymentList } from 'views/crypto/TradeForm/options.data'
 import NumberFormat from 'react-number-format'
 import Success from './Success'

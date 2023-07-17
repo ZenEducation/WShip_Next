@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Card, Avatar } from 'components/ui'
+import { Card, Avatar } from 'components/AfterAuth/ui'
 
 const HeaderFooterBorder = () => {
     const cardFooter = (

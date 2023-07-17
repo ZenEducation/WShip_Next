@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Table } from 'components/ui'
+import { Table } from 'components/AfterAuth/ui'
 import { useTable, useSortBy } from 'react-table'
 
 const columns = [

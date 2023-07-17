@@ -1,5 +1,5 @@
 import React from "react";
-import { DoubleSidedImage } from "components/shared";
+import { DoubleSidedImage } from "components/AfterAuth/shared";
 // import image from "../../../../"
 import image from "../../../../../public/img/logo/logo-light-full.png";
 const Example = () => {

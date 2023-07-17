@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Card, Tag } from 'components/ui'
+import { Badge, Card, Tag } from 'components/AfterAuth/ui'
 import classNames from 'classnames'
 import ReactHtmlParser from 'html-react-parser'
 import isLastChild from 'utils/isLastChild'

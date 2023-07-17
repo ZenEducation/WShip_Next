@@ -1,10 +1,10 @@
 ```jsx
 import React from 'react'
-import { ActionLink } from 'components/shared'
+import { ActionLink } from 'components/AfterAuth/shared'
 
 const ThemeColor = () => {
     return (
-        <ActionLink to="/docs/documentation/introduction" themeColor={false}>
+        <ActionLink to="/AA/docs/documentation/introduction" themeColor={false}>
             Navigate
         </ActionLink>
     )

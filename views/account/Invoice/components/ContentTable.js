@@ -1,5 +1,5 @@
 import React, { useMemo, Fragment } from 'react'
-import { Table } from 'components/ui'
+import { Table } from 'components/AfterAuth/ui'
 import { useTable } from 'react-table'
 import NumberFormat from 'react-number-format'
 import isLastChild from 'utils/isLastChild'

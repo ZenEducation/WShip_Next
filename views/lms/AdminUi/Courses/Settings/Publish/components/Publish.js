@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { Input, Card, Checkbox, Radio } from 'components/ui';
+import { Input, Card, Checkbox, Radio } from 'components/AfterAuth/ui';
 
-import { Button } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
 
 const Publish = () => {
   const [value, setValue] = useState('Draft');

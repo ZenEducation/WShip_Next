@@ -6,7 +6,7 @@ import {
     initialTableData,
     setTransactionHistoryData,
 } from '../store/dataSlice'
-import { Card, Tabs } from 'components/ui'
+import { Card, Tabs } from 'components/AfterAuth/ui'
 import OrderTable from './OrderTable'
 import DepositWithdrawalTable from './DepositWithdrawalTable'
 import { useDispatch, useSelector } from 'react-redux'

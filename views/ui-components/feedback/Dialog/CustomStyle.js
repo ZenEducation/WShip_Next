@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Dialog } from 'components/ui'
+import { Button, Dialog } from 'components/AfterAuth/ui'
 
 const CustomStyle = () => {
     const [dialogIsOpen, setIsOpen] = useState(false)

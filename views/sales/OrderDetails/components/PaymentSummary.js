@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'components/ui'
+import { Card } from 'components/AfterAuth/ui'
 import NumberFormat from 'react-number-format'
 
 const PaymentInfo = ({ label, value, isLast }) => {

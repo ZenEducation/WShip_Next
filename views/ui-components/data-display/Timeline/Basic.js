@@ -1,5 +1,5 @@
 import React from 'react'
-import { Timeline } from 'components/ui'
+import { Timeline } from 'components/AfterAuth/ui'
 
 const Basic = () => {
     return (

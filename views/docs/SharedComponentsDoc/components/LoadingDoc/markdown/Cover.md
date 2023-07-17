@@ -1,7 +1,7 @@
 ```jsx
 import React, { useState } from 'react'
-import { Switcher, Alert } from 'components/ui'
-import { Loading } from 'components/shared'
+import { Switcher, Alert } from 'components/AfterAuth/ui'
+import { Loading } from 'components/AfterAuth/shared'
 
 const Cover = () => {
     const [isLoading, setIsLoading] = useState(true)

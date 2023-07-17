@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select } from 'components/ui'
+import { Select } from 'components/AfterAuth/ui'
 import CreatableSelect from 'react-select/creatable'
 
 const colourOptions = [

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Tooltip, Dropdown } from "components/ui";
-import { Loading, TextEllipsis, UsersAvatarGroup } from "components/shared";
+import { Card, Button, Tooltip, Dropdown } from "components/AfterAuth/ui";
+import { Loading, TextEllipsis, UsersAvatarGroup } from "components/AfterAuth/shared";
 import Confirmations from "./Confirmations";
 import { getCategorizedArticles } from "../store/dataSlice";
 import {

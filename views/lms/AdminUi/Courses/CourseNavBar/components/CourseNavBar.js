@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 
 import { CardsContext } from '../../../../CardsComponent/CardsContext';
 
-import { Card, Tabs, Menu } from 'components/ui';
+import { Card, Tabs, Menu } from 'components/AfterAuth/ui';
 const { TabNav, TabList, TabContent } = Tabs;
 
 import dynamic from 'next/dynamic';
-import Header from 'components/template/Header';
+import Header from 'components/AfterAuth/template/Header';
 import { RxCross1 } from 'react-icons/rx';
-import { Button, Dropdown } from 'components/ui';
+import { Button, Dropdown } from 'components/AfterAuth/ui';
 import { TfiEye } from 'react-icons/tfi';
 import { BsArrowBarLeft, BsFillCaretDownFill } from 'react-icons/bs';
 import { HiOutlineSearch } from 'react-icons/hi';

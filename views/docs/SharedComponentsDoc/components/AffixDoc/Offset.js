@@ -1,7 +1,7 @@
 import React from "react";
-// import { Affix } from 'components/shared'
-import { Button } from "components/ui";
-const Affix = dynamic(() => import("components/shared"), {
+// import { Affix } from 'components/AfterAuth/shared'
+import { Button } from "components/AfterAuth/ui";
+const Affix = dynamic(() => import("components/AfterAuth/shared"), {
   ssr: false,
 });
 const Offset = () => {

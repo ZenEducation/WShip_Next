@@ -1,7 +1,7 @@
 import React from 'react'
 import TopSection from './components/TopSection'
 import BodySection from './components/BodySection'
-import { Container } from 'components/shared'
+import { Container } from 'components/AfterAuth/shared'
 import reducer from './store'
 import { injectReducer } from 'store/index'
 

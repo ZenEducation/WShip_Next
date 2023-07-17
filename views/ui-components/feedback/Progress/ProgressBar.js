@@ -1,5 +1,5 @@
 import React from 'react'
-import { Progress } from 'components/ui'
+import { Progress } from 'components/AfterAuth/ui'
 
 const ProgressBar = () => {
     return (

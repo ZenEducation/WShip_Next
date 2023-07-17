@@ -1,7 +1,7 @@
 ```jsx
 import React, { useState } from 'react'
-import { ConfirmDialog } from 'components/shared'
-import { Radio, Button } from 'components/ui'
+import { ConfirmDialog } from 'components/AfterAuth/shared'
+import { Radio, Button } from 'components/AfterAuth/ui'
 
 const dialogType = {
     Info: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Dropdown } from 'components/ui';
+import { Button, Dropdown } from 'components/AfterAuth/ui';
 
 const CustomToggle = () => {
   const onDropdownItemClick = (eventKey, e) => {

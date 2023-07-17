@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from 'components/ui'
+import { Button } from 'components/AfterAuth/ui'
 import { HiPhone } from 'react-icons/hi'
 
 const Loading = () => {

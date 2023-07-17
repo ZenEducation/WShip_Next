@@ -13,19 +13,19 @@ import {
   Tooltip,
   InputGroup,
   toast,
-} from 'components/ui';
+} from 'components/AfterAuth/ui';
 import { Form, Formik } from 'formik';
 
 import { HiOutlineExclamationCircle, HiOutlineTrash } from 'react-icons/hi';
 // import { Button } from 'react-scroll';
-import { Button } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
 import Addon from '@/components/ui/InputGroup/Addon';
 import { BsCameraVideo, BsFiletypePpt } from 'react-icons/bs';
 import { GrUpgrade } from 'react-icons/gr';
 import { AiFillFilePdf } from 'react-icons/ai';
 import { RiSlideshow2Line } from 'react-icons/ri';
 
-import Notification from 'components/ui/Notification/';
+import Notification from 'components/AfterAuth/ui/Notification/';
 
 const PptUpload = forwardRef((props, ref) => {
   const { mode } = props;

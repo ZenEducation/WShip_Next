@@ -1,5 +1,5 @@
 ```jsx
-import { RegionMap } from "components/shared";
+import { RegionMap } from "components/AfterAuth/shared";
 
 const mapColors = [];
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import { AdaptableCard } from 'components/shared'
-import { Input, FormItem } from 'components/ui'
+import { AdaptableCard } from 'components/AfterAuth/shared'
+import { Input, FormItem } from 'components/AfterAuth/ui'
 import NumberFormat from 'react-number-format'
 import { Field } from 'formik'
 

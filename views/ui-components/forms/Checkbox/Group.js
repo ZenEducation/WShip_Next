@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Checkbox } from 'components/ui';
+import { Checkbox } from 'components/AfterAuth/ui';
 
 const Group = () => {
   const [checkboxList, setCheckboxList] = useState(['Selection A']);

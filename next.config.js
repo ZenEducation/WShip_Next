@@ -12,6 +12,7 @@ const withTM = require("next-transpile-modules")([
 
 const nextConfig = {
   reactStrictMode: true,
+	productionBrowserSourceMaps: true,
 };
 
 module.exports = withTM(nextConfig);

@@ -1,6 +1,6 @@
 ```jsx
 import React from "react";
-import { Table, Pagination, Select } from "components/ui";
+import { Table, Pagination, Select } from "components/AfterAuth/ui";
 import { useTable, usePagination } from "react-table";
 
 const columns = [

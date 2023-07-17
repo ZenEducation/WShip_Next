@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Button, Drawer } from 'components/ui'
+import { Button, Drawer } from 'components/AfterAuth/ui'
 
 const Closable = () => {
     const [isOpen, setIsOpen] = useState(false)

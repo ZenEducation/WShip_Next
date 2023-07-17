@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Card, Segment } from 'components/ui'
-import { Chart } from 'components/shared'
+import { Card, Segment } from 'components/AfterAuth/ui'
+import { Chart } from 'components/AfterAuth/shared'
 import NumberFormat from 'react-number-format'
 import isEmpty from 'lodash/isEmpty'
 

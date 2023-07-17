@@ -2,7 +2,7 @@ import React from "react";
 
 import dynamic from "next/dynamic";
 
-const ClassicLayout = dynamic(() => import("components/layout/ClassicLayout"), {
+const ClassicLayout = dynamic(() => import("components/AfterAuth/layout/ClassicLayout"), {
   ssr: false,
 });
 

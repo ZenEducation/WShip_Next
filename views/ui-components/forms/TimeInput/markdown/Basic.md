@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { TimeInput } from 'components/ui'
+import { TimeInput } from 'components/AfterAuth/ui'
 
 const Basic = () => {
     return <TimeInput />

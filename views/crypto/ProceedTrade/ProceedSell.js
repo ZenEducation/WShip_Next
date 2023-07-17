@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'components/ui'
+import { Button } from 'components/AfterAuth/ui'
 import NumberFormat from 'react-number-format'
 import Success from './Success'
 import Failed from './Failed'

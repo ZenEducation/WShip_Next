@@ -1,5 +1,5 @@
 import React from 'react'
-import { Steps } from 'components/ui'
+import { Steps } from 'components/AfterAuth/ui'
 
 const Error = () => {
     return (

@@ -1,5 +1,5 @@
 import React, { Fragment, Suspense } from "react";
-import { Spinner } from "components/ui";
+import { Spinner } from "components/AfterAuth/ui";
 import documentationRoutes from "./documentationRoutes";
 import DocumentationWrapper from "./DocumentationWrapper";
 import { Routes, Route, Navigate } from "react-router-dom";

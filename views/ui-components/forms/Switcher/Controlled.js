@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Switcher } from 'components/ui'
+import { Switcher } from 'components/AfterAuth/ui'
 
 const Controlled = () => {
     const [checked, setChecked] = useState(false)

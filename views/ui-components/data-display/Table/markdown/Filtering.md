@@ -1,6 +1,6 @@
 ```jsx
 import React, { useMemo, useState } from "react";
-import { Table, Input } from "components/ui";
+import { Table, Input } from "components/AfterAuth/ui";
 import {
   useTable,
   useFilters,

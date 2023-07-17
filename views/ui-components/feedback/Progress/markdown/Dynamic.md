@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState, useCallback } from 'react'
-import { Progress, Button, InputGroup } from 'components/ui'
+import { Progress, Button, InputGroup } from 'components/AfterAuth/ui'
 import { HiPlus, HiMinus } from 'react-icons/hi'
 
 const Dynamic = () => {

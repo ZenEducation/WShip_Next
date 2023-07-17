@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { InputGroup, Input } from 'components/ui'
+import { InputGroup, Input } from 'components/AfterAuth/ui'
 
 const { Addon } = InputGroup
 

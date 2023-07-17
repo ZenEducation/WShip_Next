@@ -7,7 +7,7 @@ import {
     Switcher,
     Avatar,
     Card,
-} from 'components/ui'
+} from 'components/AfterAuth/ui'
 import isEmpty from 'lodash/isEmpty'
 import { apiGetAccountSettingIntegrationData } from 'services/AccountServices'
 import cloneDeep from 'lodash/cloneDeep'

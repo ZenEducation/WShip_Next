@@ -1,4 +1,4 @@
-import { RegionMap } from "components/shared";
+import { RegionMap } from "components/AfterAuth/shared";
 import { theme } from "twin.macro";
 
 const twColor = theme`colors`;

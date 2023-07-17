@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { Badge } from 'components/ui'
-import { DataTable } from 'components/shared'
+import { Badge } from 'components/AfterAuth/ui'
+import { DataTable } from 'components/AfterAuth/shared'
 import { setTableData } from '../store/dataSlice'
 import { statusColor } from './OrderTable'
 import cloneDeep from 'lodash/cloneDeep'

@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react'
-import { IconText } from 'components/shared'
-import { Card, Avatar, ScrollBar, Tag } from 'components/ui'
+import { IconText } from 'components/AfterAuth/shared'
+import { Card, Avatar, ScrollBar, Tag } from 'components/AfterAuth/ui'
 import ReactHtmlParser from 'html-react-parser'
 import { HiOutlineClock } from 'react-icons/hi'
 import {

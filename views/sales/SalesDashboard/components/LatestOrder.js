@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from "react";
-import { Card, Button, Table, Badge } from "components/ui";
+import { Card, Button, Table, Badge } from "components/AfterAuth/ui";
 import useThemeClass from "utils/hooks/useThemeClass";
 import { useTable } from "react-table";
 import { useNavigate } from "react-router-dom";

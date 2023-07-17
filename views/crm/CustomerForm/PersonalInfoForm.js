@@ -1,5 +1,5 @@
 import React from 'react'
-import { DatePicker, Input, FormItem, Avatar, Upload } from 'components/ui'
+import { DatePicker, Input, FormItem, Avatar, Upload } from 'components/AfterAuth/ui'
 import {
     HiUserCircle,
     HiMail,

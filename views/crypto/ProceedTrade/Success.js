@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'components/ui'
+import { Button } from 'components/AfterAuth/ui'
 import { HiCheckCircle } from 'react-icons/hi'
 
 const Success = (props) => {

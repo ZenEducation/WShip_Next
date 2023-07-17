@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Pagination } from 'components/ui'
+import { Pagination } from 'components/AfterAuth/ui'
 
 const Basic = () => {
     const onPaginationChange = (page) => {

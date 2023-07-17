@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Checkbox } from 'components/ui'
+import { Checkbox } from 'components/AfterAuth/ui'
 
 const Vertical = () => {
     const [checkboxList] = useState(['Selection A'])

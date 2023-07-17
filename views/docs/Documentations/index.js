@@ -1,6 +1,6 @@
 import React from 'react'
-import { AdaptableCard } from 'components/shared'
-import DocumentationNav from 'components/docs/DocumentationNav'
+import { AdaptableCard } from 'components/AfterAuth/shared'
+import DocumentationNav from 'components/AfterAuth/docs/DocumentationNav'
 import documentationRoutes from './documentationRoutes'
 import DocumentationView from './DocumentationView'
 

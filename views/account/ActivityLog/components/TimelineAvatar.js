@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Avatar } from 'components/ui'
+import { Avatar } from 'components/AfterAuth/ui'
 import acronym from 'utils/acronym'
 import useTwColorByName from 'utils/hooks/useTwColorByName'
 import {

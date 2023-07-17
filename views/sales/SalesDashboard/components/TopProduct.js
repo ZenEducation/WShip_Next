@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Card, Button, Table, Avatar } from 'components/ui'
+import { Card, Button, Table, Avatar } from 'components/AfterAuth/ui'
 import { useTable } from 'react-table'
 import { FiPackage } from 'react-icons/fi'
 

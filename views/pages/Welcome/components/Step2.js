@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, FormItem, FormContainer, Select, Input } from 'components/ui'
+import { Button, FormItem, FormContainer, Select, Input } from 'components/AfterAuth/ui'
 import { Field, Form, Formik } from 'formik'
 import { HiArrowSmLeft } from 'react-icons/hi'
 import * as Yup from 'yup'

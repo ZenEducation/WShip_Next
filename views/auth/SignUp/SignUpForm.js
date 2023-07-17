@@ -1,6 +1,6 @@
 import React from 'react'
-import { Input, Button, FormItem, FormContainer, Alert } from 'components/ui'
-import { PasswordInput, ActionLink } from 'components/shared'
+import { Input, Button, FormItem, FormContainer, Alert } from 'components/AfterAuth/ui'
+import { PasswordInput, ActionLink } from 'components/AfterAuth/shared'
 import useTimeOutMessage from 'utils/hooks/useTimeOutMessage'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
 })
 
 const SignUpForm = (props) => {
-    const { disableSubmit = false, className, signInUrl = '/sign-in' } = props
+    const { disableSubmit = false, className, signInUrl = '/AA/sign-in' } = props
 
     const { signUp } = useAuth()
 

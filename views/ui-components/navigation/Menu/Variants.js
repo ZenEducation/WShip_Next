@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Menu, Radio } from 'components/ui'
+import { Menu, Radio } from 'components/AfterAuth/ui'
 
 const Variants = () => {
     const [variant, setvariant] = useState('light')

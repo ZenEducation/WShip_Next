@@ -1,5 +1,5 @@
 import React from 'react';
-import { AdaptableCard } from 'components/shared';
+import { AdaptableCard } from 'components/AfterAuth/shared';
 import MailSidebar from './components/MailSidebar';
 import MailBody from './components/MailBody';
 import { injectReducer } from 'store/index';

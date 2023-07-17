@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Input, Button, FormItem, FormContainer, Alert } from 'components/ui'
-import { ActionLink } from 'components/shared'
+import { Input, Button, FormItem, FormContainer, Alert } from 'components/AfterAuth/ui'
+import { ActionLink } from 'components/AfterAuth/shared'
 import { apiForgotPassword } from 'services/AuthService'
 import useTimeOutMessage from 'utils/hooks/useTimeOutMessage'
 import { Field, Form, Formik } from 'formik'
@@ -11,7 +11,7 @@ const validationSchema = Yup.object().shape({
 })
 
 const ForgotPasswordForm = (props) => {
-    const { disableSubmit = false, className, signInUrl = '/sign-in' } = props
+    const { disableSubmit = false, className, signInUrl = '/AA/sign-in' } = props
 
     const [emailSent, setEmailSent] = useState(false)
 

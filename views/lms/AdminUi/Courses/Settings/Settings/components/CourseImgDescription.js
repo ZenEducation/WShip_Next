@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { Input, Upload, Card, Checkbox, Dialog, Button } from 'components/ui';
+import { Input, Upload, Card, Checkbox, Dialog, Button } from 'components/AfterAuth/ui';
 
-import DpUpload from 'components/ui/Upload/DpUpload';
+import DpUpload from 'components/AfterAuth/ui/Upload/DpUpload';
 
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { FiInfo } from 'react-icons/fi';

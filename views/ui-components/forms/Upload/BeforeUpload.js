@@ -1,5 +1,5 @@
 import React from 'react'
-import { Upload } from 'components/ui'
+import { Upload } from 'components/AfterAuth/ui'
 
 const BeforeUpload = () => {
     const maxUpload = 2

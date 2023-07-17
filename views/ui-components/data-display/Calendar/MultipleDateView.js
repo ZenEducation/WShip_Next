@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Calendar } from 'components/ui'
+import { Calendar } from 'components/AfterAuth/ui'
 
 const MultipleDateView = () => {
     const [value, setValue] = useState()

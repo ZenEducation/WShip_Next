@@ -1,6 +1,6 @@
 import React from 'react'
 import SignInForm from 'views/auth/SignIn/SignInForm'
-import Side from 'components/layout/AuthLayout/Side'
+import Side from 'components/AfterAuth/layout/AuthLayout/Side'
 
 const SignInSide = (props) => {
     return (
@@ -14,8 +14,8 @@ const SignInSide = (props) => {
         >
             <SignInForm
                 disableSubmit={true}
-                signUpUrl="/auth/sign-up-side"
-                forgotPasswordUrl="/auth/forgot-password-side"
+                signUpUrl="/AA/auth/sign-up-side"
+                forgotPasswordUrl="/AA/auth/forgot-password-side"
                 {...props}
             />
         </Side>

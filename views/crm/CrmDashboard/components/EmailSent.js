@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Progress } from 'components/ui'
+import { Card, Progress } from 'components/AfterAuth/ui'
 
 const ProgressInfo = ({ precent }) => {
     return (

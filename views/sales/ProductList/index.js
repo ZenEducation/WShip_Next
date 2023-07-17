@@ -1,7 +1,7 @@
 import React from 'react'
 import reducer from './store'
 import { injectReducer } from 'store/index'
-import { AdaptableCard } from 'components/shared'
+import { AdaptableCard } from 'components/AfterAuth/shared'
 import ProductTable from './components/ProductTable'
 import ProductTableTools from './components/ProductTableTools'
 

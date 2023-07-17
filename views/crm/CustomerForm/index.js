@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { Tabs, FormContainer } from 'components/ui'
+import { Tabs, FormContainer } from 'components/AfterAuth/ui'
 import { Form, Formik } from 'formik'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'

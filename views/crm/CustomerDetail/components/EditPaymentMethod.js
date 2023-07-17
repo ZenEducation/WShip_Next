@@ -1,11 +1,11 @@
 import React from 'react'
-import { Input, Button, Dialog, FormItem, FormContainer } from 'components/ui'
+import { Input, Button, Dialog, FormItem, FormContainer } from 'components/AfterAuth/ui'
 import { Field, Form, Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { updatePaymentMethodData } from '../store/dataSlice'
 import { closeEditPaymentMethodDialog } from '../store/stateSlice'
 import cloneDeep from 'lodash/cloneDeep'
-import { FormNumericInput } from 'components/shared'
+import { FormNumericInput } from 'components/AfterAuth/shared'
 import * as Yup from 'yup'
 
 const validationSchema = Yup.object().shape({

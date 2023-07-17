@@ -1,6 +1,6 @@
 import React from 'react'
-import { AdaptableCard, RichTextEditor } from 'components/shared'
-import { Input, FormItem } from 'components/ui'
+import { AdaptableCard, RichTextEditor } from 'components/AfterAuth/shared'
+import { Input, FormItem } from 'components/AfterAuth/ui'
 import { Field } from 'formik'
 
 export const categories = [

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActionLink } from 'components/shared'
+import { ActionLink } from 'components/AfterAuth/shared'
 
 const Hyperlink = () => {
     return (

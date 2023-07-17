@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Card, Avatar } from 'components/ui'
-import { GrowShrinkTag, MediaSkeleton, Loading } from 'components/shared'
+import { Card, Avatar } from 'components/AfterAuth/ui'
+import { GrowShrinkTag, MediaSkeleton, Loading } from 'components/AfterAuth/shared'
 import { getCustomerStatistic } from '../store/dataSlice'
 import {
     HiOutlineUserGroup,

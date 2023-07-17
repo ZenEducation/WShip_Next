@@ -7,8 +7,8 @@ import {
   Button,
   Notification,
   toast,
-} from "components/ui";
-import { RichTextEditor } from "components/shared";
+} from "components/AfterAuth/ui";
+import { RichTextEditor } from "components/AfterAuth/shared";
 import { Field, Form, Formik } from "formik";
 import { useSelector } from "react-redux";
 import { apiPostArticle } from "services/KnowledgeBaseService";
@@ -60,7 +60,7 @@ const Editor = ({ mode }) => {
         <Notification title={`Successfully ${mode} article`} type="success" />,
         { placement: "top-center" }
       );
-      navigate.push("/app/knowledge-base/manage-articles");
+      navigate.push("/AA/app/knowledge-base/manage-articles");
     }
   };
 

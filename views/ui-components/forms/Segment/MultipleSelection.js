@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment } from 'components/ui'
+import { Segment } from 'components/AfterAuth/ui'
 
 const MultipleSelection = () => {
     return (

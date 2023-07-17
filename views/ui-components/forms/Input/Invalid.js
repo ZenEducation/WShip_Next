@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input, Button } from 'components/ui'
+import { Input, Button } from 'components/AfterAuth/ui'
 import { HiExclamationCircle } from 'react-icons/hi'
 
 const Invalid = () => {

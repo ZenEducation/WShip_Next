@@ -1,7 +1,7 @@
 ```jsx
 import React, { useState, useEffect } from 'react'
-import { Button } from 'components/ui'
-import { DataTable } from 'components/shared'
+import { Button } from 'components/AfterAuth/ui'
+import { DataTable } from 'components/AfterAuth/shared'
 import axios from 'axios'
 
 const Basic = () => {

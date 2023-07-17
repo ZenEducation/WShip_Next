@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Select } from 'components/ui'
+import { Select } from 'components/AfterAuth/ui'
 import AsyncSelect from 'react-select/async'
 
 const colourOptions = [

@@ -12,8 +12,8 @@ import {
     Segment,
     FormItem,
     FormContainer,
-} from 'components/ui'
-import { SegmentItemOption } from 'components/shared'
+} from 'components/AfterAuth/ui'
+import { SegmentItemOption } from 'components/AfterAuth/shared'
 import { HiCheckCircle } from 'react-icons/hi'
 import { Field, Form, Formik } from 'formik'
 import CreatableSelect from 'react-select/creatable'

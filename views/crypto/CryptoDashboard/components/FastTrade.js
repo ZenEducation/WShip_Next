@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Dialog } from "components/ui";
+import { Card, Dialog } from "components/AfterAuth/ui";
 import TradeForm from "views/crypto/TradeForm";
 import ProceedTrade from "views/crypto/ProceedTrade";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,7 +51,7 @@ const FastTrade = ({ className }) => {
   const handleDone = (redirect) => {
     onDialogClose();
     if (redirect) {
-      navigate.push("/app/crypto/wallets");
+      navigate.push("/AA/app/crypto/wallets");
     }
   };
 

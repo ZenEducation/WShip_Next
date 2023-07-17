@@ -1,13 +1,13 @@
 import React from 'react'
 import ForgotPasswordForm from 'views/auth/ForgotPassword/ForgotPasswordForm'
-import Simple from 'components/layout/AuthLayout/Simple'
+import Simple from 'components/AfterAuth/layout/AuthLayout/Simple'
 
 const ForgotPasswordSimple = (props) => {
     return (
         <Simple>
             <ForgotPasswordForm
                 disableSubmit={true}
-                signInUrl="/auth/sign-in-simple"
+                signInUrl="/AA/auth/sign-in-simple"
                 {...props}
             />
         </Simple>

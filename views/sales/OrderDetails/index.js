@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
-import { Tag } from "components/ui";
-import { Loading, Container, DoubleSidedImage } from "components/shared";
+import { Tag } from "components/AfterAuth/ui";
+import {
+  Loading,
+  Container,
+  DoubleSidedImage,
+} from "components/AfterAuth/shared";
 import OrderProducts from "./components/OrderProducts";
 import PaymentSummary from "./components/PaymentSummary";
 import ShippingInfo from "./components/ShippingInfo";
@@ -51,7 +55,7 @@ const OrderDetails = () => {
 
   const fetchData = async () => {
     const id = location.pathname.substring(
-      location.pathname.lastIndexOf("/") + 1
+      location.pathname.lastIndexOf("/AA/") + 1
     );
     if (id) {
       setLoading(true);

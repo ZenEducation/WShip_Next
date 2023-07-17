@@ -7,7 +7,7 @@ import {
     Tooltip,
     Checkbox,
     hooks,
-} from 'components/ui'
+} from 'components/AfterAuth/ui'
 import { Field, Form, Formik } from 'formik'
 import { HiCreditCard, HiCalendar, HiInformationCircle } from 'react-icons/hi'
 import NumberFormat from 'react-number-format'

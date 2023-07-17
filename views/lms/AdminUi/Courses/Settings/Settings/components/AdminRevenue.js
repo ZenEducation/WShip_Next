@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import { Input, Card, Checkbox, Select, InputGroup } from 'components/ui';
+import { Input, Card, Checkbox, Select, InputGroup } from 'components/AfterAuth/ui';
 
 import CreatableSelect from 'react-select/creatable';
 
-import { Button, Dropdown, Table } from 'components/ui';
+import { Button, Dropdown, Table } from 'components/AfterAuth/ui';
 import { HiOutlineTrash } from 'react-icons/hi';
 import { TfiEye } from 'react-icons/tfi';
 import { BsFillCaretDownFill } from 'react-icons/bs';

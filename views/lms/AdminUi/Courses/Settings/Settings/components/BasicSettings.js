@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Input, Card, Checkbox } from 'components/ui';
+import { Input, Card, Checkbox } from 'components/AfterAuth/ui';
 
-import { Button, Dropdown } from 'components/ui';
+import { Button, Dropdown } from 'components/AfterAuth/ui';
 import { HiOutlineTrash } from 'react-icons/hi';
 import { TfiEye } from 'react-icons/tfi';
 import { BsFillCaretDownFill } from 'react-icons/bs';

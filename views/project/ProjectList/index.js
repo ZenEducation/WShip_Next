@@ -2,7 +2,7 @@ import React from 'react'
 import ActionBar from './components/ActionBar'
 import ProjectListContent from './components/ProjectListContent'
 import NewProjectDialog from './components/NewProjectDialog'
-import { Container } from 'components/shared'
+import { Container } from 'components/AfterAuth/shared'
 import reducer from './store'
 import { injectReducer } from 'store/index'
 

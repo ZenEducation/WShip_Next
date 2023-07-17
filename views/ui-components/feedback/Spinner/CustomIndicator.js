@@ -1,5 +1,5 @@
 import React from 'react'
-import { Spinner } from 'components/ui'
+import { Spinner } from 'components/AfterAuth/ui'
 import { ImSpinner9 } from 'react-icons/im'
 
 const CustomIndicator = () => {

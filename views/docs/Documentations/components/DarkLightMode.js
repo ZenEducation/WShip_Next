@@ -1,5 +1,5 @@
 import React from 'react'
-import { SyntaxHighlighter } from 'components/shared'
+import { SyntaxHighlighter } from 'components/AfterAuth/shared'
 
 const DarkLightMode = () => {
     return (
@@ -21,7 +21,7 @@ const DarkLightMode = () => {
                     prepared hook.
                 </p>
                 <SyntaxHighlighter language="js">{`import React from 'react'
-import { Switcher } from 'components/ui'
+import { Switcher } from 'components/AfterAuth/ui'
 import useDarkMode from 'utils/hooks/useDarkMode'
 
 const ModeSwitcher = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown } from 'components/ui'
+import { Dropdown } from 'components/AfterAuth/ui'
 
 const Submenu = () => {
     return (

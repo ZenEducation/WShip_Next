@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Alert } from 'components/ui'
+import { Alert } from 'components/AfterAuth/ui'
 
 const Icon = () => {
     return (

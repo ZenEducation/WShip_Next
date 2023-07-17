@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, Form, Formik } from 'formik'
-import { Input, Button, FormItem, FormContainer } from 'components/ui'
+import { Input, Button, FormItem, FormContainer } from 'components/AfterAuth/ui'
 
 function validateEmail(value) {
     let error

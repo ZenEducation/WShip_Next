@@ -1,5 +1,5 @@
 import React from 'react'
-import { DatePicker, Badge } from 'components/ui'
+import { DatePicker, Badge } from 'components/AfterAuth/ui'
 
 const CustomRender = () => {
     return (

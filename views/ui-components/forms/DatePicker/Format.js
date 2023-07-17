@@ -1,5 +1,5 @@
 import React from 'react'
-import { DatePicker } from 'components/ui'
+import { DatePicker } from 'components/AfterAuth/ui'
 
 const Format = () => {
     const date = new Date()

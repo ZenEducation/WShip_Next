@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { Card } from 'components/ui'
-import { DoubleSidedImage } from 'components/shared'
+import { Card } from 'components/AfterAuth/ui'
+import { DoubleSidedImage } from 'components/AfterAuth/shared'
 import { queryArticles, setSearch } from '../store/dataSlice'
 import { useDispatch } from 'react-redux'
 

@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Radio } from 'components/ui'
+import { Radio } from 'components/AfterAuth/ui'
 
 const Disabled = () => {
     return (

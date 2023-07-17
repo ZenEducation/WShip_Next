@@ -7,8 +7,8 @@ import {
     Dialog,
     Button,
     Avatar,
-} from 'components/ui'
-import EllipsisButton from 'components/shared/EllipsisButton'
+} from 'components/AfterAuth/ui'
+import EllipsisButton from 'components/AfterAuth/shared/EllipsisButton'
 import {
     HiOutlinePencil,
     HiOutlineTrash,

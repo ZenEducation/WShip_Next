@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag, Button } from 'components/ui'
+import { Tag, Button } from 'components/AfterAuth/ui'
 import EditPaymentMethod from './EditPaymentMethod'
 import DeletePaymentMethod from './DeletePaymentMethod'
 import { useDispatch, useSelector } from 'react-redux'

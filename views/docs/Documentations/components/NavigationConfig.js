@@ -1,6 +1,6 @@
 import React from 'react'
-import { SyntaxHighlighter } from 'components/shared'
-import DemoComponentApi from 'components/docs/DemoComponentApi'
+import { SyntaxHighlighter } from 'components/AfterAuth/shared'
+import DemoComponentApi from 'components/AfterAuth/docs/DemoComponentApi'
 
 const NavigationConfig = () => {
     return (

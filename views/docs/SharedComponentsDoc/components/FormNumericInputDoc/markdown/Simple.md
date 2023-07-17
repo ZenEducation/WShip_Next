@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { FormNumericInput } from 'components/shared'
+import { FormNumericInput } from 'components/AfterAuth/shared'
 
 const Simple = () => {
     const [value, setValue] = useState(0)

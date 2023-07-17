@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { CalendarView, Container } from 'components/shared'
+import { CalendarView, Container } from 'components/AfterAuth/shared'
 import EventDialog from './components/EventDialog'
 import reducer from './store'
 import { injectReducer } from 'store/index'

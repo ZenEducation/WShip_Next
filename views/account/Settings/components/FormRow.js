@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { FormItem } from 'components/ui'
+import { FormItem } from 'components/AfterAuth/ui'
 
 const FormRow = (props) => {
     const {

@@ -1,7 +1,7 @@
 ```jsx
 import React, { useState } from 'react'
-import { SegmentItemOption } from 'components/shared'
-import { Segment } from 'components/ui'
+import { SegmentItemOption } from 'components/AfterAuth/shared'
+import { Segment } from 'components/AfterAuth/ui'
 
 import { HiOutlineCode, HiOutlineCube, HiOutlinePencil } from 'react-icons/hi'
 

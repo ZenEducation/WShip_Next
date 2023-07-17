@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card } from 'components/ui'
-import { Chart } from 'components/shared'
+import { Card } from 'components/AfterAuth/ui'
+import { Chart } from 'components/AfterAuth/shared'
 
 const Overview = ({ data = {}, className }) => {
     return (

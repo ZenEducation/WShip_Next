@@ -1,6 +1,6 @@
 import React from "react";
-import { DoubleSidedImage, SyntaxHighlighter } from "components/shared";
-import DemoComponentApi from "components/docs/DemoComponentApi";
+import { DoubleSidedImage, SyntaxHighlighter } from "components/AfterAuth/shared";
+import DemoComponentApi from "components/AfterAuth/docs/DemoComponentApi";
 
 const Frame = ({ children }) => {
   return (

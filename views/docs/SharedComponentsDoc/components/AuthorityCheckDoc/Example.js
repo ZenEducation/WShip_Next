@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthorityCheck } from "components/shared";
+import { AuthorityCheck } from "components/AfterAuth/shared";
 
 const Example = () => {
   const permissionRole = ["ADMIN", "USER"];

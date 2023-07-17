@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { Input } from 'components/ui'
+import { Input } from 'components/AfterAuth/ui'
 import { HiOutlineSearch } from 'react-icons/hi'
 import debounce from 'lodash/debounce'
 

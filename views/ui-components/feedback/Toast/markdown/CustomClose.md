@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Notification, toast, Button } from 'components/ui'
+import { Notification, toast, Button } from 'components/AfterAuth/ui'
 
 const CustomClose = () => {
     function closeNotification(key) {

@@ -5,15 +5,15 @@ import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 import Quiz from '../../Quiz/index';
 
 import Survey from '../../Survey/index';
-import { Button, Card, Dropdown, Select } from 'components/ui';
+import { Button, Card, Dropdown, Select } from 'components/AfterAuth/ui';
 import { IoChevronBackOutline } from 'react-icons/io5';
 import { MdExpandMore } from 'react-icons/md';
 import { TiTick } from 'react-icons/ti';
 import { GrDownload, GrExpand } from 'react-icons/gr';
 import { CgArrowsExpandRight } from 'react-icons/cg';
-import FileItem from 'components/ui/Upload/FileItem';
+import FileItem from 'components/AfterAuth/ui/Upload/FileItem';
 
-import CourseFileItem from 'components/ui/Upload/CourseFileItem';
+import CourseFileItem from 'components/AfterAuth/ui/Upload/CourseFileItem';
 
 import { AiOutlinePlus } from 'react-icons/ai';
 

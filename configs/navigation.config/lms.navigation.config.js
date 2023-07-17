@@ -148,7 +148,7 @@ const lmsNavigationConfig = [
 
       {
         key: 'asset library',
-        path: '/',
+        path: '/AA/',
         title: 'Asset Library',
         // translateKey: 'nav.pages.welcome',
         icon: 'forms',
@@ -159,7 +159,7 @@ const lmsNavigationConfig = [
 
       {
         key: 'reports',
-        path: '/',
+        path: '/AA/',
         title: 'Reports',
         // translateKey: 'nav.pages.welcome',
         icon: 'sales',
@@ -170,7 +170,7 @@ const lmsNavigationConfig = [
 
       {
         key: 'manage',
-        path: '/',
+        path: '/AA/',
         title: 'Manage',
         // translateKey: 'nav.pages.welcome',
         icon: 'manage',
@@ -181,7 +181,7 @@ const lmsNavigationConfig = [
 
       // {
       //   key: 'settings',
-      //   path: '/',
+      //   path: '/AA/',
       //   title: 'Settings',
       //   // translateKey: 'nav.pages.welcome',
       //   icon: 'settings',

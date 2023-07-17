@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dialog } from 'components/ui'
+import { Dialog } from 'components/AfterAuth/ui'
 import NewProjectForm from './NewProjectForm'
 import { toggleNewProjectDialog } from '../store/stateSlice'
 import { useDispatch, useSelector } from 'react-redux'

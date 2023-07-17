@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Timeline, Avatar, Badge, Card, Tag } from 'components/ui'
+import { Timeline, Avatar, Badge, Card, Tag } from 'components/AfterAuth/ui'
 import { HiTag } from 'react-icons/hi'
 
 const TimelineAvatar = ({ children, ...rest }) => {

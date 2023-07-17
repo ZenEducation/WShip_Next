@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { DoubleSidedImage } from 'components/shared'
+import { DoubleSidedImage } from 'components/AfterAuth/shared'
 
 const Example = () => {
     return (

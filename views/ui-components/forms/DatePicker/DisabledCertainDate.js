@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DatePicker } from 'components/ui'
+import { DatePicker } from 'components/AfterAuth/ui'
 
 const DisabledCertainDate = () => {
     const [dateValue, setDateValue] = useState(new Date())

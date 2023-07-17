@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Segment } from 'components/ui'
+import { Segment } from 'components/AfterAuth/ui'
 
 const Size = () => {
     const [size, setSize] = useState(['md'])

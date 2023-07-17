@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { Dialog } from 'components/ui';
+import { Dialog } from 'components/AfterAuth/ui';
 import { Droppable, DragDropContext } from 'react-beautiful-dnd';
 import { getBoards } from './store/dataSlice';
 import { useSelector, useDispatch } from 'react-redux';

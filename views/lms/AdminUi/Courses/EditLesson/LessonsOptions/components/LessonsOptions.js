@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { Card, Avatar, Button } from 'components/ui';
-import { GrowShrinkTag, MediaSkeleton, Loading } from 'components/shared';
+import { Card, Avatar, Button } from 'components/AfterAuth/ui';
+import { GrowShrinkTag, MediaSkeleton, Loading } from 'components/AfterAuth/shared';
 import { getCustomerStatistic } from '../store/dataSlice';
 
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';

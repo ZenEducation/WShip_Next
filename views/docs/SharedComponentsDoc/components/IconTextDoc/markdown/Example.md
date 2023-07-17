@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { IconText } from 'components/shared'
+import { IconText } from 'components/AfterAuth/shared'
 import { HiClock } from 'react-icons/hi'
 
 const Example = () => {

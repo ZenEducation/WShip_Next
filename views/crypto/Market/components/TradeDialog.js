@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dialog } from "components/ui";
+import { Dialog } from "components/AfterAuth/ui";
 import { toggleTradeDialog, setSelectedRow } from "../store/stateSlice";
 import TradeForm from "views/crypto/TradeForm";
 import ProceedTrade from "views/crypto/ProceedTrade";
@@ -53,7 +53,7 @@ const TradeDialog = () => {
   const handleDone = (redirect) => {
     onDialogClose();
     if (redirect) {
-      navigate.push("/app/crypto/wallets");
+      navigate.push("/AA/app/crypto/wallets");
     }
   };
 

@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Avatar } from 'components/ui'
+import { Avatar } from 'components/AfterAuth/ui'
 
 const Group = () => {
     return (

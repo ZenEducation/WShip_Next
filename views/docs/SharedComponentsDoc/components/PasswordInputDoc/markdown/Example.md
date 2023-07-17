@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { PasswordInput } from 'components/shared'
+import { PasswordInput } from 'components/AfterAuth/shared'
 
 const Example = () => {
     return <PasswordInput />

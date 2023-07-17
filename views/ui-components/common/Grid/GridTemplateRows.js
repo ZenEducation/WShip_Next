@@ -1,5 +1,5 @@
 import React from 'react'
-import DemoBoxContent from 'components/docs/DemoBoxContent'
+import DemoBoxContent from 'components/AfterAuth/docs/DemoBoxContent'
 
 const GridTemplateRows = () => {
     return (

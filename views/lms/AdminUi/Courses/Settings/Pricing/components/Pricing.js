@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
 
-import { Card, Checkbox, Menu, Radio, Tabs, Tooltip } from 'components/ui';
+import { Card, Checkbox, Menu, Radio, Tabs, Tooltip } from 'components/AfterAuth/ui';
 
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
 const { TabNav, TabList, TabContent } = Tabs;
 
 import dynamic from 'next/dynamic';
-import Header from 'components/template/Header';
+import Header from 'components/AfterAuth/template/Header';
 import { RxCross1 } from 'react-icons/rx';
-import { Button, Dropdown } from 'components/ui';
+import { Button, Dropdown } from 'components/AfterAuth/ui';
 import { TfiEye } from 'react-icons/tfi';
 import {
   BsArrowBarLeft,
@@ -24,9 +24,9 @@ import {
 import { BiArrowBack, BiEdit } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { Text } from 'html-react-parser';
-import { InputGroup, Input, Select, Switcher } from 'components/ui';
+import { InputGroup, Input, Select, Switcher } from 'components/AfterAuth/ui';
 const { Addon } = InputGroup;
-import { Table } from 'components/ui';
+import { Table } from 'components/AfterAuth/ui';
 
 const { Tr, Th, Td, THead, TBody } = Table;
 

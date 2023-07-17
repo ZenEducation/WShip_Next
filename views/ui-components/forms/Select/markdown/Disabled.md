@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Select } from 'components/ui'
+import { Select } from 'components/AfterAuth/ui'
 
 const colourOptions = [
     { value: 'ocean', label: 'Ocean', color: '#00B8D9', isDisabled: true },

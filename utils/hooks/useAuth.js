@@ -37,7 +37,7 @@ function useAuth() {
           );
         }
         const redirectUrl = query.get(REDIRECT_URL_KEY);
-        navigate.push("/app/sales/dashboard");
+        navigate.push("/AA/app/sales/dashboard");
         return {
           status: "success",
           message: "",
@@ -70,7 +70,7 @@ function useAuth() {
           );
         }
         const redirectUrl = query.get(REDIRECT_URL_KEY);
-        navigate.push("/app/sales/dashboard");
+        navigate.push("/AA/app/sales/dashboard");
         return {
           status: "success",
           message: "",
@@ -87,7 +87,7 @@ function useAuth() {
   const handleSignOut = () => {
     dispatch(onSignOutSuccess());
     dispatch(setUser(initialState));
-    navigate.push("/sign-in");
+    navigate.push("/AA/sign-in");
   };
 
   const signOut = async () => {

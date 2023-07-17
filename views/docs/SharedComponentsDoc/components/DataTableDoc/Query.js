@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Button, Input } from 'components/ui'
-import { DataTable } from 'components/shared'
+import { Button, Input } from 'components/AfterAuth/ui'
+import { DataTable } from 'components/AfterAuth/shared'
 import debounce from 'lodash/debounce'
 import axios from 'axios'
 

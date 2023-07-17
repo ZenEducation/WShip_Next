@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input } from 'components/ui'
+import { Input } from 'components/AfterAuth/ui'
 
 const Textarea = () => {
     return (

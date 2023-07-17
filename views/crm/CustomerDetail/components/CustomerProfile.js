@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Avatar, Button, Notification, toast } from 'components/ui'
+import { Card, Avatar, Button, Notification, toast } from 'components/AfterAuth/ui'
 import {
     FaFacebookF,
     FaTwitter,
@@ -7,7 +7,7 @@ import {
     FaPinterestP,
 } from 'react-icons/fa'
 import { HiPencilAlt, HiOutlineTrash } from 'react-icons/hi'
-import { ConfirmDialog } from 'components/shared'
+import { ConfirmDialog } from 'components/AfterAuth/shared'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { deleteCustomer } from '../store/dataSlice'
@@ -42,7 +42,7 @@ const CustomerProfileAction = ({ id }) => {
     const onDelete = () => {
         setDialogOpen(false)
         dispatch(deleteCustomer({ id }))
-        navigate('/app/crm/customers')
+        navigate('/AA/app/crm/customers')
         toast.push(
             <Notification title={'Successfuly Deleted'} type="success">
                 Customer successfuly deleted

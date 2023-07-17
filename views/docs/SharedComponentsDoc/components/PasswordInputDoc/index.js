@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DemoLayout from 'components/docs/DemoLayout'
+import DemoLayout from 'components/AfterAuth/docs/DemoLayout'
 
 // Demo
 import Example from './Example'
@@ -17,7 +17,7 @@ const demos = [
         mdName: 'Example',
         mdPath: mdPath,
         title: 'Example',
-        desc: `PasswordInput accepts all props from <a class="text-indigo-600 underline" href="/ui-components/input#api" target="_blank"><code>Input</code></a>`,
+        desc: `PasswordInput accepts all props from <a class="text-indigo-600 underline" href="/AA/ui-components/input#api" target="_blank"><code>Input</code></a>`,
         component: <Example />,
     },
 ]

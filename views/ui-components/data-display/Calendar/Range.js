@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { RangeCalendar } from 'components/ui'
+import { RangeCalendar } from 'components/AfterAuth/ui'
 import dayjs from 'dayjs'
 
 const Range = () => {

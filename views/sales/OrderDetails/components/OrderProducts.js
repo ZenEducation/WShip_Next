@@ -1,6 +1,6 @@
 import React, { useMemo, Fragment } from 'react'
-import { AdaptableCard } from 'components/shared'
-import { Table, Avatar } from 'components/ui'
+import { AdaptableCard } from 'components/AfterAuth/shared'
+import { Table, Avatar } from 'components/AfterAuth/ui'
 import { useTable } from 'react-table'
 import NumberFormat from 'react-number-format'
 import isLastChild from 'utils/isLastChild'

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Timeline, Button } from 'components/ui'
-import { Loading } from 'components/shared'
+import { Timeline, Button } from 'components/AfterAuth/ui'
+import { Loading } from 'components/AfterAuth/shared'
 import Event from './Event'
 import TimelineAvatar from './TimelineAvatar'
 import { getLogs, filterLogs, setActivityIndex } from '../store/dataSlice'

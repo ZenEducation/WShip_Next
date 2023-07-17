@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import { Card, Calendar, Badge } from 'components/ui'
+import { Card, Calendar, Badge } from 'components/AfterAuth/ui'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { HiVideoCamera, HiDocumentText, HiChatAlt2 } from 'react-icons/hi'
 

@@ -8,8 +8,8 @@ import {
     Notification,
     toast,
     Skeleton,
-} from 'components/ui'
-import { Loading, GrowShrinkTag } from 'components/shared'
+} from 'components/AfterAuth/ui'
+import { Loading, GrowShrinkTag } from 'components/AfterAuth/shared'
 import { getWalletData } from '../store/dataSlice'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { HiOutlineDuplicate, HiOutlinePlus } from 'react-icons/hi'

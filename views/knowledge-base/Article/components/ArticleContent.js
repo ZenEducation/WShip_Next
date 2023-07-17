@@ -4,7 +4,7 @@ import {
   UsersAvatarGroup,
   MediaSkeleton,
   TextBlockSkeleton,
-} from "components/shared";
+} from "components/AfterAuth/shared";
 import ArticleAction from "./ArticleAction";
 import { getArticle } from "../store/dataSlice";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,5 +1,5 @@
 import React from 'react'
-import { SyntaxHighlighter } from 'components/shared'
+import { SyntaxHighlighter } from 'components/AfterAuth/shared'
 
 const Direction = () => {
     return (
@@ -21,7 +21,7 @@ const Direction = () => {
                     our prepared hook.
                 </p>
                 <SyntaxHighlighter language="js">{`import React from 'react'
-import { InputGroup, Button } from 'components/ui'
+import { InputGroup, Button } from 'components/AfterAuth/ui'
 import useDirection from 'utils/hooks/useDirection'
 
 const dirList = [

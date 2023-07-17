@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updatePaymentMethodData } from '../store/dataSlice'
 import { closeDeletePaymentMethodDialog } from '../store/stateSlice'
 import cloneDeep from 'lodash/cloneDeep'
-import { ConfirmDialog } from 'components/shared'
+import { ConfirmDialog } from 'components/AfterAuth/shared'
 
 const DeletePaymentMethod = () => {
     const dispatch = useDispatch()

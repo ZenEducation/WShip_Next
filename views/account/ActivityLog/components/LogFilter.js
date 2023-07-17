@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import classNames from "classnames";
-import { Checkbox } from "components/ui";
-// import Affix from 'components/shared/Affix'
+import { Checkbox } from "components/AfterAuth/ui";
+// import Affix from 'components/AfterAuth/shared/Affix'
 import { useDispatch, useSelector } from "react-redux";
 import { setSelected } from "../store/stateSlice";
 import { setActivityIndex, filterLogs } from "../store/dataSlice";
@@ -15,7 +15,7 @@ import {
   CREATE_TICKET,
 } from "../constants";
 import dynamic from "next/dynamic";
-const Affix = dynamic(() => import("components/shared/Affix"), {
+const Affix = dynamic(() => import("components/AfterAuth/shared/Affix"), {
   ssr: false,
 });
 const commentCheckboxes = [

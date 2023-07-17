@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { DatePicker } from 'components/ui'
+import { DatePicker } from 'components/AfterAuth/ui'
 import dayjs from 'dayjs'
 
 const DisableOutOfPeriodDate = () => {

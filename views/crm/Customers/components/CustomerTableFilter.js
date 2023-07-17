@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select, Badge } from 'components/ui'
+import { Select, Badge } from 'components/AfterAuth/ui'
 import { setFilterData } from '../store/dataSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { components } from 'react-select'

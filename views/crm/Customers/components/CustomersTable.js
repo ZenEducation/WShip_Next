@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useMemo } from "react";
-import { Avatar, Badge } from "components/ui";
-import { DataTable } from "components/shared";
+import { Avatar, Badge } from "components/AfterAuth/ui";
+import { DataTable } from "components/AfterAuth/shared";
 import { useDispatch, useSelector } from "react-redux";
 import { getCustomers, setTableData } from "../store/dataSlice";
 import {
