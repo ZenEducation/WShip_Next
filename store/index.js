@@ -3,13 +3,14 @@ import rootReducer from './rootReducer'
 import { configureStore } from '@reduxjs/toolkit'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const middlewares = []
 
 const persistConfig = {
     key: PERSIST_STORE_NAME,
     keyPrefix: '',
-    storage,
+    storage: AsyncStorage,
     whitelist: ['auth', 'theme', 'locale'],
 }
 
