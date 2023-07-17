@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, lazy, Suspense } from "react";
-import { Container, AdaptableCard } from "components/shared";
+import { Container, AdaptableCard } from "components/AfterAuth/shared";
 import FormStep from "./components/FormStep";
 import { useDispatch, useSelector } from "react-redux";
 import { getForm, setStepStatus, setFormData } from "./store/dataSlice";

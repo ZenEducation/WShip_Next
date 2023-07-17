@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { DatePicker } from 'components/ui'
+import { DatePicker } from 'components/AfterAuth/ui'
 
 const DisabledInput = () => {
     const [date] = useState(new Date())

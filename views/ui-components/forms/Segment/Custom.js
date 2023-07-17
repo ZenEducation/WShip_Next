@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Segment } from 'components/ui'
+import { Segment } from 'components/AfterAuth/ui'
 import { HiCheckCircle } from 'react-icons/hi'
 
 const segmentSelections = [

@@ -1,13 +1,13 @@
 import { Card, Checkbox, Radio } from '@/components/ui';
 import React, { useContext, useState } from 'react';
-import { Button } from 'components/ui';
-import { DatePicker } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
+import { DatePicker } from 'components/AfterAuth/ui';
 
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
 import dayjs from 'dayjs';
 
-import { InputGroup, Input, Select, Switcher } from 'components/ui';
+import { InputGroup, Input, Select, Switcher } from 'components/AfterAuth/ui';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
 // Settings

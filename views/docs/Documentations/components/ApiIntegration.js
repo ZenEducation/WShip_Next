@@ -1,6 +1,6 @@
 import React from 'react'
-import { SyntaxHighlighter } from 'components/shared'
-import { Alert } from 'components/ui'
+import { SyntaxHighlighter } from 'components/AfterAuth/shared'
+import { Alert } from 'components/AfterAuth/ui'
 
 const ApiIntegration = () => {
     return (
@@ -123,7 +123,7 @@ export default yourSlice.reducer`}</SyntaxHighlighter>
 
 module.exports = function(app) {
 	app.use(
-		'/api',
+		'/AA/api',
 			createProxyMiddleware({
 			target: 'http:yourDevDomain.com', // <--- config the url based on your backend server
 			changeOrigin: true,

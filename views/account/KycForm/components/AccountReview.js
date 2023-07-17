@@ -1,5 +1,5 @@
 import React from 'react'
-import { DoubleSidedImage } from 'components/shared'
+import { DoubleSidedImage } from 'components/AfterAuth/shared'
 
 const AccountReview = () => {
     return (

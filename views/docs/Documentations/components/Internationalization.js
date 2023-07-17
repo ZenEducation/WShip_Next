@@ -1,5 +1,5 @@
 import React from 'react'
-import { SyntaxHighlighter } from 'components/shared'
+import { SyntaxHighlighter } from 'components/AfterAuth/shared'
 
 const Internationalization = () => {
     return (

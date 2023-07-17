@@ -1,7 +1,7 @@
 import React from 'react'
-import { Table } from 'components/ui'
+import { Table } from 'components/AfterAuth/ui'
 
-import DemoLayout from 'components/docs/DemoLayout'
+import DemoLayout from 'components/AfterAuth/docs/DemoLayout'
 
 // Demo
 import Notification from './Notification'
@@ -60,7 +60,7 @@ const demos = [
         mdName: 'AlertToast',
         mdPath: mdPath,
         title: 'Alert',
-        desc: `Toast can also use with <a href="/ui-components/alert" class="text-blue-500">Alert</a>.`,
+        desc: `Toast can also use with <a href="/AA/ui-components/alert" class="text-blue-500">Alert</a>.`,
         component: <AlertToast />,
     },
     {

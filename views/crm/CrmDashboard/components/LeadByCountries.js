@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, Badge } from "components/ui";
-import { RegionMap } from "components/shared";
+import { Card, Badge } from "components/AfterAuth/ui";
+import { RegionMap } from "components/AfterAuth/shared";
 import { theme } from "twin.macro";
 
 const twColor = theme`colors`;

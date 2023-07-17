@@ -1,6 +1,6 @@
 import React from 'react'
-import { SyntaxHighlighter } from 'components/shared'
-import DemoComponentApi from 'components/docs/DemoComponentApi'
+import { SyntaxHighlighter } from 'components/AfterAuth/shared'
+import DemoComponentApi from 'components/AfterAuth/docs/DemoComponentApi'
 
 function range(start, end) {
     return Array(end - start + 1)
@@ -158,8 +158,8 @@ export async function apiSignOut (data) {
                 hook:
             </p>
             <SyntaxHighlighter language="js">{`import React from 'react'
-import { Input, Button, Checkbox, FormItem, FormContainer, Alert } from 'components/ui'
-import { PasswordInput, ActionLink } from 'components/shared'
+import { Input, Button, Checkbox, FormItem, FormContainer, Alert } from 'components/AfterAuth/ui'
+import { PasswordInput, ActionLink } from 'components/AfterAuth/shared'
 import useTimeOutMessage from 'utils/hooks/useTimeOutMessage'
 import { Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'

@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, Avatar, Button } from "components/ui";
-import { GrowShrinkTag } from "components/shared";
+import { Card, Avatar, Button } from "components/AfterAuth/ui";
+import { GrowShrinkTag } from "components/AfterAuth/shared";
 import NumberFormat from "react-number-format";
 // import { useNavigate } from 'react-router-dom'
 import { useRouter } from "next/router";
@@ -39,7 +39,7 @@ const Holding = ({ data = [] }) => {
     <Card>
       <div className="flex justify-between items-center mb-4">
         <h4>Holdings</h4>
-        <Button size="sm" onClick={() => navigate.push("/app/crypto/wallets")}>
+        <Button size="sm" onClick={() => navigate.push("/AA/app/crypto/wallets")}>
           View All
         </Button>
       </div>

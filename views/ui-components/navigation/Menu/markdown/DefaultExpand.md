@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Menu } from 'components/ui'
+import { Menu } from 'components/AfterAuth/ui'
 
 const DefaultExpand = () => {
     const [defaultExpandKey] = useState(['item-3'])

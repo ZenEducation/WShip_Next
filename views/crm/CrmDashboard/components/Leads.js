@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Card, Button, Table, Tag, Avatar } from "components/ui";
+import { Card, Button, Table, Tag, Avatar } from "components/AfterAuth/ui";
 import { useTable } from "react-table";
 // import { useNavigate } from 'react-router-dom'
 import { useRouter } from "next/router";
@@ -100,7 +100,7 @@ const Leads = ({ data = [], className }) => {
     useTable({ columns, data, initialState: { pageIndex: 0 } });
 
   const onNavigate = () => {
-    navigate.push("/app/crm/customers");
+    navigate.push("/AA/app/crm/customers");
   };
 
   return (

@@ -14,7 +14,7 @@ import {
     FormItem,
     FormContainer,
     Drawer,
-} from 'components/ui'
+} from 'components/AfterAuth/ui'
 import { Field, Form, Formik } from 'formik'
 
 const FilterForm = forwardRef(({ onSubmitComplete }, ref) => {

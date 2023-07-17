@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdaptableCard } from 'components/shared'
+import { AdaptableCard } from 'components/AfterAuth/shared'
 import CustomersTable from './components/CustomersTable'
 import CustomersTableTools from './components/CustomersTableTools'
 import CustomerStatistic from './components/CustomerStatistic'

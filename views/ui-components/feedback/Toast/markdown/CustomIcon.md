@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Notification, toast, Button, Avatar } from 'components/ui'
+import { Notification, toast, Button, Avatar } from 'components/AfterAuth/ui'
 import { HiOutlineGift } from 'react-icons/hi'
 
 const CustomIcon = () => {

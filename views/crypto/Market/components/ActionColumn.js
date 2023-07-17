@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Button } from 'components/ui'
+import { Button } from 'components/AfterAuth/ui'
 import { useDispatch } from 'react-redux'
 import { toggleTradeDialog, setSelectedRow } from '../store/stateSlice'
 

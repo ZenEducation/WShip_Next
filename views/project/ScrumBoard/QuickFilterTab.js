@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tabs } from 'components/ui'
+import { Tabs } from 'components/AfterAuth/ui'
 import { labelList } from './utils'
 import { setSelectedTab } from './store/stateSlice'
 import { useSelector, useDispatch } from 'react-redux'

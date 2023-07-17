@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Menu } from 'components/ui'
+import { Menu } from 'components/AfterAuth/ui'
 import { HiCheckCircle, HiLockClosed } from 'react-icons/hi'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { setCurrentStep } from '../store/stateSlice'

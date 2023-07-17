@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from 'components/ui'
+import { Button } from 'components/AfterAuth/ui'
 import { HiOutlineCog, HiOutlinePencil, HiOutlineInboxIn } from 'react-icons/hi'
 
 const ButtonWithIcon = () => {

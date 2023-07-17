@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag } from 'components/ui'
+import { Tag } from 'components/AfterAuth/ui'
 
 const Custom = () => {
     return (

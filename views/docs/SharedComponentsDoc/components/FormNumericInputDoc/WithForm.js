@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, FormItem, FormContainer } from 'components/ui'
-import { FormNumericInput } from 'components/shared'
+import { Button, FormItem, FormContainer } from 'components/AfterAuth/ui'
+import { FormNumericInput } from 'components/AfterAuth/shared'
 import { Field, Form, Formik } from 'formik'
 
 const WithForm = () => {

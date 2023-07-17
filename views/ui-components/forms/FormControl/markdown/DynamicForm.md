@@ -1,7 +1,7 @@
 ```jsx
 import React from "react";
 import { Field, FieldArray, Form, Formik, getIn } from "formik";
-import { Input, Button, FormItem, FormContainer } from "components/ui";
+import { Input, Button, FormItem, FormContainer } from "components/AfterAuth/ui";
 import { HiMinus } from "react-icons/hi";
 import * as Yup from "yup";
 

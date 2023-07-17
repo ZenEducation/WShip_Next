@@ -5,9 +5,9 @@ import {
   FormContainer,
   Notification,
   toast,
-} from 'components/ui';
+} from 'components/AfterAuth/ui';
 import { Field, Form, Formik } from 'formik';
-import { RichTextEditor } from 'components/shared';
+import { RichTextEditor } from 'components/AfterAuth/shared';
 import { useDispatch } from 'react-redux';
 import { updateReply, toggleNewMessageDialog } from '../store/stateSlice';
 import * as Yup from 'yup';

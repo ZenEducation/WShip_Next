@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import { TextEllipsis, Loading, TextBlockSkeleton } from "components/shared";
+import { TextEllipsis, Loading, TextBlockSkeleton } from "components/AfterAuth/shared";
 import isLastChild from "utils/isLastChild";
 import { getOthersArticle } from "../store/dataSlice";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Upload } from 'components/ui'
+import { Upload } from 'components/AfterAuth/ui'
 
 const DragAndDrop = () => {
     return (

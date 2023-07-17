@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Table, Switcher } from 'components/ui'
-import { TableRowSkeleton } from 'components/shared'
+import { Table, Switcher } from 'components/AfterAuth/ui'
+import { TableRowSkeleton } from 'components/AfterAuth/shared'
 import { useTable } from 'react-table'
 
 const columns = [

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdaptableCard, Container } from 'components/shared'
+import { AdaptableCard, Container } from 'components/AfterAuth/shared'
 
 const logData = [
     {

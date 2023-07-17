@@ -16,18 +16,18 @@ import {
   Tooltip,
   InputGroup,
   toast,
-} from 'components/ui';
+} from 'components/AfterAuth/ui';
 import { Field, Form, Formik } from 'formik';
 import { HiOutlineExclamationCircle, HiOutlineTrash } from 'react-icons/hi';
 // import { Button } from 'react-scroll';
-import { Button } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
 import Addon from '@/components/ui/InputGroup/Addon';
 import { BsCameraVideo, BsPencilSquare } from 'react-icons/bs';
 import { GrUpgrade } from 'react-icons/gr';
 import { AiFillFilePdf } from 'react-icons/ai';
 // import { RichTextEditor } from '@/components/shared';
-import { RichTextEditor } from 'components/shared';
-import Notification from 'components/ui/Notification/';
+import { RichTextEditor } from 'components/AfterAuth/shared';
+import Notification from 'components/AfterAuth/ui/Notification/';
 
 const TextLesson = forwardRef((props, ref) => {
   const { mode } = props;

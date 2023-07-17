@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Timeline, Badge, Card } from 'components/ui'
+import { Timeline, Badge, Card } from 'components/AfterAuth/ui'
 import isLastChild from 'utils/isLastChild'
 import dayjs from 'dayjs'
 

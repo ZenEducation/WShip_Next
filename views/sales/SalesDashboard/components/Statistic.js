@@ -1,7 +1,7 @@
 import React from 'react'
-import { Card } from 'components/ui'
+import { Card } from 'components/AfterAuth/ui'
 import NumberFormat from 'react-number-format'
-import { GrowShrinkTag } from 'components/shared'
+import { GrowShrinkTag } from 'components/AfterAuth/shared'
 import { useSelector } from 'react-redux'
 import dayjs from 'dayjs'
 

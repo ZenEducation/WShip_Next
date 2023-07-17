@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from "react";
-import { Table } from "components/ui";
+import { Table } from "components/AfterAuth/ui";
 import { useTable, useFlexLayout } from "react-table";
 import { FixedSizeList } from "react-window";
 import { data100 } from "./data";

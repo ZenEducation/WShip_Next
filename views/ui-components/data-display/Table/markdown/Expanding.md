@@ -1,6 +1,6 @@
 ```jsx
 import React, { useMemo } from "react";
-import { Table } from "components/ui";
+import { Table } from "components/AfterAuth/ui";
 import { useTable, useExpanded } from "react-table";
 import { dataWithSubRows } from "./data";
 import { HiOutlinePlusCircle, HiOutlineMinusCircle } from "react-icons/hi";

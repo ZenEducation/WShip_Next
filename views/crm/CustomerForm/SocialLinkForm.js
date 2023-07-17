@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, FormItem } from 'components/ui'
+import { Input, FormItem } from 'components/AfterAuth/ui'
 import { BsFacebook, BsTwitter, BsPinterest, BsLinkedin } from 'react-icons/bs'
 import { Field } from 'formik'
 

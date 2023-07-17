@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Card, Avatar } from 'components/ui'
+import { Card, Avatar } from 'components/AfterAuth/ui'
 import {
     HiOutlineSwitchHorizontal,
     HiOutlineShoppingCart,

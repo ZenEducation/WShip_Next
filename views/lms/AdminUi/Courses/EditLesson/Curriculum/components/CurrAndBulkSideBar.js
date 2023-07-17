@@ -3,15 +3,15 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
-import { Input, Card, Checkbox, Radio } from 'components/ui';
+import { Input, Card, Checkbox, Radio } from 'components/AfterAuth/ui';
 
-import Notification from 'components/ui/Notification/';
+import Notification from 'components/AfterAuth/ui/Notification/';
 
-import toast from 'components/ui/toast';
+import toast from 'components/AfterAuth/ui/toast';
 
 import FileItem from '@/components/ui/Upload/FileItem';
 
-import { Button } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
 import { AiOutlineGlobal, AiOutlinePlus } from 'react-icons/ai';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 

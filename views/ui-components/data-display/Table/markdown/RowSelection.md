@@ -1,7 +1,7 @@
 ```jsx
 import React, { useRef, useEffect } from 'react'
 import { useTable, useRowSelect } from 'react-table'
-import { Table, Checkbox } from 'components/ui'
+import { Table, Checkbox } from 'components/AfterAuth/ui'
 import { data10 } from './data'
 
 const { Tr, Th, Td, THead, TBody } = Table

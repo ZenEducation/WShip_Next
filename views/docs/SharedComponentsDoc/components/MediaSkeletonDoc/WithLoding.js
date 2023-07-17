@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Switcher, Avatar } from 'components/ui'
-import { MediaSkeleton, Loading } from 'components/shared'
+import { Switcher, Avatar } from 'components/AfterAuth/ui'
+import { MediaSkeleton, Loading } from 'components/AfterAuth/shared'
 
 const WithLoding = () => {
     const [isLoading, setIsLoading] = useState(true)

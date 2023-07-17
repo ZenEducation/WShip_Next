@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DemoLayout from 'components/docs/DemoLayout'
+import DemoLayout from 'components/AfterAuth/docs/DemoLayout'
 
 // Demo
 import Example from './Example'
@@ -28,13 +28,13 @@ const demoApi = [
         api: [
             {
                 propName: 'avatarGroupProps',
-                type: `<a class="text-indigo-600 underline" href="/ui-components/avatar#api" target="_blank"><code>Avatar.GroupProps</code></a>`,
+                type: `<a class="text-indigo-600 underline" href="/AA/ui-components/avatar#api" target="_blank"><code>Avatar.GroupProps</code></a>`,
                 default: `<code>{}</code>`,
                 desc: 'Props for Avatar.Group',
             },
             {
                 propName: 'avatarProps',
-                type: `<a class="text-indigo-600 underline" href="/ui-components/avatar#api" target="_blank"><code>Avatar.GroupProps</code></a>`,
+                type: `<a class="text-indigo-600 underline" href="/AA/ui-components/avatar#api" target="_blank"><code>Avatar.GroupProps</code></a>`,
                 default: `<code>{}</code>`,
                 desc: 'Props for Avatar',
             },

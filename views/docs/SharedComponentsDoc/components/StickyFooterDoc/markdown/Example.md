@@ -1,7 +1,7 @@
 ```jsx
 import React from 'react'
-import { Button } from 'components/ui'
-import { StickyFooter } from 'components/shared'
+import { Button } from 'components/AfterAuth/ui'
+import { StickyFooter } from 'components/AfterAuth/shared'
 
 const Example = () => {
     return (

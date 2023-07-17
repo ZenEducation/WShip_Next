@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react'
-import { Card, Button, Input } from 'components/ui'
+import { Card, Button, Input } from 'components/AfterAuth/ui'
 import { HiOutlineCheck, HiOutlineX } from 'react-icons/hi'
 
 const ArticleAction = () => {

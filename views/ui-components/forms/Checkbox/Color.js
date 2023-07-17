@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Checkbox } from 'components/ui';
+import { Checkbox } from 'components/AfterAuth/ui';
 
 const Color = () => {
   const [checkboxList] = useState(['A', 'B', 'C']);

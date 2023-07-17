@@ -1,7 +1,7 @@
 ```jsx
 import React, { useState, useMemo } from 'react'
-import { Table, Switcher, Avatar } from 'components/ui'
-import { TableRowSkeleton } from 'components/shared'
+import { Table, Switcher, Avatar } from 'components/AfterAuth/ui'
+import { TableRowSkeleton } from 'components/AfterAuth/shared'
 import { useTable } from 'react-table'
 
 const AVATAR_SIZE = 30

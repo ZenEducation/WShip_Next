@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Card } from 'components/ui'
+import { Card } from 'components/AfterAuth/ui'
 
 const Clickable = () => {
     const onClick = (e) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Card, Button } from 'components/ui'
+import { Avatar, Card, Button } from 'components/AfterAuth/ui'
 import NumberFormat from 'react-number-format'
 
 const ShippingInfo = ({ data }) => {

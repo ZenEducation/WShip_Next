@@ -1,5 +1,5 @@
 import React, { Fragment, Suspense } from "react";
-import { Spinner } from "components/ui";
+import { Spinner } from "components/AfterAuth/ui";
 import shareComponentsDocRoutes from "./utilsDocRoutes";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -27,7 +27,7 @@ const UtilsDocView = () => {
     //             ))}
     //         </Fragment>
     //     ))}
-    //     <Route path="*" element={<Navigate to="/" replace />} />
+    //     <Route path="*" element={<Navigate to="/AA/" replace />} />
     // </Routes>
     <></>
   );

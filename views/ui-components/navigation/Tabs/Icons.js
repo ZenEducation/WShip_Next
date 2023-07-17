@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tabs } from 'components/ui'
+import { Tabs } from 'components/AfterAuth/ui'
 import { HiOutlineHome, HiOutlineUser, HiOutlinePhone } from 'react-icons/hi'
 
 const { TabNav, TabList, TabContent } = Tabs

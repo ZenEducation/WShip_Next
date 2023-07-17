@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Input, Card, Checkbox } from 'components/ui';
+import { Input, Card, Checkbox } from 'components/AfterAuth/ui';
 
-import { Button } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
 
 // Settings
 

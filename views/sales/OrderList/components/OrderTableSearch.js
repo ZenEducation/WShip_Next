@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Input } from 'components/ui'
+import { Input } from 'components/AfterAuth/ui'
 import { HiOutlineSearch } from 'react-icons/hi'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrders, setTableData } from '../store/dataSlice'

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 
 // Settings
 
-import { Menu } from 'components/ui';
+import { Menu } from 'components/AfterAuth/ui';
 
 import CourseCompletion from './CourseCompletion';
 
@@ -12,7 +12,7 @@ import CourseImgDescription from './CourseImgDescription';
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
 import AdminRevenue from './AdminRevenue';
-import { Button } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
 const Settings = () => {

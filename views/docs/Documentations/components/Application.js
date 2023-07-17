@@ -1,7 +1,7 @@
 import React from "react";
-import { SyntaxHighlighter } from "components/shared";
+import { SyntaxHighlighter } from "components/AfterAuth/shared";
 import ReactHtmlParser from "html-react-parser";
-import { Table } from "components/ui";
+import { Table } from "components/AfterAuth/ui";
 
 const { Tr, Th, Td, THead, TBody } = Table;
 
@@ -10,29 +10,29 @@ const metadata = {
     {
       propName: "apiPrefix",
       type: `<code>string</code>`,
-      defaultDemo: `<code>'/api'</code>`,
-      defaultStarter: `<code>'/api'</code>`,
+      defaultDemo: `<code>'/AA/api'</code>`,
+      defaultStarter: `<code>'/AA/api'</code>`,
       desc: "Prefix path for api url",
     },
     {
       propName: "authenticatedEntryPath",
       type: `<code>string</code>`,
-      defaultDemo: `<code>'/app/sales/dashboard'</code>`,
-      defaultStarter: `<code>'/home'</code>`,
+      defaultDemo: `<code>'/AA/app/sales/dashboard'</code>`,
+      defaultStarter: `<code>'/AA/home'</code>`,
       desc: "URL that will redirect after authenticated",
     },
     {
       propName: "unAuthenticatedEntryPath",
       type: `<code>string</code>`,
-      defaultDemo: `<code>'/sign-in'</code>`,
-      defaultStarter: `<code>'/sign-in'</code>`,
+      defaultDemo: `<code>'/AA/sign-in'</code>`,
+      defaultStarter: `<code>'/AA/sign-in'</code>`,
       desc: "URL that will redirect if authentication invalid",
     },
     {
       propName: "tourPath",
       type: `<code>string</code>`,
-      defaultDemo: `<code>'/app/account/kyc-form'</code>`,
-      defaultStarter: `<code>'/'</code>`,
+      defaultDemo: `<code>'/AA/app/account/kyc-form'</code>`,
+      defaultStarter: `<code>'/AA/'</code>`,
       desc: "URL that will redirect after signup,",
     },
     {
@@ -64,10 +64,10 @@ const Application = () => {
         <i>demo</i>
       </span>
       <SyntaxHighlighter language="js">{`const appConfig = {
-    apiPrefix: '/api',
-    authenticatedEntryPath: '/app/sales/dashboard',
-    unAuthenticatedEntryPath: '/sign-in',
-    tourPath: '/app/account/kyc-form',
+    apiPrefix: '/AA/api',
+    authenticatedEntryPath: '/AA/app/sales/dashboard',
+    unAuthenticatedEntryPath: '/AA/sign-in',
+    tourPath: '/AA/app/account/kyc-form',
     locale: 'en',
     enableMock: true
 }`}</SyntaxHighlighter>
@@ -75,10 +75,10 @@ const Application = () => {
         <i>starter</i>
       </span>
       <SyntaxHighlighter language="js">{`const appConfig = {
-    apiPrefix: '/api',
-    authenticatedEntryPath: '/home',
-    unAuthenticatedEntryPath: '/sign-in',
-    tourPath: '/',
+    apiPrefix: '/AA/api',
+    authenticatedEntryPath: '/AA/home',
+    unAuthenticatedEntryPath: '/AA/sign-in',
+    tourPath: '/AA/',
     locale: 'en',
     enableMock: true
 }`}</SyntaxHighlighter>

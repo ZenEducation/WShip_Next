@@ -1,5 +1,5 @@
 import React from 'react'
-import { MediaSkeleton } from 'components/shared'
+import { MediaSkeleton } from 'components/AfterAuth/shared'
 
 const Example = () => {
     return (

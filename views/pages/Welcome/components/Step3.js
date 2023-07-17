@@ -1,7 +1,7 @@
 import React from 'react'
-import { FormItem, FormContainer, Segment, Button } from 'components/ui'
+import { FormItem, FormContainer, Segment, Button } from 'components/AfterAuth/ui'
 import { Field, Form, Formik } from 'formik'
-import { SegmentItemOption } from 'components/shared'
+import { SegmentItemOption } from 'components/AfterAuth/shared'
 import {
     HiOutlineCode,
     HiOutlineCube,

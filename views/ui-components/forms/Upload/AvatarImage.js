@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Upload } from 'components/ui'
+import { Avatar, Upload } from 'components/AfterAuth/ui'
 import { HiOutlinePlus } from 'react-icons/hi'
 
 const AvatarImage = () => {

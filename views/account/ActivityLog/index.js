@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, AdaptableCard } from 'components/shared'
+import { Container, AdaptableCard } from 'components/AfterAuth/shared'
 import Log from './components/Log'
 import LogFilter from './components/LogFilter'
 import reducer from './store'

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Card, Avatar, Button, Tag } from 'components/ui'
+import { Card, Avatar, Button, Tag } from 'components/AfterAuth/ui'
 import { HiFire } from 'react-icons/hi'
 import NumberFormat from 'react-number-format'
 import { useSelector } from 'react-redux'

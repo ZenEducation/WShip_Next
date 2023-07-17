@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Drawer } from 'components/ui'
+import { Button, Drawer } from 'components/AfterAuth/ui'
 
 const WidthHeight = () => {
     const [verticalOpen, setVerticalOpen] = useState(false)

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react'
-import { Input, Button, Checkbox } from 'components/ui'
+import { Input, Button, Checkbox } from 'components/AfterAuth/ui'
 
 const NewTaskField = ({ onAddNewTask }) => {
     const [newTaskEdit, setNewTaskEdit] = useState(false)

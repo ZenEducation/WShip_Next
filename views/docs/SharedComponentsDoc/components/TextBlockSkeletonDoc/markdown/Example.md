@@ -1,7 +1,7 @@
 ```jsx
 import React, { useState } from 'react'
-import { Switcher } from 'components/ui'
-import { TextBlockSkeleton } from 'components/shared'
+import { Switcher } from 'components/AfterAuth/ui'
+import { TextBlockSkeleton } from 'components/AfterAuth/shared'
 
 const Example = () => {
     const [isLoading, setIsLoading] = useState(true)

@@ -1,7 +1,7 @@
 import React from 'react';
 import reducer from './store';
 import { injectReducer } from 'store/index';
-import { Container } from 'components/shared';
+import { Container } from 'components/AfterAuth/shared';
 import ScrumBoardHeader from './ScrumBoardHeader';
 import Board from './Board';
 

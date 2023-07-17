@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Alert, toast, Button } from 'components/ui'
+import { Alert, toast, Button } from 'components/AfterAuth/ui'
 
 const AlertToast = () => {
     function blockAlert() {

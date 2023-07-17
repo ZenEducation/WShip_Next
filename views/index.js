@@ -1,14 +1,14 @@
 import React, { Suspense } from "react";
-import { Loading } from "components/shared";
+import { Loading } from "components/AfterAuth/shared";
 import { protectedRoutes, publicRoutes } from "configs/routes.config";
 import appConfig from "configs/app.config";
-import PageContainer from "components/template/PageContainer";
+import PageContainer from "components/AfterAuth/template/PageContainer";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ProtectedRoute from "components/route/ProtectedRoute";
-import PublicRoute from "components/route/PublicRoute";
-import AuthorityGuard from "components/route/AuthorityGuard";
-import AppRoute from "components/route/AppRoute";
+import ProtectedRoute from "components/AfterAuth/route/ProtectedRoute";
+import PublicRoute from "components/AfterAuth/route/PublicRoute";
+import AuthorityGuard from "components/AfterAuth/route/AuthorityGuard";
+import AppRoute from "components/AfterAuth/route/AppRoute";
 
 const { authenticatedEntryPath } = appConfig;
 
@@ -17,9 +17,9 @@ const AllRoutes = (props) => {
 
   return (
     // <Routes>
-    //     <Route path="/" element={<ProtectedRoute />}>
+    //     <Route path="/AA/" element={<ProtectedRoute />}>
     //         <Route
-    //             path="/"
+    //             path="/AA/"
     //             element={<Navigate replace to={authenticatedEntryPath} />}
     //         />
     //         {protectedRoutes.map((route, index) => (
@@ -42,9 +42,9 @@ const AllRoutes = (props) => {
     //                 }
     //             />
     //         ))}
-    //         <Route path="*" element={<Navigate to="/" replace />} />
+    //         <Route path="*" element={<Navigate to="/AA/" replace />} />
     //     </Route>
-    //     <Route path="/" element={<PublicRoute />}>
+    //     <Route path="/AA/" element={<PublicRoute />}>
     //         {publicRoutes.map((route) => (
     //             <Route
     //                 key={route.path}

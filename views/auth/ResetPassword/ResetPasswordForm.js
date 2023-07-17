@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, FormItem, FormContainer, Alert } from "components/ui";
-import { PasswordInput, ActionLink } from "components/shared";
+import { Button, FormItem, FormContainer, Alert } from "components/AfterAuth/ui";
+import { PasswordInput, ActionLink } from "components/AfterAuth/shared";
 import { apiResetPassword } from "services/AuthService";
 import useTimeOutMessage from "utils/hooks/useTimeOutMessage";
 // import { useNavigate } from 'react-router-dom'
@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const ResetPasswordForm = (props) => {
-  const { disableSubmit = false, className, signInUrl = "/sign-in" } = props;
+  const { disableSubmit = false, className, signInUrl = "/AA/sign-in" } = props;
 
   const [resetComplete, setResetComplete] = useState(false);
 
@@ -41,7 +41,7 @@ const ResetPasswordForm = (props) => {
   };
 
   const onContinue = () => {
-    navigate.push("/sign-in");
+    navigate.push("/AA/sign-in");
   };
 
   return (

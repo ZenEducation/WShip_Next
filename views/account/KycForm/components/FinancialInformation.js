@@ -6,7 +6,7 @@ import {
     Select,
     FormItem,
     FormContainer,
-} from 'components/ui'
+} from 'components/AfterAuth/ui'
 import { Field, Form, Formik, getIn } from 'formik'
 import NumberFormat from 'react-number-format'
 import {

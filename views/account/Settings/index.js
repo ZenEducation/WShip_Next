@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import { Tabs } from "components/ui";
-import { AdaptableCard, Container } from "components/shared";
+import { Tabs } from "components/AfterAuth/ui";
+import { AdaptableCard, Container } from "components/AfterAuth/shared";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useRouter } from "next/router";
 import isEmpty from "lodash/isEmpty";
@@ -29,17 +29,17 @@ const Settings = () => {
   const [currentTab, setCurrentTab] = useState("profile");
   const [data, setData] = useState({});
 
-  const navigate = useRouter();
+  // const navigate = useRouter();
 
   const location = useRouter();
 
   const path = location.pathname.substring(
-    location.pathname.lastIndexOf("/") + 1
+    location.pathname.lastIndexOf("/AA/") + 1
   );
 
   const onTabChange = (val) => {
     setCurrentTab(val);
-    navigate.push(`/app/account/settings/${val}`);
+    // navigate.push(`/app/account/settings/${val}`);
   };
 
   const fetchData = async () => {
@@ -48,7 +48,7 @@ const Settings = () => {
   };
 
   useEffect(() => {
-    setCurrentTab(path);
+    // setCurrentTab(path);
     if (isEmpty(data)) {
       fetchData();
     }

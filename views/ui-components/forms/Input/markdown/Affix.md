@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Input, Tooltip } from 'components/ui'
+import { Input, Tooltip } from 'components/AfterAuth/ui'
 import { HiOutlineUser, HiOutlineExclamationCircle } from 'react-icons/hi'
 
 const Affix = () => {

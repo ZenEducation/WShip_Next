@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Progress } from 'components/ui'
+import { Progress } from 'components/AfterAuth/ui'
 
 const ProgressionBar = ({ progression }) => {
     const progressExtraProps = useMemo(() => {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Loading } from 'components/shared'
+import { Loading } from 'components/AfterAuth/shared'
 import PortfolioStats from './components/PortfolioStats'
 import FastTrade from './components/FastTrade'
 import Holding from './components/Holding'

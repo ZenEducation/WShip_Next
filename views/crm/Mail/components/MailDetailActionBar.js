@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Dropdown, InputGroup } from 'components/ui'
+import { Button, Dropdown, InputGroup } from 'components/AfterAuth/ui'
 import classNames from 'classnames'
 import {
     HiReply,

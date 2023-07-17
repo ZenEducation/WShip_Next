@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Checkbox } from 'components/ui'
+import { Checkbox } from 'components/AfterAuth/ui'
 
 const Disabled = () => {
     const [selected] = useState(['A'])

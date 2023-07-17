@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Switcher } from 'components/ui'
+import { Switcher } from 'components/AfterAuth/ui'
 
 const Loading = () => {
     const [checked, setChecked] = useState(false)

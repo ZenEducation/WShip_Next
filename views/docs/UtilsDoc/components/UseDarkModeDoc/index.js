@@ -1,6 +1,6 @@
 import React from 'react'
-import DemoComponentApi from 'components/docs/DemoComponentApi'
-import DemoLayout from 'components/docs/DemoLayout'
+import DemoComponentApi from 'components/AfterAuth/docs/DemoComponentApi'
+import DemoLayout from 'components/AfterAuth/docs/DemoLayout'
 
 // Demo
 import Example from './Example'

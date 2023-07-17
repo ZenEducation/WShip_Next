@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from 'react'
-import { FormContainer, Button, hooks } from 'components/ui'
-import { StickyFooter, ConfirmDialog } from 'components/shared'
+import { FormContainer, Button, hooks } from 'components/AfterAuth/ui'
+import { StickyFooter, ConfirmDialog } from 'components/AfterAuth/shared'
 import { Form, Formik } from 'formik'
 import BasicInformationFields from './BasicInformationFields'
 import PricingFields from './PricingFields'

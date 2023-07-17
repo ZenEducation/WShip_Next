@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Button } from 'components/ui'
-import { NavToggle } from 'components/shared'
+import { Button } from 'components/AfterAuth/ui'
+import { NavToggle } from 'components/AfterAuth/shared'
 
 const Example = () => {
     const [collapsed, setCollapsed] = useState(false)

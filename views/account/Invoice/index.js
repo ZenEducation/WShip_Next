@@ -1,7 +1,7 @@
 import React from 'react'
-import { Container } from 'components/shared'
+import { Container } from 'components/AfterAuth/shared'
 import InvoiceContent from './components/InvoiceContent'
-import { Card } from 'components/ui'
+import { Card } from 'components/AfterAuth/ui'
 
 const Invoice = () => {
     return (

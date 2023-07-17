@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputGroup, Input, Button, Select, DatePicker } from 'components/ui'
+import { InputGroup, Input, Button, Select, DatePicker } from 'components/AfterAuth/ui'
 import { HiOutlineMicrophone } from 'react-icons/hi'
 
 const { Addon } = InputGroup

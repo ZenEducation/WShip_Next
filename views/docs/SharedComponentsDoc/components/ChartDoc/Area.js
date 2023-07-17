@@ -1,5 +1,5 @@
 import React from 'react'
-import { Chart } from 'components/shared'
+import { Chart } from 'components/AfterAuth/shared'
 
 const Area = () => {
     const visitorChartData = {

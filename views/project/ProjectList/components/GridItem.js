@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "components/ui";
+import { Card } from "components/AfterAuth/ui";
 import ItemDropdown from "./ItemDropdown";
 import Members from "./Members";
 import ProgressionBar from "./ProgressionBar";
@@ -14,7 +14,7 @@ const GridItem = ({ data }) => {
     <Card bodyClass="h-full">
       <div className="flex flex-col justify-between h-full">
         <div className="flex justify-between">
-          <Link href="/app/scrum-board">
+          <Link href="/AA/app/scrum-board">
             <h6>{name}</h6>
           </Link>
           <ItemDropdown />

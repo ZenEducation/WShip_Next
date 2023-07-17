@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Button } from 'components/ui'
+import { Card, Button } from 'components/AfterAuth/ui'
 import useThemeClass from 'utils/hooks/useThemeClass'
 import { APP_NAME } from 'constants/app.constant'
 import { useNavigate } from 'react-router-dom'
@@ -12,7 +12,7 @@ const quickStartList = [
         btnText: 'Fill now',
         id: '0',
         disabled: false,
-        navigate: '/app/account/kyc-form',
+        navigate: '/AA/app/account/kyc-form',
     },
     {
         label: 'Create your first workspace',

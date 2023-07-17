@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button, FormItem, FormContainer } from 'components/ui'
+import { Input, Button, FormItem, FormContainer } from 'components/AfterAuth/ui'
 import { Formik, Field, Form } from 'formik'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateColumns } from './store/dataSlice'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input } from 'components/ui'
+import { Input } from 'components/AfterAuth/ui'
 
 const ControlledInput = () => {
     const [value, setValue] = useState('')

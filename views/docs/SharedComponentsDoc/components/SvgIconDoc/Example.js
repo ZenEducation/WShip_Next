@@ -1,5 +1,5 @@
 import React from 'react'
-import { SvgIcon } from 'components/shared'
+import { SvgIcon } from 'components/AfterAuth/shared'
 
 const ImageSvgIcon = () => {
     return (

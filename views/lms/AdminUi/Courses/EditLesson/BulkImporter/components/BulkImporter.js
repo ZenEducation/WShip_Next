@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
-import { Input, Card, Upload } from 'components/ui';
+import { Input, Card, Upload } from 'components/AfterAuth/ui';
 
 import style from '../../../../../../../styles/Home.module.css';
 
@@ -12,7 +12,7 @@ import SelectedLessonPage from '../../SelectedLessonPage/index';
 
 import { HiOutlineTrash } from 'react-icons/hi';
 
-import { Button } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
 import FileItem from '@/components/ui/Upload/FileItem';
 import { AiOutlineGlobal, AiOutlinePlus } from 'react-icons/ai';
 import { BsPencilSquare, BsThreeDotsVertical } from 'react-icons/bs';

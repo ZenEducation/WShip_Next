@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Button, Dialog } from 'components/ui'
+import { Button, Dialog } from 'components/AfterAuth/ui'
 import { HiOutlinePencilAlt } from 'react-icons/hi'
 import MailEditor from './MailEditor'
 import { useSelector, useDispatch } from 'react-redux'

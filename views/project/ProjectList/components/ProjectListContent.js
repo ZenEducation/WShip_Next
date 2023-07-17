@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import classNames from 'classnames'
 import GridItem from './GridItem'
 import ListItem from './ListItem'
-import { Spinner } from 'components/ui'
+import { Spinner } from 'components/AfterAuth/ui'
 import { getList } from '../store/dataSlice'
 import { useDispatch, useSelector } from 'react-redux'
 

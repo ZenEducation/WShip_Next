@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback, useEffect, useState } from 'react'
-import { Table, Spinner } from 'components/ui'
+import { Table, Spinner } from 'components/AfterAuth/ui'
 import { useTable, useExpanded } from 'react-table'
 import { dataWithSubRows } from './data'
 import { HiOutlineChevronRight, HiOutlineChevronDown } from 'react-icons/hi'

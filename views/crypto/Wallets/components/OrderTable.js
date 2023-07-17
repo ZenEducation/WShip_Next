@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { Avatar, Badge } from 'components/ui'
-import { DataTable } from 'components/shared'
+import { Avatar, Badge } from 'components/AfterAuth/ui'
+import { DataTable } from 'components/AfterAuth/shared'
 import { setTableData } from '../store/dataSlice'
 import {
     HiOutlineSwitchHorizontal,

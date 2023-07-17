@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Button } from 'components/ui'
+import { Card, Button } from 'components/AfterAuth/ui'
 import { HiCheckCircle } from 'react-icons/hi'
 const HeaderFooter = () => {
     const headerExtraContent = (

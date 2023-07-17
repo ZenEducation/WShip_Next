@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { InputGroup, Input, Button } from 'components/ui'
+import { InputGroup, Input, Button } from 'components/AfterAuth/ui'
 
 const Sizes = () => {
     return (

@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import classNames from "classnames";
-import { Card, Button, Table, Avatar } from "components/ui";
+import { Card, Button, Table, Avatar } from "components/AfterAuth/ui";
 import growShrinkColor from "utils/growShrinkColor";
 import NumberFormat from "react-number-format";
 // import { useNavigate } from 'react-router-dom'
@@ -13,7 +13,7 @@ const MarketValue = ({ data = [], className }) => {
   const navigate = useRouter();
 
   const handleClick = () => {
-    navigate.push("/app/crypto/market");
+    navigate.push("/AA/app/crypto/market");
   };
 
   const columns = useMemo(

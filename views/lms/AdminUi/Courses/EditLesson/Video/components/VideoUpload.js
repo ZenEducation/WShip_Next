@@ -15,16 +15,16 @@ import {
   Tooltip,
   InputGroup,
   toast,
-} from 'components/ui';
+} from 'components/AfterAuth/ui';
 import { Form, Formik } from 'formik';
 import style from '../../../../../../../styles/Home.module.css';
 import { HiOutlineExclamationCircle, HiOutlineTrash } from 'react-icons/hi';
 // import { Button } from 'react-scroll';
-import { Button } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
 import Addon from '@/components/ui/InputGroup/Addon';
 import { BsCameraVideo } from 'react-icons/bs';
 import { GrUpgrade } from 'react-icons/gr';
-import Notification from 'components/ui/Notification/';
+import Notification from 'components/AfterAuth/ui/Notification/';
 
 const VideoUpload = forwardRef((props, ref) => {
   const { mode } = props;

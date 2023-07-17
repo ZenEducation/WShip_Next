@@ -1,7 +1,7 @@
 ```jsx
 import React from 'react'
-import { Dropdown } from 'components/ui'
-import EllipsisButton from 'components/shared/EllipsisButton'
+import { Dropdown } from 'components/AfterAuth/ui'
+import EllipsisButton from 'components/AfterAuth/shared/EllipsisButton'
 
 const dropdownList = [
     { label: 'Add Flag', value: 'addFlag' },

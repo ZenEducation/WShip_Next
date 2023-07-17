@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import { Dialog, Button, Input } from 'components/ui'
-import { ConfirmDialog } from 'components/shared'
+import { Dialog, Button, Input } from 'components/AfterAuth/ui'
+import { ConfirmDialog } from 'components/AfterAuth/shared'
 import {
     toggleArticleDeleteConfirmation,
     toggleCategoryDeleteConfirmation,

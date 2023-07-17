@@ -6,8 +6,8 @@ import {
     FormItem,
     FormContainer,
     InputGroup,
-} from 'components/ui'
-import { FormNumericInput } from 'components/shared'
+} from 'components/AfterAuth/ui'
+import { FormNumericInput } from 'components/AfterAuth/shared'
 import { Field, Form, Formik } from 'formik'
 import { components } from 'react-select'
 import { HiCheck } from 'react-icons/hi'

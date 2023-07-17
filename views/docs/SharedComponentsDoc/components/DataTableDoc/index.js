@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DemoLayout from 'components/docs/DemoLayout'
+import DemoLayout from 'components/AfterAuth/docs/DemoLayout'
 
 // Demo
 import Basic from './Basic'
@@ -104,7 +104,7 @@ const demoApi = [
             },
             {
                 propName: 'skeletonAvatarProps',
-                type: `<a class="text-indigo-600 underline" href="/ui-components/avatar#api" target="_blank"><code>AvatarProps</code></a>`,
+                type: `<a class="text-indigo-600 underline" href="/AA/ui-components/avatar#api" target="_blank"><code>AvatarProps</code></a>`,
                 default: `-`,
                 desc: 'Props for skeleton avatar',
             },

@@ -7,7 +7,7 @@ import {
     FormItem,
     FormContainer,
     hooks,
-} from 'components/ui'
+} from 'components/AfterAuth/ui'
 import NewTaskField from './NewTaskField'
 import { Field, Form, Formik } from 'formik'
 import { HiCheck } from 'react-icons/hi'

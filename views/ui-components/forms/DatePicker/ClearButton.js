@@ -1,5 +1,5 @@
 import React from 'react'
-import { DatePicker, Button } from 'components/ui'
+import { DatePicker, Button } from 'components/AfterAuth/ui'
 
 const ClearButton = () => {
     return (

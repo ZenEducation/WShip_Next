@@ -7,9 +7,9 @@ import {
   FormItem,
   FormContainer,
   Alert,
-} from "components/ui";
+} from "components/AfterAuth/ui";
 import { useRouter } from "next/router";
-import { PasswordInput, ActionLink } from "components/shared";
+import { PasswordInput, ActionLink } from "components/AfterAuth/shared";
 import useTimeOutMessage from "utils/hooks/useTimeOutMessage";
 
 import { Field, Form, Formik } from "formik";
@@ -24,13 +24,13 @@ const validationSchema = Yup.object().shape({
 const SignInForm = (props) => {
   const router = useRouter();
   const handleSubmit = () => {
-    router.push("/app/sales/dashboard");
+    router.push("/AA/app/sales/dashboard");
   };
   const {
     disableSubmit = false,
     className,
-    forgotPasswordUrl = "/forgot-password",
-    signUpUrl = "/sign-up",
+    forgotPasswordUrl = "/AA/forgot-password",
+    signUpUrl = "/AA/sign-up",
   } = props;
 
   // const { message, setMessage } = useTimeOutMessage();

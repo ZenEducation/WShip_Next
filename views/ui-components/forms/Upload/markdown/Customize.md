@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Upload, Button } from 'components/ui'
+import { Upload, Button } from 'components/AfterAuth/ui'
 import { HiOutlineCloudUpload } from 'react-icons/hi'
 import { FcImageFile } from 'react-icons/fc'
 

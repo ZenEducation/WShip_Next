@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, Button } from 'components/ui'
-import { Chart } from 'components/shared'
+import { Card, Button } from 'components/AfterAuth/ui'
+import { Chart } from 'components/AfterAuth/shared'
 
 const SalesReport = ({ className, data = {} }) => {
     return (

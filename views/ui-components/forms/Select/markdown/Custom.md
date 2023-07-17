@@ -1,6 +1,6 @@
 ```jsx
 import React from "react";
-import { Select, Avatar } from "components/ui";
+import { Select, Avatar } from "components/AfterAuth/ui";
 import { HiCheck } from "react-icons/hi";
 import { components } from "react-select";
 

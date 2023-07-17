@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tabs } from 'components/ui'
+import { Tabs } from 'components/AfterAuth/ui'
 import BuyForm from './BuyForm'
 import SellForm from './SellForm'
 

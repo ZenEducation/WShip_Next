@@ -1,5 +1,5 @@
 import React from 'react'
-import { Steps, Spinner } from 'components/ui'
+import { Steps, Spinner } from 'components/AfterAuth/ui'
 import {
     HiOutlineLogin,
     HiOutlineDocumentSearch,

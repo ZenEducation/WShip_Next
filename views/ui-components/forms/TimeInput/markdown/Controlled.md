@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { TimeInput } from 'components/ui'
+import { TimeInput } from 'components/AfterAuth/ui'
 import dayjs from 'dayjs'
 
 const { TimeInputRange } = TimeInput

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Progress } from 'components/ui'
+import { Progress } from 'components/AfterAuth/ui'
 import { HiXCircle, HiCheckCircle } from 'react-icons/hi'
 
 const CircleCustomInfo = ({ percent }) => {

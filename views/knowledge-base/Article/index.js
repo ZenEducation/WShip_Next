@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, AdaptableCard } from 'components/shared'
+import { Container, AdaptableCard } from 'components/AfterAuth/shared'
 import reducer from './store'
 import { injectReducer } from 'store/index'
 import useQuery from 'utils/hooks/useQuery'

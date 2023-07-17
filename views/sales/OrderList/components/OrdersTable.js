@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useMemo } from "react";
-import { Badge, Tooltip } from "components/ui";
-import { DataTable } from "components/shared";
+import { Badge, Tooltip } from "components/AfterAuth/ui";
+import { DataTable } from "components/AfterAuth/shared";
 import { HiOutlineEye, HiOutlineTrash } from "react-icons/hi";
 import NumberFormat from "react-number-format";
 import { useDispatch, useSelector } from "react-redux";

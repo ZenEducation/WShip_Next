@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Button, Drawer } from 'components/ui'
+import { Button, Drawer } from 'components/AfterAuth/ui'
 import CustomerEditContent from './CustomerEditContent'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDrawerClose, setSelectedCustomer } from '../store/stateSlice'

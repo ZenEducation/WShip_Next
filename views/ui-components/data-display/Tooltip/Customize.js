@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tooltip } from 'components/ui'
+import { Tooltip } from 'components/AfterAuth/ui'
 
 const Customize = () => {
     return (

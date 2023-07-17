@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, Tag } from 'components/ui'
-import { UsersAvatarGroup } from 'components/shared'
+import { Card, Tag } from 'components/AfterAuth/ui'
+import { UsersAvatarGroup } from 'components/AfterAuth/shared'
 import { HiOutlineClock, HiStar } from 'react-icons/hi'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 

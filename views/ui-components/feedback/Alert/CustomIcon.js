@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert } from 'components/ui'
+import { Alert } from 'components/AfterAuth/ui'
 import { HiFire } from 'react-icons/hi'
 
 const Icon = () => {

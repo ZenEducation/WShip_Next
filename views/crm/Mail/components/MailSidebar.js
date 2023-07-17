@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import { Menu, Badge, ScrollBar, Drawer } from 'components/ui';
+import { Menu, Badge, ScrollBar, Drawer } from 'components/AfterAuth/ui';
 import {
   HiOutlineInbox,
   HiOutlinePaperAirplane,
@@ -54,7 +54,7 @@ const MailSideBarContent = () => {
 
   useEffect(() => {
     const path = location.pathname.substring(
-      location.pathname.lastIndexOf('/') + 1
+      location.pathname.lastIndexOf('/AA/') + 1
     );
     const selected = getCategory(path);
     dispatch(updateSelectedCategory(selected));

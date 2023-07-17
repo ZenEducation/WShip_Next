@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "components/ui";
+import { Button } from "components/AfterAuth/ui";
 import { HiDownload, HiPlusCircle } from "react-icons/hi";
 import ProductTableSearch from "./ProductTableSearch";
 import ProductFilter from "./ProductFilter";
@@ -22,7 +22,7 @@ const ProductTableTools = () => {
       </Link>
       <Link
         className="block lg:inline-block md:mb-0 mb-4"
-        href="/app/sales/product-new"
+        href="/AA/app/sales/product-new"
       >
         <Button block variant="solid" size="sm" icon={<HiPlusCircle />}>
           Add Product

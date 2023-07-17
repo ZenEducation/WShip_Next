@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switcher } from 'components/ui'
+import { Switcher } from 'components/AfterAuth/ui'
 
 const Disabled = () => {
     return (

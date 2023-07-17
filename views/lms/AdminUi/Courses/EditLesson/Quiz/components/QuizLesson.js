@@ -7,8 +7,8 @@ import 'react-quill/dist/quill.snow.css';
 
 import { CardsContext } from '../../../../../CardsComponent/CardsContext';
 
-import Notification from 'components/ui/Notification/';
-import toast from 'components/ui/toast';
+import Notification from 'components/AfterAuth/ui/Notification/';
+import toast from 'components/AfterAuth/ui/toast';
 
 import {
   Input,
@@ -21,11 +21,11 @@ import {
   Tooltip,
   InputGroup,
   Dropdown,
-} from 'components/ui';
+} from 'components/AfterAuth/ui';
 import { Field, Form, Formik } from 'formik';
 import { HiOutlineExclamationCircle, HiOutlineTrash } from 'react-icons/hi';
 // import { Button } from 'react-scroll';
-import { Button } from 'components/ui';
+import { Button } from 'components/AfterAuth/ui';
 import Addon from '@/components/ui/InputGroup/Addon';
 import {
   BsCameraVideo,
@@ -35,7 +35,7 @@ import {
 import { GrUpgrade } from 'react-icons/gr';
 import { AiFillFilePdf } from 'react-icons/ai';
 // import { RichTextEditor } from '@/components/shared';
-import { RichTextEditor } from 'components/shared';
+import { RichTextEditor } from 'components/AfterAuth/shared';
 import { MdExpandLess, MdExpandMore } from 'react-icons/md';
 
 // QuizLesson

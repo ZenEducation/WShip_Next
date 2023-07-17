@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input, Button, Spinner, FormItem, FormContainer } from 'components/ui'
+import { Input, Button, Spinner, FormItem, FormContainer } from 'components/AfterAuth/ui'
 import { Formik, Form, Field } from 'formik'
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))

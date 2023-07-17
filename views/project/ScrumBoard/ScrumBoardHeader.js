@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { Button } from "components/ui";
+import { Button } from "components/AfterAuth/ui";
 import BoardAddNewColumn from "./BoardAddNewColumn";
 import QuickFilterTab from "./QuickFilterTab";
-import { Container, UsersAvatarGroup } from "components/shared";
+import { Container, UsersAvatarGroup } from "components/AfterAuth/shared";
 import { getMembers } from "./store/dataSlice";
 import { openDialog, updateDialogView } from "./store/stateSlice";
 import { HiOutlineUserAdd, HiOutlineCog } from "react-icons/hi";
@@ -48,7 +48,7 @@ const BoardHeader = () => {
             />
             <Button
               size="sm"
-              onClick={() => navigate.push("/app/account/settings/profile")}
+              onClick={() => navigate.push("/AA/app/account/settings/profile")}
               icon={<HiOutlineCog />}
             />
             <BoardAddNewColumn />

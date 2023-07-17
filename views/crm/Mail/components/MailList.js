@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import { ScrollBar, Avatar, Button } from "components/ui";
-import { Loading } from "components/shared";
+import { ScrollBar, Avatar, Button } from "components/AfterAuth/ui";
+import { Loading } from "components/AfterAuth/shared";
 import {
   HiOutlineFlag,
   HiStar,
@@ -71,7 +71,7 @@ const MailList = () => {
 
   useEffect(() => {
     const path = location.pathname.substring(
-      location.pathname.lastIndexOf("/") + 1
+      location.pathname.lastIndexOf("/AA/") + 1
     );
     const category = { category: path };
 

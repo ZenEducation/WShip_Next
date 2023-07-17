@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Spinner } from 'components/ui'
+import { Spinner } from 'components/AfterAuth/ui'
 
 const Color = () => {
     return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { TimeInput } from 'components/ui'
+import { TimeInput } from 'components/AfterAuth/ui'
 
 const AmPm = () => {
     return <TimeInput format="12" defaultValue={new Date()} />

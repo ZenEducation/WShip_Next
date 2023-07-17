@@ -6,7 +6,7 @@ import {
     Select,
     FormItem,
     FormContainer,
-} from 'components/ui'
+} from 'components/AfterAuth/ui'
 import { Field, Form, Formik } from 'formik'
 import get from 'lodash/get'
 import { countryList } from 'constants/countries.constant'

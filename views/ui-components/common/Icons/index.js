@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card } from 'components/ui'
-import { Container, ActionLink } from 'components/shared'
+import { Card } from 'components/AfterAuth/ui'
+import { Container, ActionLink } from 'components/AfterAuth/shared'
 import AntDesignIcons from './AntDesignIcons'
 import BootstrapIcons from './BootstrapIcons'
 import BoxIcons from './BoxIcons'

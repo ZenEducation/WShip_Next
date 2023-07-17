@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DemoLayout from 'components/docs/DemoLayout'
+import DemoLayout from 'components/AfterAuth/docs/DemoLayout'
 
 // Demo
 import Shape from './Shape'

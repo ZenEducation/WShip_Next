@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { UsersAvatarGroup } from 'components/shared'
+import { UsersAvatarGroup } from 'components/AfterAuth/shared'
 
 const data = [
     {

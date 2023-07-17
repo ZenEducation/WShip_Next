@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import { Card, Button, Table, Tag } from "components/ui";
+import { Card, Button, Table, Tag } from "components/AfterAuth/ui";
 // import { useNavigate } from 'react-router-dom'
 import { useRouter } from "next/router";
-import { UsersAvatarGroup, ActionLink } from "components/shared";
+import { UsersAvatarGroup, ActionLink } from "components/AfterAuth/shared";
 import { useTable } from "react-table";
 
 const { Tr, Th, Td, THead, TBody } = Table;
@@ -46,7 +46,7 @@ const MyTasks = ({ data = [] }) => {
             <ActionLink
               themeColor={false}
               className="font-semibold"
-              to="/app/project/scrum-board"
+              to="/AA/app/project/scrum-board"
             >
               {taskId}
             </ActionLink>
@@ -81,7 +81,7 @@ const MyTasks = ({ data = [] }) => {
     useTable({ columns, data, initialState: { pageIndex: 0 } });
 
   const onViewAllTask = () => {
-    navigate.push("/app/project/issue");
+    navigate.push("/AA/app/project/issue");
   };
 
   return (

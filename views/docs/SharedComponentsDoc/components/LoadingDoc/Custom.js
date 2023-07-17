@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Switcher } from 'components/ui'
-import { Loading } from 'components/shared'
+import { Switcher } from 'components/AfterAuth/ui'
+import { Loading } from 'components/AfterAuth/shared'
 
 const Custom = () => {
     const [isLoading, setIsLoading] = useState(true)

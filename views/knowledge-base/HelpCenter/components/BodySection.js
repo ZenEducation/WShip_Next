@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Loading } from 'components/shared'
+import { Loading } from 'components/AfterAuth/shared'
 import Categories from './Categories'
 import ArticleList from './ArticleList'
 import { getCategories } from '../store/dataSlice'

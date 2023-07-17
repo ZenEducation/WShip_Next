@@ -2,7 +2,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import withHeaderItem from 'utils/hoc/withHeaderItem'
-import { Dropdown } from 'components/ui'
+import { Dropdown } from 'components/AfterAuth/ui'
 import { HiOutlineSearch } from 'react-icons/hi'
 
 const Example = ({ className }) => {

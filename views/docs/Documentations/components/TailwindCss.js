@@ -1,6 +1,6 @@
 import React from 'react'
-import { Alert } from 'components/ui'
-import { SyntaxHighlighter } from 'components/shared'
+import { Alert } from 'components/AfterAuth/ui'
+import { SyntaxHighlighter } from 'components/AfterAuth/shared'
 
 const TailwindCss = () => {
     return (

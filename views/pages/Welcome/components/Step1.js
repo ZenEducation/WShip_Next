@@ -1,6 +1,6 @@
 import React from 'react'
-import { DoubleSidedImage } from 'components/shared'
-import { Button } from 'components/ui'
+import { DoubleSidedImage } from 'components/AfterAuth/shared'
+import { Button } from 'components/AfterAuth/ui'
 
 const Step1 = ({ onNext, onSkip }) => {
     return (

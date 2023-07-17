@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, Avatar } from "components/ui";
-import { IconText } from "components/shared";
+import { Card, Avatar } from "components/AfterAuth/ui";
+import { IconText } from "components/AfterAuth/shared";
 import { HiMail, HiPhone, HiExternalLink } from "react-icons/hi";
 // import { Link } from 'react-router-dom'
 import Link from "next/link";
@@ -11,7 +11,7 @@ const CustomerInfo = ({ data }) => {
       <h5 className="mb-4">Customer</h5>
       <Link
         className="group flex items-center justify-between"
-        href="/app/crm/customer-details?id=11"
+        href="/AA/app/crm/customer-details?id=11"
       >
         <div className="flex items-center">
           <Avatar shape="circle" src={data.img} />

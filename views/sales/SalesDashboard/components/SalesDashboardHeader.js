@@ -1,5 +1,5 @@
 import React from 'react'
-import { DatePicker, Button } from 'components/ui'
+import { DatePicker, Button } from 'components/AfterAuth/ui'
 import { setStartDate, setEndDate } from '../store/stateSlice'
 import { getSalesDashboardData } from '../store/dataSlice'
 import { HiOutlineFilter } from 'react-icons/hi'

@@ -9,7 +9,7 @@ import {
     Notification,
     toast,
     FormContainer,
-} from 'components/ui'
+} from 'components/AfterAuth/ui'
 import FormDesription from './FormDesription'
 import FormRow from './FormRow'
 import { Field, Form, Formik } from 'formik'

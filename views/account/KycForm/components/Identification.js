@@ -5,8 +5,8 @@ import {
     Segment,
     FormItem,
     FormContainer,
-} from 'components/ui'
-import { SvgIcon, DoubleSidedImage, SegmentItemOption } from 'components/shared'
+} from 'components/AfterAuth/ui'
+import { SvgIcon, DoubleSidedImage, SegmentItemOption } from 'components/AfterAuth/shared'
 import { DriversLicenseSvg, PassportSvg, NationalIdSvg } from 'assets/svg'
 import classNames from 'classnames'
 import { Field, Form, Formik } from 'formik'

@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { RichTextEditor } from 'components/shared'
+import { RichTextEditor } from 'components/AfterAuth/shared'
 
 const Example = () => {
     const handleChange = (val) => {

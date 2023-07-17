@@ -1,5 +1,5 @@
 import React, { useState, useCallback, Suspense, lazy } from "react";
-import { Container } from "components/shared";
+import { Container } from "components/AfterAuth/shared";
 import dynamic from "next/dynamic";
 const Step1 = dynamic(async () => await import("./components/Step1"));
 const Step2 = dynamic(async () => await import("./components/Step2"));

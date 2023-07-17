@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "components/ui";
+import { Card, Button } from "components/AfterAuth/ui";
 // import { useNavigate } from 'react-router-dom'
 import { useRouter } from "next/router";
 import ListItem from "../../ProjectList/components/ListItem";
@@ -8,7 +8,7 @@ const Projects = ({ data = [] }) => {
   const navigate = useRouter();
 
   const onViewAllProjects = () => {
-    navigate.push("/app/project/project-list");
+    navigate.push("/AA/app/project/project-list");
   };
 
   return (

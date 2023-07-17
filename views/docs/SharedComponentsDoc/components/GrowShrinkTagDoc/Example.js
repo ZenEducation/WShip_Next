@@ -1,5 +1,5 @@
 import React from 'react'
-import { GrowShrinkTag } from 'components/shared'
+import { GrowShrinkTag } from 'components/AfterAuth/shared'
 
 const Example = () => {
     return (

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import classNames from 'classnames'
-import { DataTable } from 'components/shared'
+import { DataTable } from 'components/AfterAuth/shared'
 import { setTableData } from '../store/dataSlice'
 import ActionColumn from './ActionColumn'
 import growShrinkColor from 'utils/growShrinkColor'

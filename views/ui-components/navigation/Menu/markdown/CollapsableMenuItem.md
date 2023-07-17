@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { Menu } from 'components/ui'
+import { Menu } from 'components/AfterAuth/ui'
 
 const CollapsableMenuItem = () => {
     const handleToggle = (expanded, e) => {

@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Radio } from 'components/ui'
+import { Radio } from 'components/AfterAuth/ui'
 
 const Group = () => {
     const [value, setValue] = useState('Banana')

@@ -1,11 +1,11 @@
 import React from 'react'
-import { Dropdown } from 'components/ui'
+import { Dropdown } from 'components/AfterAuth/ui'
 import {
     HiOutlineSwitchHorizontal,
     HiOutlineFlag,
     HiOutlineCog,
 } from 'react-icons/hi'
-import EllipsisButton from 'components/shared/EllipsisButton'
+import EllipsisButton from 'components/AfterAuth/shared/EllipsisButton'
 
 const dropdownList = [
     { label: 'Add Flag', value: 'addFlag', icon: <HiOutlineFlag /> },

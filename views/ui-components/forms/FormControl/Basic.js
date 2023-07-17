@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input, Button, Checkbox, FormItem, FormContainer } from 'components/ui'
+import { Input, Button, Checkbox, FormItem, FormContainer } from 'components/AfterAuth/ui'
 import { Field, Form, Formik } from 'formik'
 import { HiOutlineEyeOff, HiOutlineEye } from 'react-icons/hi'
 import * as Yup from 'yup'

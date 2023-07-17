@@ -1,6 +1,6 @@
 ```jsx
 import React from 'react'
-import { TextEllipsis } from 'components/shared'
+import { TextEllipsis } from 'components/AfterAuth/shared'
 
 const string =
     'Kopi-luwak, seasonal breve strong caffeine medium lungo grinder. Espresso filter, café au lait turkish, sweet.'

@@ -1,6 +1,6 @@
 import React from 'react'
 import SignUpForm from 'views/auth/SignUp/SignUpForm'
-import Simple from 'components/layout/AuthLayout/Simple'
+import Simple from 'components/AfterAuth/layout/AuthLayout/Simple'
 
 const SignUpSimple = (props) => {
     return (
@@ -14,7 +14,7 @@ const SignUpSimple = (props) => {
         >
             <SignUpForm
                 disableSubmit={true}
-                signInUrl="/auth/sign-in-simple"
+                signInUrl="/AA/auth/sign-in-simple"
                 {...props}
             />
         </Simple>

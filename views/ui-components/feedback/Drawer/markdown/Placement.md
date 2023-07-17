@@ -1,6 +1,6 @@
 ```jsx
 import React, { useState } from 'react'
-import { Button, Drawer, Radio } from 'components/ui'
+import { Button, Drawer, Radio } from 'components/AfterAuth/ui'
 
 const placementList = [
     { name: 'Top', value: 'top' },

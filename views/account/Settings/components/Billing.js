@@ -7,7 +7,7 @@ import {
   toast,
   FormContainer,
   Dialog,
-} from "components/ui";
+} from "components/AfterAuth/ui";
 import FormDesription from "./FormDesription";
 import FormRow from "./FormRow";
 import CreditCardForm from "./CreditCardForm";

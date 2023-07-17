@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, Badge } from 'components/ui'
-import { Chart } from 'components/shared'
+import { Card, Badge } from 'components/AfterAuth/ui'
+import { Chart } from 'components/AfterAuth/shared'
 import isEmpty from 'lodash/isEmpty'
 import { COLORS } from 'constants/chart.constant'
 

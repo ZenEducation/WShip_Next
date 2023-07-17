@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Container, AdaptableCard } from 'components/shared'
-import { Button } from 'components/ui'
+import { Container, AdaptableCard } from 'components/AfterAuth/shared'
+import { Button } from 'components/AfterAuth/ui'
 import Editor from './components/Editor'
 import useQuery from 'utils/hooks/useQuery'
 import reducer from './store'

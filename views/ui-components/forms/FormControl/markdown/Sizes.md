@@ -7,7 +7,7 @@ import {
     FormItem,
     FormContainer,
     InputGroup,
-} from 'components/ui'
+} from 'components/AfterAuth/ui'
 import { Formik, Field, Form } from 'formik'
 
 const options = [

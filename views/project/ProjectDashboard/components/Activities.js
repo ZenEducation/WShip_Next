@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, Timeline } from "components/ui";
+import { Card, Button, Timeline } from "components/AfterAuth/ui";
 import Event from "views/account/ActivityLog/components/Event";
 import TimelineAvatar from "views/account/ActivityLog/components/TimelineAvatar";
 // import { useNavigate } from 'react-router-dom'
@@ -10,7 +10,7 @@ const Activities = ({ data = [] }) => {
   const navigate = useRouter();
 
   const onViewAllActivity = () => {
-    navigate.push("/app/account/activity-log");
+    navigate.push("/AA/app/account/activity-log");
   };
 
   return (

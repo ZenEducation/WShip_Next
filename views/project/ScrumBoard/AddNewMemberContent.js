@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Input, Avatar, ScrollBar, Button } from 'components/ui'
+import { Input, Avatar, ScrollBar, Button } from 'components/AfterAuth/ui'
 import wildCardSearch from 'utils/wildCardSearch'
 import { updateBoardMembers } from './store/dataSlice'
 import { closeDialog } from './store/stateSlice'

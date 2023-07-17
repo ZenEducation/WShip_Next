@@ -5,8 +5,8 @@ import {
   Select,
   FormItem,
   FormContainer,
-} from "components/ui";
-const DatePicker = dynamic(() => import("components/ui"), {
+} from "components/AfterAuth/ui";
+const DatePicker = dynamic(() => import("components/AfterAuth/ui"), {
   ssr: false,
 });
 import { Field, Form, Formik } from "formik";
