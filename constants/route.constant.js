@@ -1,0 +1,6 @@
+export const ROOT = '/AA/'
+export const APP_PREFIX_PATH = '/AA/app'
+export const AUTH_PREFIX_PATH = '/AA/auth'
+export const UI_COMPONENTS_PREFIX_PATH = '/AA/ui-components'
+export const PAGES_PREFIX_PATH = '/AA/pages'
+export const DOCS_PREFIX_PATH = '/AA/docs'
