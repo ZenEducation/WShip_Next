@@ -22,7 +22,7 @@ import { Field, Form, Formik } from 'formik';
 import { HiOutlineExclamationCircle, HiOutlineTrash } from 'react-icons/hi';
 // import { Button } from 'react-scroll';
 import { Button } from 'components/AfterAuth/ui';
-import Addon from '@/components/ui/InputGroup/Addon';
+import Addon from '@/components/AfterAuth/ui/InputGroup/Addon';
 import { BsCameraVideo, BsPencilSquare } from 'react-icons/bs';
 import { GrDownload, GrUpgrade } from 'react-icons/gr';
 import { AiFillFilePdf } from 'react-icons/ai';
