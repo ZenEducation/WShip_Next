@@ -27,7 +27,7 @@ import {
 } from 'react-icons/hi';
 // import { Button } from 'react-scroll';
 import { Button } from 'components/AfterAuth/ui';
-import Addon from '@/components/ui/InputGroup/Addon';
+import Addon from '@/components/AfterAuth/ui/InputGroup/Addon';
 import { BsCameraVideo, BsPencilSquare } from 'react-icons/bs';
 // import { HiSpeakerWave } from 'react-icons/hi';
 import { GrUpgrade } from 'react-icons/gr';
