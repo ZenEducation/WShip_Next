@@ -21,7 +21,7 @@ import style from '../../../../../../../styles/Home.module.css';
 import { HiOutlineExclamationCircle, HiOutlineTrash } from 'react-icons/hi';
 // import { Button } from 'react-scroll';
 import { Button } from 'components/AfterAuth/ui';
-import Addon from '@/components/ui/InputGroup/Addon';
+import Addon from '@/components/AfterAuth/ui/InputGroup/Addon';
 import { BsCameraVideo } from 'react-icons/bs';
 import { GrUpgrade } from 'react-icons/gr';
 import Notification from 'components/AfterAuth/ui/Notification/';
