@@ -9,7 +9,7 @@ import Notification from 'components/AfterAuth/ui/Notification/';
 
 import toast from 'components/AfterAuth/ui/toast';
 
-import FileItem from '@/components/ui/Upload/FileItem';
+import FileItem from '@/components/AfterAuth/ui/Upload/FileItem';
 
 import { Button } from 'components/AfterAuth/ui';
 import { AiOutlineGlobal, AiOutlinePlus } from 'react-icons/ai';
