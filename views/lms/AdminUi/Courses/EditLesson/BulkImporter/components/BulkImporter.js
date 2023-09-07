@@ -13,7 +13,7 @@ import SelectedLessonPage from '../../SelectedLessonPage/index';
 import { HiOutlineTrash } from 'react-icons/hi';
 
 import { Button } from 'components/AfterAuth/ui';
-import FileItem from '@/components/ui/Upload/FileItem';
+import FileItem from '@/components/AfterAuth/ui/Upload/FileItem';
 import { AiOutlineGlobal, AiOutlinePlus } from 'react-icons/ai';
 import { BsPencilSquare, BsThreeDotsVertical } from 'react-icons/bs';
 
