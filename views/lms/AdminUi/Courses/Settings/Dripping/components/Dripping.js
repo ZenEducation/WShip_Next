@@ -1,4 +1,4 @@
-import { Card, Checkbox, Radio } from '@/components/ui';
+import { Card, Checkbox, Radio } from '@/components/AfterAuth/ui';
 import React, { useContext, useState } from 'react';
 import { Button } from 'components/AfterAuth/ui';
 import { DatePicker } from 'components/AfterAuth/ui';
