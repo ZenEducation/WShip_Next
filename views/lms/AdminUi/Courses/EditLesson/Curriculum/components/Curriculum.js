@@ -13,7 +13,7 @@ import toast from 'components/AfterAuth/ui/toast';
 import { Button } from 'components/AfterAuth/ui';
 import { AiOutlineGlobal, AiOutlinePlus } from 'react-icons/ai';
 import { BsPencilSquare, BsThreeDotsVertical } from 'react-icons/bs';
-import FileItem from '@/components/ui/Upload/FileItem';
+import FileItem from '@/components/AfterAuth/ui/Upload/FileItem';
 
 import CurrAndBulkSideBar from './CurrAndBulkSideBar';
 
