@@ -30,13 +30,13 @@ const sideNavCollapseStyle = {
 };
 
 const SideNav = () => {
-  const themeColor = useSelector((state) => state.theme.themeColor);
+  const themeColor = useSelector((state) => state.theme?.themeColor);
   const primaryColorLevel = useSelector(
     (state) => state.theme.primaryColorLevel
   );
-  const navMode = useSelector((state) => state.theme.navMode);
-  const mode = useSelector((state) => state.theme.mode);
-  const direction = useSelector((state) => state.theme.direction);
+  const navMode = useSelector((state) => state.theme?.navMode);
+  const mode = useSelector((state) => state.theme?.mode);
+  const direction = useSelector((state) => state.theme?.direction);
   const currentRouteKey = useSelector(
     (state) => state.base.common.currentRouteKey
   );
