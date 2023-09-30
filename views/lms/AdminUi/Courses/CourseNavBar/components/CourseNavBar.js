@@ -1,52 +1,52 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 
-import { CardsContext } from '../../../../CardsComponent/CardsContext';
+import { CardsContext } from "../../../../CardsComponent/CardsContext";
 
-import { Card, Tabs, Menu } from 'components/AfterAuth/ui';
+import { Card, Tabs, Menu } from "components/AfterAuth/ui";
 const { TabNav, TabList, TabContent } = Tabs;
 
-import dynamic from 'next/dynamic';
-import Header from 'components/AfterAuth/template/Header';
-import { RxCross1 } from 'react-icons/rx';
-import { Button, Dropdown } from 'components/AfterAuth/ui';
-import { TfiEye } from 'react-icons/tfi';
-import { BsArrowBarLeft, BsFillCaretDownFill } from 'react-icons/bs';
-import { HiOutlineSearch } from 'react-icons/hi';
-import { BiArrowBack } from 'react-icons/bi';
+import dynamic from "next/dynamic";
+import Header from "components/AfterAuth/template/Header";
+import { RxCross1 } from "react-icons/rx";
+import { Button, Dropdown } from "components/AfterAuth/ui";
+import { TfiEye } from "react-icons/tfi";
+import { BsArrowBarLeft, BsFillCaretDownFill } from "react-icons/bs";
+import { HiOutlineSearch } from "react-icons/hi";
+import { BiArrowBack } from "react-icons/bi";
 
-import AllCourseLessons from '../../EditLesson/AllCourseLessons';
+import AllCourseLessons from "../../EditLesson/AllCourseLessons";
 
 const BulkImporter = dynamic(
-  () => import('../../EditLesson/BulkImporter/index'),
+  () => import("../../EditLesson/BulkImporter/index"),
   {
     ssr: false,
   }
 );
 
-const PricingPage = dynamic(() => import('../../Settings/Pricing/index'), {
+const PricingPage = dynamic(() => import("../../Settings/Pricing/index"), {
   ssr: false,
 });
 
-const SettingsPage = dynamic(() => import('../../Settings/Settings/index'), {
+const SettingsPage = dynamic(() => import("../../Settings/Settings/index"), {
   ssr: false,
 });
 
-const Dripping = dynamic(() => import('../../Settings/Dripping/index'), {
+const Dripping = dynamic(() => import("../../Settings/Dripping/index"), {
   ssr: false,
 });
 
-const Publish = dynamic(() => import('../../Settings/Publish/index'), {
+const Publish = dynamic(() => import("../../Settings/Publish/index"), {
   ssr: false,
 });
 
-const Curriculum = dynamic(() => import('../../EditLesson/Curriculum/index'), {
+const Curriculum = dynamic(() => import("../../EditLesson/Curriculum/index"), {
   ssr: false,
 });
 
 // LessonsOptions
 
 const LessonsOptions = dynamic(
-  () => import('../../EditLesson/LessonsOptions/index'),
+  () => import("../../EditLesson/LessonsOptions/index"),
   {
     ssr: false,
   }
@@ -60,7 +60,8 @@ const PreviewDropDown = () => {
       className="preview-btn header-buttons-white no-wrap-btn mr-2   mt-3"
       size="sm"
       variant="default"
-      color="yellow-900">
+      color="yellow-900"
+    >
       <TfiEye className="preview-btn " />
       <div className="flex items-center ml-3 display-preview-btn">
         PREVIEW
@@ -70,7 +71,7 @@ const PreviewDropDown = () => {
   );
 
   const onDropdownItemClick = (eventKey, e) => {
-    console.log('Dropdown Item Clicked', eventKey, e);
+    console.log("Dropdown Item Clicked", eventKey, e);
     setAllCourseLessonsTab(eventKey);
   };
 
@@ -105,7 +106,8 @@ const TabsNavBar = () => {
         onChange={(val) => {
           setTabMenu(val);
           setLessonsOptionTab(val);
-        }}>
+        }}
+      >
         <div className=" flex items-center  justify-between  ">
           <TabList className="pt-2">
             <TabNav value="Curriculum">Curriculum</TabNav>
@@ -175,7 +177,7 @@ const CourseNavBar = () => {
 
   return (
     <>
-      {allCourseLessonsTab === '' && (
+      {allCourseLessonsTab === "" && (
         <>
           <hr />
           <Header
@@ -189,7 +191,7 @@ const CourseNavBar = () => {
         </>
       )}
 
-      {allCourseLessonsTab === 'allCourseLessons' && <AllCourseLessons />}
+      {allCourseLessonsTab === "allCourseLessons" && <AllCourseLessons />}
     </>
   );
 };

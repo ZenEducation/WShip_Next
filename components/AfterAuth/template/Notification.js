@@ -101,7 +101,7 @@ export const Notification = ({ className }) => {
 
   // const { larger } = useResponsive()
 
-  const direction = useSelector((state) => state.theme.direction);
+  const direction = useSelector((state) => state.theme?.direction);
 
   const getNotificationCount = useCallback(async () => {
     const resp = await apiGetNotificationCount();

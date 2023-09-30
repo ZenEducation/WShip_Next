@@ -7,7 +7,7 @@ import { NavToggle } from "components/AfterAuth/shared";
 
 export const SideNavToggle = ({ className }) => {
   const sideNavCollapse = useSelector(
-    (state) => state.theme.layout.sideNavCollapse
+    (state) => state.theme?.layout.sideNavCollapse
   );
   const dispatch = useDispatch();
 

@@ -29,7 +29,7 @@ const dropdownItemList = [
 
 export const UserDropdown = ({ className }) => {
   const { avatar, userName, authority, email } = useSelector(
-    (state) => state.auth.user
+    (state) => state.auth?.user || {}
   );
 
   const { signOut } = useAuth();
@@ -38,7 +38,7 @@ export const UserDropdown = ({ className }) => {
     <div className={classNames(className, "flex items-center gap-2")}>
       <Avatar size={32} shape="circle" src={avatar} />
       <div className="hidden md:block">
-        <div className="text-xs capitalize">{authority[0] || "guest"}</div>
+        <div className="text-xs capitalize">{authority || "guest"}</div>
         <div className="font-bold">{userName}</div>
       </div>
     </div>

@@ -1,20 +1,20 @@
-import React, { useState, Suspense, lazy } from 'react';
-import classNames from 'classnames';
-import { Drawer } from 'components/AfterAuth/ui';
+import React, { useState, Suspense, lazy } from "react";
+import classNames from "classnames";
+import { Drawer } from "components/AfterAuth/ui";
 import {
   NAV_MODE_THEMED,
   NAV_MODE_TRANSPARENT,
   DIR_RTL,
-} from 'constants/theme.constant';
-import dynamic from 'next/dynamic';
-import withHeaderItem from 'utils/hoc/withHeaderItem';
-import { NavToggle } from 'components/AfterAuth/shared';
-import navigationConfig from 'configs/navigation.config';
-import useResponsive from 'utils/hooks/useResponsive';
-import { useSelector } from 'react-redux';
+} from "constants/theme.constant";
+import dynamic from "next/dynamic";
+import withHeaderItem from "utils/hoc/withHeaderItem";
+import { NavToggle } from "components/AfterAuth/shared";
+import navigationConfig from "configs/navigation.config";
+import useResponsive from "utils/hooks/useResponsive";
+import { useSelector } from "react-redux";
 // import dynamic from "next/dynamic";
 const VerticalMenuContent = dynamic(
-  async () => await import('components/AfterAuth/template/VerticalMenuContent')
+  async () => await import("components/AfterAuth/template/VerticalMenuContent")
 );
 
 const MobileNavToggle = withHeaderItem(NavToggle);
@@ -30,20 +30,20 @@ const MobileNav = () => {
     setIsOpen(false);
   };
 
-  const themeColor = useSelector((state) => state.theme.themeColor);
+  const themeColor = useSelector((state) => state.theme?.themeColor);
   const primaryColorLevel = useSelector(
-    (state) => state.theme.primaryColorLevel
+    (state) => state.theme?.primaryColorLevel
   );
-  const navMode = useSelector((state) => state.theme.navMode);
-  const mode = useSelector((state) => state.theme.mode);
-  const direction = useSelector((state) => state.theme.direction);
+  const navMode = useSelector((state) => state.theme?.navMode);
+  const mode = useSelector((state) => state.theme?.mode);
+  const direction = useSelector((state) => state.theme?.direction);
   const currentRouteKey = useSelector(
-    (state) => state.base.common.currentRouteKey
+    (state) => state.base?.common.currentRouteKey
   );
   const sideNavCollapse = useSelector(
-    (state) => state.theme.layout.sideNavCollapse
+    (state) => state.theme?.layout.sideNavCollapse
   );
-  const userAuthority = useSelector((state) => state.auth.user.authority);
+  const userAuthority = useSelector((state) => state.auth?.user.authority);
 
   // const { smaller } = useResponsive();
 

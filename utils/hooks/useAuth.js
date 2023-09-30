@@ -16,7 +16,7 @@ function useAuth() {
 
   const query = useQuery();
 
-  const { token, signedIn } = useSelector((state) => state.auth.session);
+  const { token, signedIn } = useSelector((state) => state.auth?.session || {});
 
   const signIn = async (values) => {
     try {
