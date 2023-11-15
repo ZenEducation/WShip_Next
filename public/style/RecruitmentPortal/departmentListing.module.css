@@ -1,0 +1,84 @@
+/* .container {
+    width:100%;
+    background: url("../../img/RecruitmentPortal/job/job.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+} */
+
+.heroSection{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../img/RecruitmentPortal/job/job.jpg");
+    /* background: url("../../img/RecruitmentPortal/job/job.jpg"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    width: 100%;
+    margin-top: 0;
+    opacity: 1;
+}
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-top:30px;
+
+  }
+  @media (min-width: 540px) {
+    .container {
+      max-width: 540px;
+    }
+    .heroSection{
+        width: 540px;
+    }
+  }
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px;
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+    .heroSection{
+        width: 640px;
+    }
+  }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+    .heroSection{
+        width: 768px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+      padding-right: 45px;
+      padding-left: 45px;
+    }
+    .heroSection{
+        width: 1024px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+      padding-right: 5rem;
+      padding-left: 5rem;
+    }
+    .heroSection{
+        width: 1280px;
+    }
+  }
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1536px;
+      padding-right: 13rem;
+      padding-left: 13rem;
+    }
+    .heroSection{
+        width: 1536px;
+    }
+  }

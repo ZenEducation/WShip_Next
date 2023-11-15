@@ -35,6 +35,7 @@ const appsNavigationConfig = [
                         authority: [ADMIN, USER],
                         subMenu: [],
                     },
+                   
                     {
                         key: 'appsProject.projectList',
                         path: `${APP_PREFIX_PATH}/project/project-list`,
