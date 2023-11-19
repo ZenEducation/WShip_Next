@@ -16,7 +16,7 @@ const JobListing = () => {
     <ClassicLayout>
       <>
         <Banner heading={"Job Listings"} />
-        {/* Search Section */}
+        {/* Search Section */}16032
         <div className={style.searchContainer}>
           <div className={style.searchInner}>
           <div className={style.inputBox}>
@@ -49,7 +49,7 @@ const JobListing = () => {
           </div>
           {/* Pagination Section */}
         </div>
-        <Footer />o
+        <Footer />
       </>
     </ClassicLayout>
   );

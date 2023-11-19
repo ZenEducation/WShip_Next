@@ -1,0 +1,58 @@
+  @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap');
+.container{
+    width: 100%;
+    margin:auto;
+    min-height: 100vh;
+    height: fit-content;
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    /* border:2px solid blue; */
+}
+.box{
+    width:90%;
+    height:fit-content;
+    color: #868e96;
+    text-align: start;
+    /* margin:auto; */
+    /* border:1px solid red; */
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    letter-spacing: 1;
+    font-family: 'Nunito Sans', sans-serif;
+}
+.box p{
+    line-height: 1.625;
+}
+.box p:first-child{
+font-weight: 500;
+font-size: 20px;
+color:#343a40;
+}
+.pointWithLogo{
+    display: flex;
+    gap:10px;
+    /* justify-content: center; */
+    /* align-items: flex-start; */
+}
+.arrow{
+    margin-top: 5px;
+}
+.container button{
+    padding: 10px 20px;
+    background-color: #4f46e5e6;
+    border:none;
+    width:120px;
+    /* margin:auto; */
+    border-radius: 10px;
+    color:white;
+    font-weight: 500;
+}
+@media (max-width:400px){
+    .container{
+        padding:50px 0px;
+    }
+}
