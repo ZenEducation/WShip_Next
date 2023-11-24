@@ -9,8 +9,10 @@
 }
 /* Search Section */
 .searchContainer{
-    width:80%;
+    width:fit-content;
+    min-width: 70%;
     height:fit-content;
+    max-width: 100%;
     padding:10px;
     margin:auto;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -20,15 +22,20 @@
     background-color: white;
     border-radius: 10px;
     margin-bottom: 70px;
+    display: flex;
 }
 .searchInner{
 
     width:100%;
     display: flex;
-    background-color:hsl(0, 0%, 98%)
+    background-color:hsl(0, 0%, 98%);
+    flex-wrap: wrap;
+
 }
 .inputBox{
-    width:25%;
+/* min-width: 200px; */
+    /* width:25%; */
+    width:100%;
     display: flex;
     justify-content: flex-start;
     gap:10px;
@@ -36,6 +43,7 @@
     /* border:1px solid blue; */
     border-right: 1px solid hsl(0,0%, 90%);
     padding:5px;
+    flex: 1 1;
 }
 .inputBox svg{
     width:10%;
@@ -50,18 +58,22 @@ font-size: 16px;
 
 }
 .selectBox{
-    width:25%;
+    /* width:25%; */
     background-color:hsl(0, 0%, 98%);
     border-right: 1px solid hsl(0,0%, 90%);
     padding:5px 20px 5px 20px;
     font-size: 14px;
+    flex: 1 1;
+
 }
 .searchContainer button{
-    width:25%;
+    /* width:25%; */
     padding:18px 40px;
     color:white;
     background-color:  #4f46e5e6;
     font-weight: 600;
+    flex: 1 1;
+
 }
 .jobSection {
     min-height: 100%;

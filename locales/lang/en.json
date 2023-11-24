@@ -39,6 +39,18 @@
             "manageArticles": "Manage Articles",
             "editArticle": "Edit Article"
         },
+        "appsRecruitmentPortal": {
+            "recruitmentPortal": "Recruitment Portal",
+            "jobListing": "Job Listing",
+            "createJob": "Create Job",
+            "jobAppplication": "Job Application",
+            "jobDetails": "Job Details",
+            "candidateListing": "Candidate Listing",
+            "candidateDetails": "Candidate Details",
+            "createDepartment": "Create Department",
+            "departmentListing": "Department Listing",
+            "departmentDetails": "Department Details"
+        },
         "appsAccount": {
             "account": "Account",
             "settings": "Settings",

@@ -64,7 +64,7 @@ const JobListing = () => {
   return (
     <ClassicLayout>
       <>
-        <Banner/>
+        <Banner heading={"Department Listing"}/>
         {/* <!-- Start Section--> */}
         <section class="relative md:py-24 py-16 bg-gray-50 dark:bg-slate-800">
           <div className={style.container}>
@@ -100,12 +100,11 @@ const JobListing = () => {
             {/* <!--end grid--> */}
           </div>
           {/* <!--end container--> */}
-            <Footer/>
-         
-          {/* <!--end container--> */}
+        
         </section>
         {/* <!--end section--> */}
         {/* <!-- End Section--> */}
+        <Footer/>
       </>
     </ClassicLayout>
   );

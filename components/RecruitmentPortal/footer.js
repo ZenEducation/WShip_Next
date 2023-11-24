@@ -3,7 +3,7 @@ import style from "@/public/style/RecruitmentPortal/departmentListing.module.css
 
 const Footer = () => {
   return (
-    <div className={style.container} style={{ marginTop: 112 }}>
+    <div className={style.container} style={{ marginTop: 20 }}>
       <div class="flex items-center">
         <div class="lg:col-span-5 md:col-span-6">
           <img

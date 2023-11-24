@@ -10,10 +10,10 @@ const CreateJob = () => {
   return (
     <ClassicLayout>
       <>
-        <Banner />
+        <Banner heading={"Create Job"} />
 
         <div className={style.formContainer}>
-            <h2>Create Job</h2>
+            {/* <h2>Create Job</h2> */}
           <form className={style.form}>
             <div>
               <section>

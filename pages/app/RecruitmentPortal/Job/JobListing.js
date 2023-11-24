@@ -10,18 +10,33 @@ import JobCard from "@/components/RecruitmentPortal/jobCard";
 import Image from "next/image";
 import { jobData } from "@/dummyData/jobListingData";
 import {FaLocationDot , FaSearch} from 'react-icons/fa';
+import { useState } from 'react';
 
 const JobListing = () => {
+  const [searchItem, setSearchItem] = useState("");
+const [filteredData , setFilteredData] = useState(jobData);
+
+const handleInputChange = async (e)=> {
+  const searchTerm = e.target.value;
+  setSearchItem(searchTerm);
+
+  const filteredItems = jobData.filter((item) => {
+    jobData.job.toLowerCase().includes(searchTerm.lowerCase());
+  })
+
+  setFilteredData(filteredItems);
+
+}
   return (
     <ClassicLayout>
       <>
-        <Banner heading={"Job Listings"} />
-        {/* Search Section */}16032
+        <Banner heading={"Job Listing"} />
+        {/* Search Section */}
         <div className={style.searchContainer}>
           <div className={style.searchInner}>
           <div className={style.inputBox}>
             <FaSearch  color='#4f46e5e6'/>
-          <input type="text" placeholder="Search your keywords"/>
+          <input type="text" value={searchItem} onChange={handleInputChange} placeholder="Type here..."/>
           </div>
           <select className={style.selectBox}>
             <option>Option 1</option>

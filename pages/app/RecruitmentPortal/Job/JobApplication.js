@@ -11,7 +11,7 @@ const JobApplication = () => {
   return (
     <ClassicLayout>
     <>
-      <Banner heading={"Senior Web Developer"} />
+      <Banner heading={"Job Apply Page"} />
     <div className={style.container}>
       <div className={style.formBox}>
         <form>
