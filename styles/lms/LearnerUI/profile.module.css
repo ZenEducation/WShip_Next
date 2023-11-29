@@ -1,0 +1,393 @@
+
+
+/* Account CSS */
+.accountContainer{
+    width:100vw;
+    height:fit-content;
+    min-height: 100vh;
+    display: flex;
+    padding: 60px 40px;
+    box-sizing: border-box;
+}
+
+/* SideBar CSS */
+.sidebarContainer{
+    width:22%;
+    height: fit-content;
+    border-right: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    box-sizing: border-box;
+}
+.sidebarContainer ul{
+    display: flex;
+    flex-direction: column;
+    /* gap:8px; */
+    padding-left: 20px;
+
+}
+.sidebarContainer ul li{
+    font-size: 15px;
+    color: #432b8b;
+    font-weight: 500;
+    padding:10px;
+    /* border:1px solid yellow; */
+
+}
+.sidebarContainer ul li:hover{
+    border-left:5px solid #432b8b;
+    cursor: pointer;
+
+}
+
+.selected{
+    border-left:5px solid #432b8b;
+}
+
+/* Profile Page CSS */
+.profileContainer{
+    width:78%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    color:#495057;
+    gap:20px;
+
+}
+.profileHeading{
+    font-size: 38px;
+}
+.profileContainerInner{
+    display: flex;
+    gap:50px;
+    width:100%;
+}
+.profileLeft{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    align-items: center;
+}
+.profileLeft p{
+    font-size: 12px;
+    font-weight: 500;
+}
+.profileRight{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+.profileLabelC{
+display: flex;
+flex-direction: column;
+gap:10px;
+}
+.profileLabelR{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    width:100%;
+}
+.profileLabelR div{
+width:50%;
+}
+.profileRight div label{
+    font-size: 18px;
+}
+.profileRight div input{
+    padding:15px 20px;
+}
+.profileSelectBox{
+    display: flex;
+    justify-content: center;
+    width:100%;
+}
+.profileSelectBox select{
+    width: 100%;
+    padding:15px 20px;
+}
+.profileSelectBox select option{
+    width: 100%;
+    padding:15px 20px;
+}
+.profileRight button{
+    color:blue;
+    border:2px solid blue;
+    padding:10px 10px;
+    width:30%;
+    font-weight: 500;
+}
+
+/* Password Page CSS */
+.passwordContainer{
+    width:78%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    color:#495057;
+    gap:20px;
+
+}
+.passwordHeading{
+    font-size: 38px;
+}
+.passwordContainer div{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+.passwordContainer div label{
+    font-size: 14px;
+    font-weight: 700;
+}
+.passwordContainer div input{
+    padding:15px 20px;
+}
+.passwordNote {
+    font-family: cursive;
+}
+.passwordContainer button{
+    color:blue;
+    border:2px solid blue;
+    padding:14px 5px;
+    width:20%;
+    font-weight: 500;
+}
+/* Notification CSS */
+.notificationContainer{
+    width:78%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    color:#495057;
+    gap:20px;
+
+}
+.notificationHeading{
+    font-size: 38px;
+
+}
+.notificationContainer div{
+    display: flex;
+    gap:10px;
+}
+.notificationContainer div span{
+    font-weight: 800;
+    font-size: 16px;
+}
+.notificationContainer button{
+    color:blue;
+    border:2px solid blue;
+    padding:14px 5px;
+    width:18%;
+    font-weight: 500;
+    font-size: 16px;
+}
+/* Billing CSS Starts */
+.billingContainer{
+    width:78%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    color:#495057;
+    gap:20px;
+}
+.billingHeading{
+    font-size: 38px;
+
+}
+.billingSubHeading{
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ced4da;
+    margin-bottom: 20px;
+
+}
+.billingText{
+    font-size: 16px;
+    margin-bottom: 40px;
+
+}
+.billingInnerDiv{
+    display: flex;
+    justify-content: space-between;
+}
+.billingContainer button{
+    color:blue;
+    border:2px solid blue;
+    padding:0px 5px;
+    width:120px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+/* Orders CSS */
+.orderContainer{
+    width:78%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+    color:#495057;
+    gap:20px;
+    overflow-x: auto;
+}
+.orderHeading{
+    font-size: 38px;
+
+}
+.orderTableContainer{
+    width: 100%;
+    overflow-x: auto;
+}
+.orderTableContainer table{
+width:100%;
+}
+.orderTableContainer table tr {
+    width:100%;
+    padding:20px 0px;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+
+    
+}
+.orderTableContainer table tr th {
+    padding:20px 0px;
+    font-size: 16px;
+    padding-right: 20px;
+
+}
+.orderNote{
+    font-size: 16px;
+}
+@media (max-width: 1000px){
+    .profileContainerInner{
+        flex-direction: column;
+        gap:20px;
+    }
+    .profileHeading{
+        text-align: center;
+    }
+    .orderHeading{
+        text-align: center;
+
+    }
+    .billingHeading{
+        text-align: center;
+
+    }
+    .profileHeading{
+        text-align: center;
+
+    }
+    .passwordHeading{
+        text-align: center;
+
+    }
+    .notificationHeading{
+        text-align: center;
+
+    }
+    .profileRight button{
+        align-self: center;
+    }
+    .passwordContainer button{
+        align-self: center;
+
+    }
+    .notificationContainer button{
+        align-self: center;
+
+    }
+  
+}
+@media (max-width:800px){
+    .sidebarContainer{
+        width:100%;
+    }
+    .sidebarContainer ul {
+        display: flex;
+        flex-direction: row;
+        padding-left: 0px;
+    }
+    .accountContainer{
+        width:100%;
+        flex-direction: column;
+        gap:40px;
+        align-items: center;
+    }
+    .profileContainer{
+        width:100%;
+        flex-direction: column;
+        gap:40px;
+        padding-left: 0px;
+    }
+    .passwordContainer{
+        width:100%;
+        flex-direction: column;
+        gap:40px;
+        padding-left: 0px;
+    }
+    .notificationContainer{
+        width:100%;
+        flex-direction: column;
+        gap:40px;
+        padding-left: 0px;
+
+    }
+    .billingContainer{
+        width:100%;
+        flex-direction: column;
+        gap:40px;
+        padding-left: 0px;
+
+    }
+    .orderContainer{
+        width:100%;
+        flex-direction: column;
+        gap:40px;
+        padding-left: 0px;
+
+    }
+    .selected{
+        border-bottom:5px solid #432b8b;
+    }
+    .sidebarContainer ul{
+        padding-left: 0px;
+    }
+    .billingInnerDiv{
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .billingInnerDiv button{
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 500px){
+    .sidebarContainer ul{
+        flex-direction: column;
+    }
+    .passwordContainer button{
+        width:40%;
+    }
+     .notificationContainer button{
+    width:50%;
+    }
+}
+@media (max-width: 350px){
+    .profileLabelR{
+        flex-direction: column;
+    }
+    .profileLabelR div{
+        width:100%;
+    }
+    .profileRight button{
+        width:50%;
+    }
+    
+}

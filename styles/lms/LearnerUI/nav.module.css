@@ -1,0 +1,160 @@
+.navContainer{
+    width:100vw;
+    height:120px;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px;
+}
+.navContainer li:hover{
+cursor: pointer;
+}
+.firstBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.secondBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list1{
+    display: flex;
+    gap:30px;
+    color:#fff;
+    font-size: 16px;
+    align-items: center;
+}
+.list1 li:nth-child(4) {
+    display: flex;
+    gap:5px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.list1 li:nth-child(4) select{
+    background-color: black;
+}
+
+.selectBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:40px;
+    background-color: black;
+    width:170px;
+    right:20px;
+}
+.selectBox ul{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start ;
+    width:100%;
+    padding:20px;
+    gap:10px;
+}
+.selectBox li{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin:0;
+}
+.selectBox li:nth-child(2){
+    display: flex;
+    gap:5px;
+}
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-1.25em);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.open{
+    display: flex;
+    animation-name: fadeInDown;
+    animation-duration: 0.5s;
+
+}
+.close{
+    display: none;
+    animation-name: fadeInDown;
+    animation-duration: 0.5s;
+}
+.user{
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+.user:hover{
+    cursor: pointer;
+}
+
+/* sidebar css */
+.sidebarContainer{
+    height: 100vh;
+    width: 100vw;
+    background-color: wheat;
+    color:black;
+    /* border:1px solid red; */
+}
+.sidebarContainer div{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+    padding:10px 20px 0px 0px;
+}
+
+.sidebarContainer ul{
+    height: 100%;
+    font-size: 22px;
+    width:90%;
+    margin:auto;
+    /* border:1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    justify-content: center;
+
+}
+.sidebarContainer ul li{
+    text-decoration: none;
+    padding:20px;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+}
+.sidebarContainer ul li:hover{
+    cursor: pointer;
+}
+
+@media (max-width: 1000px){
+    .list1{
+        font-size: 12px;
+    }
+    .firstBox img{
+        height: 70px;
+        width:200px;
+    }
+}
+@media (max-width: 800px){
+    .navContainer {
+        padding: 0px 40px;
+    }
+    .firstBox img{
+        height: 70px;
+        width:150px;
+    }
+}
+@media (max-width: 450px){
+    .navContainer {
+        padding: 0px 10px;
+    }
+}

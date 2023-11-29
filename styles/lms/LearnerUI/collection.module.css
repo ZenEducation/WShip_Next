@@ -1,0 +1,164 @@
+.container{
+    width:100vw;
+    height: fit-content;
+    min-height: 100vh;
+
+}
+
+.div2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:70px 50px 30px 50px;
+
+}
+.div2 p{
+    font-size: 38px;
+    color: #495057;
+    font-weight: 400;
+}
+.div2 div{
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding:0px 10px 0px 0px;
+}
+.div2 div input{
+    padding:15px 50px 15px 20px;
+    font-size: 16px;
+}
+.div3{
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding:0px 50px;
+    gap:20px;
+    margin-bottom: 30px;
+
+}
+.div3 p{
+    font-size: 16px;
+    color: #495057;
+    text-align: center;
+    /* border-bottom: 2px solid rgb(249, 241, 241); */
+}
+.div3 p:hover{
+    border-bottom:2px solid #432b8b;
+    cursor: pointer;
+
+}
+.selected{
+    border-bottom:2px solid #432b8b;
+}
+
+.cardsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 20px 50px;
+    gap:50px;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.pagination button {
+    width: 40px;
+    height: 40px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+    color: #eee;
+    border-color: #eee;
+}
+
+.pagination button.active {
+    font-weight: 900;
+    border-color: #101010;
+    background: #ffe400;
+    color: #101010;
+}
+.pagination button.nonActive {
+    font-weight: 900;
+    border-color: #101010;
+    background: white;
+    color: #101010;
+}
+/* Card CSS */
+.card{
+min-width: 320px;
+max-width: 380px;
+height: fit-content;
+border:1px solid black;
+flex: 1 1;
+}
+.cardDiv1{
+width: 100%;    
+height: fit-content;
+position:relative;
+
+}
+.cardDiv1 img{
+    width:100%;
+}
+.cardDiv1 div{
+    position:absolute;
+    height:40px;
+    width:70px;
+    border:2px solid rgb(3, 169, 3);
+    background-color: #fff;
+    bottom:-20px;
+    left: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+}
+.cardDiv2 {
+    text-align: center;
+    padding:40px 30px 20px 30px;
+    border-bottom: 1px solid #ced4da;
+    min-height: 120px;
+}
+.cardDiv2 p{
+    text-align: center;
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+}
+.cardDiv3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding:10px 20px;
+}
+.cardDiv3 p:first-child{
+font-weight: 800;
+color:black;
+}
+@media (max-width:700px){
+   
+.div2{
+    flex-direction: column;
+    gap:10px;
+}
+.div2 p{
+    text-align: center;
+}
+.div3{
+    flex-direction: column;
+    gap:10px;
+    align-items: center;
+
+}
+}
